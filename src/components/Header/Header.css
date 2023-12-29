@@ -1,0 +1,84 @@
+.topbar {
+  position: relative;
+  width: 1200px !important;
+  background: var(--bs-body-bg);
+  z-index: 9;
+  padding: 0 25px;
+  margin: auto;
+  margin-top: auto;
+  text-align: center;
+  margin-top: 11px !important;
+  border-radius: 15px;
+}
+.topbar {
+  text-align: center;
+}
+@media (min-width: 992px) {
+  .navbar-expand-lg {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+  }
+}
+@media (min-width: 992px) {
+  .navbar-expand-lg .navbar-collapse {
+    display: flex !important;
+    flex-basis: auto;
+  }
+}
+
+.topbar .navbar {
+  min-height: 70px;
+}
+.p-0 {
+  padding: 0 !important;
+}
+.welcome_sms {
+  font-size: 24px;
+  font-weight: 600;
+  color: #222;
+  margin-top: 8px;
+  text-align: left;
+  float: left;
+  width: 100%;
+  margin-bottom: 0px;
+}
+.welcome_sms span {
+  font-size: 14px;
+  font-weight: 500;
+  color: #222;
+  margin-left: 19px;
+}
+.welcome_desi_1 {
+  float: left;
+  width: 100%;
+  text-align: left;
+  font-size: 14px;
+  margin-top: 3px;
+  color: #828282;
+}
+.justify-content-end {
+  justify-content: flex-end !important;
+}
+.navbar-collapse {
+  flex-basis: 100%;
+  flex-grow: 1;
+  align-items: center;
+}
+.btn_log_out {
+  background: #32387d;
+  color: #fff;
+  padding: 12px 35px;
+  border-radius: 14px;
+  font-size: 15px;
+  position: relative;
+  top: 10px;
+}
+.iffc_logo {
+  max-width: 50%;
+  text-align: right;
+  float: right;
+}
+.welcome-links {
+  float: left;
+  width: auto;
+}
