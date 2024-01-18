@@ -3,14 +3,15 @@ import Sidebar from "../Sidebar/Sidebar";
 import Header from "../Header/Header";
 import DashboardContent from "./DashboardContent";
 import "./Dashboard.css";
-import { getToken } from "../../actions/AuthActions";
+import { getToken, getDeviceData } from "../../actions/DashboardActions";
 import { connect } from "react-redux";
 
 const Dashboard = (props) => {
-  const { getToken } = props;
+  const { getToken, getDeviceData, getDeviceAppData } = props;
 
   useEffect(() => {
     getToken();
+    getDeviceData();
   }, []);
 
   return (
@@ -24,14 +25,9 @@ const Dashboard = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  // loggingIn: state.authReducer.loggingIn,
-  // loginerror: state.authReducer.loginerror,
-  // successMsg: state.authReducer.successMsg
-});
-
 const mapDispatchToProps = {
   getToken,
+  getDeviceData,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+export default connect(undefined, mapDispatchToProps)(Dashboard);

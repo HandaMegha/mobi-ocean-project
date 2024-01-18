@@ -6,36 +6,28 @@ class TicketDataGraph extends Component {
   render() {
     const options = {
       chart: {
+        type: "column",
         height: 150,
       },
       title: {
         text: "",
       },
-
       xAxis: {
-        // accessibility: {
-        //   rangeDescription: "Range: 2010 to 2020",
-        // },
-        type: "datetime",
-        dateTimeLabelFormats: {
-          week: "%e of %b",
-        },
-        labels: {
-          style: {
-            color: "#615E83",
-            fontSize: "14px",
-            fontStyle: "normal",
-            fontWeight: "400",
-            fontFamily: "Inter",
-          },
+        categories: ["Week 1", "Week 2", "Week 3", "Week 4"],
+        style: {
+          color: "#615E83",
+          fontSize: "14px",
+          fontStyle: "normal",
+          fontWeight: "400",
+          fontFamily: "Inter",
+          position: "vertical",
+          whiteSpace: "nowrap",
         },
       },
-
       yAxis: {
         title: {
           text: "",
         },
-        gridLineDashStyle: "longdash",
         labels: {
           style: {
             color: "#615E83",
@@ -46,55 +38,27 @@ class TicketDataGraph extends Component {
           },
         },
       },
-
       plotOptions: {
         series: {
-          label: {
-            connectorAllowed: false,
-          },
-          pointStart: 2023,
+          pointWidth: 15,
+        },
+        style: {
+          color: "#615E83",
+          fontSize: "14px",
         },
       },
-
       series: [
         {
           name: "Last Month",
-          data: [
-            5000, 5020, 4900, 800, 900, 6000, 5000, 5070, 5000, 500, 0, 5000,
-            8000, 7000, 800, 400, 6000, 5000, 5060, 500, 4090, 5020,
-          ],
-          pointStart: Date.UTC(2023, 0, 7),
-          pointInterval: 24 * 3600 * 1000 * 7, // one week
+          data: [706292, 260000, 307000, 683000],
           color: "#962DFF",
         },
         {
           name: "This Month",
-          data: [
-            6000, 5090, 4900, 600, 500, 7000, 6000, 5090, 4000, 300, 0, 4000,
-            6500, 6000, 700, 200, 7000, 5000, 5060, 400, 4050, 4020,
-          ],
-          pointStart: Date.UTC(2023, 0, 7),
-          pointInterval: 24 * 3600 * 1000 * 7, // one week
+          data: [610860, 136000, 550000, 141000],
           color: "#FCB5C3",
         },
       ],
-
-      responsive: {
-        rules: [
-          {
-            condition: {
-              maxWidth: 500,
-            },
-            chartOptions: {
-              legend: {
-                layout: "horizontal",
-                align: "center",
-                verticalAlign: "bottom",
-              },
-            },
-          },
-        ],
-      },
     };
     return <HighchartsReact highcharts={Highcharts} options={options} />;
   }

@@ -1,4 +1,5 @@
-import SoftwareUpdatesGraph from "./SoftwareUpdatesGraph";
+import SoftwareUpdatesGraph from "./SoftwareAppGraph";
+import SoftwareFirmwareGraph from "./SoftwareFirmwareGraph";
 
 const SoftwareUpdate = () => {
   return (
@@ -13,7 +14,10 @@ const SoftwareUpdate = () => {
                   <span className="ac2">Launched on 23/11/2023</span>
                 </div>
               </div>
-              <SoftwareUpdatesGraph />
+              <div>
+                <SoftwareUpdatesGraph />
+                <SoftwareFirmwareGraph />
+              </div>
             </div>
           </div>
         </div>

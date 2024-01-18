@@ -1,6 +1,6 @@
 import { fork } from "redux-saga/effects";
-import AuthSaga from "./AuthSaga";
+import DashboardSaga from "./DashboardSaga";
 
 export default function* sagas() {
-  yield fork(AuthSaga().watcher);
+  yield fork(DashboardSaga().watcher);
 }

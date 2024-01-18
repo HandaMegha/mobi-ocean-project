@@ -2,23 +2,18 @@ import React, { Component } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
-class SoftwareUpdatesGraph extends Component {
+class SoftwareAppGraph extends Component {
   render() {
     const options = {
       chart: {
         type: "bar",
-        height: 330,
+        height: 165,
       },
       title: {
         text: "",
       },
       xAxis: {
-        categories: [
-          "App version update pushed",
-          "Installed",
-          "Firmware update pushed",
-          "Installed",
-        ],
+        categories: ["App version update pushed", "Installed"],
         title: {
           text: null,
         },
@@ -71,8 +66,6 @@ class SoftwareUpdatesGraph extends Component {
           data: [
             { y: 100, color: "#962DFF" },
             { y: 65, color: "#E0C6FD" },
-            { y: 52, color: "#4A3AFF" },
-            { y: 80, color: "#C6D2FD" },
           ],
         },
       ],
@@ -81,4 +74,4 @@ class SoftwareUpdatesGraph extends Component {
   }
 }
 
-export default SoftwareUpdatesGraph;
+export default SoftwareAppGraph;

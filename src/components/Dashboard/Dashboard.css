@@ -1121,12 +1121,19 @@ select {
 }
 /* card 1 */
 /* card 2*/
-.card {
+.card,
+device_box {
   padding: 17px;
   background: #fff;
   color: #222;
   border-radius: 7px;
   word-wrap: break-word;
+}
+.device_box {
+  padding: 15px;
+  margin-bottom: 10px;
+}
+.device_box span {
 }
 .act_box.w-auto {
   background: #ffc1a4;
@@ -1159,6 +1166,10 @@ select {
   border-radius: 15px;
   font-weight: 500;
   line-height: 1.4;
+}
+
+.col-box-6 span {
+  font-weight: bold;
 }
 
 .select-box-6 p {

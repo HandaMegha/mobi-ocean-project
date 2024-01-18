@@ -1,40 +1,52 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TicketData from "../TicketData/TicketData";
 import DeviceData from "../DeviceData/DeviceData";
 import TransactionData from "../TransactionData/TransactionData";
 import SoftwareUpdate from "../SoftwareUpdate/SoftwareUpdate";
+import {
+  getDeviceWiseCount,
+  getDeviceAppData,
+} from "../../actions/DashboardActions";
+import { connect } from "react-redux";
+import { durationValues, filterValues } from "./DashboardConstant";
+import { isEmpty } from "lodash";
 
-const statesList = [
-  { name: "Gujarat", value: "9,99,999" },
-  { name: "Maharasthra", value: "9,99,999" },
-  { name: "Rajsathan", value: "9,99,999" },
-  { name: "Tamil Nadu", value: "9,99,999" },
-  { name: "Uttar Pradesh", value: "9,99,999" },
-  { name: "Madhya Pradesh", value: "9,99,999" },
-  { name: "Delhi", value: "9,99,999" },
-  { name: "Karnataka", value: "9,99,999" },
-  { name: "Arunchal Pradesh", value: "9,99,999" },
-  { name: "Assam", value: "9,99,999" },
-  { name: "Punjab", value: "9,99,999" },
-  { name: "Chattisgarh", value: "9,99,999" },
-  { name: "Goa", value: "9,99,999" },
-  { name: "Haryana", value: "9,99,999" },
-  { name: "Goa", value: "9,99,999" },
-  { name: "Haryana", value: "9,99,999" },
-  { name: "Goa", value: "9,99,999" },
-  { name: "Haryana", value: "9,99,999" },
-  { name: "Goa", value: "9,99,999" },
-  { name: "Haryana", value: "9,99,999" },
-  { name: "Goa", value: "9,99,999" },
-  { name: "Haryana", value: "9,99,999" },
-  { name: "Goa", value: "9,99,999" },
-];
-
-const DashboardContent = () => {
+const DashboardContent = (props) => {
+  const { getDeviceWiseCount, deviceCount, getDeviceAppData } = props;
   const [listView, setListView] = useState(true);
+  const [duration, setDuration] = useState("last_week");
+  const [filterValue, setFilterValue] = useState("state");
+  const [filterList, setFilterList] = useState("");
+  const [areaLevel, setAreaLevel] = useState("country");
+  console.log("filterList", filterList);
+
+  useEffect(() => {
+    console.log("in useeffect", deviceCount);
+    if (!listView && !isEmpty(deviceCount)) {
+      console.log("in if condition");
+      setFilterList(deviceCount.States);
+    }
+  }, [deviceCount, listView]);
 
   const changeView = () => {
     setListView((prevListView) => !prevListView);
+    if (listView) {
+      getDeviceWiseCount();
+      getDeviceAppData();
+    }
+  };
+
+  const changeFilter = (value) => {
+    setFilterValue(value);
+    if (value === "state") {
+      setFilterList(deviceCount.States);
+    } else {
+      setFilterList(deviceCount.Organizations);
+    }
+  };
+
+  const changeDuration = (value) => {
+    setDuration(value);
   };
 
   return (
@@ -47,8 +59,24 @@ const DashboardContent = () => {
                 <div className="d-sm-flex d-block align-items-center justify-content-between mb-9">
                   <div className="mb-3 mb-sm-0">
                     <h5 className="card-title fw-semibold">
-                      {listView ? "Lorem ipsum" : "Lorem ipsum dolor sitamet"}
+                      {listView ? "Lorem ipsum" : "Lorem ipsum dolor"}
                     </h5>
+                  </div>
+                  <div className="mb-3 mb-sm-0">
+                    <select
+                      className="form-select w-auto"
+                      placeholder="Filter by"
+                      onChange={(e) => changeDuration(e.target.value)}
+                      value={duration}
+                    >
+                      {durationValues.map((list, index) => {
+                        return (
+                          <option key={index} value={list.value}>
+                            {list.name}
+                          </option>
+                        );
+                      })}
+                    </select>
                   </div>
                   <button className="viewBtn" onClick={changeView}>
                     <img
@@ -103,26 +131,41 @@ const DashboardContent = () => {
                         />
                       </div>
                       <div className="col-md-5">
-                        <select className="form-select w-auto">
-                          <option defaultValue="0"> Filter by</option>
-                          <option value="1">State</option>
+                        <select
+                          className="form-select w-auto"
+                          placeholder="Filter by"
+                          onChange={(e) => changeFilter(e.target.value)}
+                          value={filterValue}
+                        >
+                          {filterValues.map((list, index) => {
+                            return (
+                              <option key={index} value={list.value}>
+                                {list.name}
+                              </option>
+                            );
+                          })}
                         </select>
                       </div>
                     </div>
                     <div className="tableList">
                       <table id="stateList">
-                        <tr>
-                          <th>State/UT</th>
-                          <th>Active devices</th>
-                        </tr>
-                        {statesList.map((list, index) => {
-                          return (
-                            <tr key={index}>
-                              <td>{list.name}</td>
-                              <td>{list.value}</td>
-                            </tr>
-                          );
-                        })}
+                        <thead>
+                          <tr>
+                            <th>State/UT</th>
+                            <th>Active devices</th>
+                          </tr>
+                        </thead>
+                        {filterList &&
+                          filterList.map((list, index) => {
+                            return (
+                              <tbody key={index}>
+                                <tr>
+                                  <td>{list.CategoryName}</td>
+                                  <td>{list.TotalDevice}</td>
+                                </tr>
+                              </tbody>
+                            );
+                          })}
                       </table>
                     </div>
                   </>
@@ -131,9 +174,47 @@ const DashboardContent = () => {
             </div>
           </div>
           <div className="col-lg-7">
+            <div className=" card device_box">
+              <div className="card-body">
+                <div className=" align-items-center">
+                  <div className="row">
+                    <div className="col-md-3">
+                      <div className="col-box-6">
+                        <p>
+                          Total Devices <span>9,999,999</span>
+                        </p>
+                      </div>
+                    </div>
+                    <div className="col-md-3">
+                      <div className="col-box-6">
+                        <p>
+                          Average device usage <span>9,999,999</span>
+                        </p>
+                      </div>
+                    </div>
+                    <div className="col-md-3">
+                      <div className="col-box-6">
+                        <p>
+                          Warranty expires in 90 days <span>9,999,999</span>
+                        </p>
+                      </div>
+                    </div>
+                    <div className="col-md-3">
+                      <div className="col-box-6">
+                        <p>
+                          RD expires in 90 days <span>9,999,999</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="col-lg-7">
             <div className="row">
               <TicketData />
-              <DeviceData />
+              <DeviceData duration={duration} areaLevel={areaLevel} />
               <TransactionData listView={listView} />
               {!listView && <SoftwareUpdate />}
             </div>
@@ -144,4 +225,13 @@ const DashboardContent = () => {
   );
 };
 
-export default DashboardContent;
+const mapStateToProps = (state) => ({
+  deviceCount: state.dashboardReducer.deviceCount,
+});
+
+const mapDispatchToProps = {
+  getDeviceWiseCount,
+  getDeviceAppData,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardContent);
