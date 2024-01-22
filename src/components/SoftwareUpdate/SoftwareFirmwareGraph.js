@@ -4,10 +4,11 @@ import HighchartsReact from "highcharts-react-official";
 
 class SoftwareFirmwareGraph extends Component {
   render() {
+    const { data, height } = this.props;
     const options = {
       chart: {
         type: "bar",
-        height: 165,
+        height: height,
       },
       title: {
         text: "",
@@ -63,10 +64,7 @@ class SoftwareFirmwareGraph extends Component {
       series: [
         {
           showInLegend: false,
-          data: [
-            { y: 52, color: "#4A3AFF" },
-            { y: 80, color: "#C6D2FD" },
-          ],
+          data: data,
         },
       ],
     };

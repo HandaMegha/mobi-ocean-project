@@ -1,19 +1,19 @@
 import DeviceDataGraph from "./DeviceDataGraph";
 import { connect } from "react-redux";
-import { filter, isEmpty } from "lodash";
+import { filter, find, isEmpty } from "lodash";
 
 const DeviceData = (props) => {
   const { deviceData, duration, areaLevel } = props;
-  console.log("props", props);
 
-  const renderDeviceGraph = () => {
+  const renderDeviceData = () => {
     const deviceGraphData = [];
+    let activeDevicesCount = 0;
     if (!isEmpty(deviceData)) {
       const filteredData = filter(deviceData, {
         area_level: areaLevel,
         duration: duration,
       });
-      console.log("filteredData", filteredData);
+      activeDevicesCount = find(deviceData, "device_total_active_count");
 
       if (!isEmpty(filteredData)) {
         filteredData.map((item) => {
@@ -42,10 +42,27 @@ const DeviceData = (props) => {
             });
           }
         });
-        console.log("deviceGraphData", deviceGraphData);
       }
     }
-    return <DeviceDataGraph data={deviceGraphData} />;
+    return (
+      <>
+        <div className="d-sm-flex d-block align-items-center justify-content-between mb-9">
+          <div className="mb-3 mb-sm-0">
+            <h5 className="card-title fw-semibold">Device Data</h5>
+            <p className="ac2" style={{ color: "#1DB636" }}>{`${
+              isEmpty(activeDevicesCount)
+                ? 0
+                : activeDevicesCount.device_total_active_count
+            } active today`}</p>
+          </div>
+          <div className="act_box w-auto new_cl">
+            <p className="ac1">Lorem</p>
+            <p className="ac2">9,99,999</p>
+          </div>
+        </div>
+        <DeviceDataGraph data={deviceGraphData} />
+      </>
+    );
   };
 
   return (
@@ -53,19 +70,7 @@ const DeviceData = (props) => {
       <div className="card speed_sc">
         <div className="card-body dev_dt1 ">
           <div className=" align-items-start">
-            <div className="col-12">
-              <div className="d-sm-flex d-block align-items-center justify-content-between mb-9">
-                <div className="mb-3 mb-sm-0">
-                  <h5 className="card-title fw-semibold">Device Data</h5>
-                  <p className="ac2">999,99,99,999</p>
-                </div>
-                <div className="act_box w-auto new_cl">
-                  <p className="ac1">Total Ordered</p>
-                  <p className="ac2">9,99,999</p>
-                </div>
-              </div>
-              {renderDeviceGraph()}
-            </div>
+            <div className="col-12">{renderDeviceData()}</div>
           </div>
         </div>
       </div>

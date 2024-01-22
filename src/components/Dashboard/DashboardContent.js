@@ -17,13 +17,11 @@ const DashboardContent = (props) => {
   const [duration, setDuration] = useState("last_week");
   const [filterValue, setFilterValue] = useState("state");
   const [filterList, setFilterList] = useState("");
+  const [area, setArea] = useState("India");
   const [areaLevel, setAreaLevel] = useState("country");
-  console.log("filterList", filterList);
 
   useEffect(() => {
-    console.log("in useeffect", deviceCount);
     if (!listView && !isEmpty(deviceCount)) {
-      console.log("in if condition");
       setFilterList(deviceCount.States);
     }
   }, [deviceCount, listView]);
@@ -59,7 +57,8 @@ const DashboardContent = (props) => {
                 <div className="d-sm-flex d-block align-items-center justify-content-between mb-9">
                   <div className="mb-3 mb-sm-0">
                     <h5 className="card-title fw-semibold">
-                      {listView ? "Lorem ipsum" : "Lorem ipsum dolor"}
+                      {/* {listView ? "India" : "India"} */}
+                      {area}
                     </h5>
                   </div>
                   <div className="mb-3 mb-sm-0">
@@ -151,14 +150,21 @@ const DashboardContent = (props) => {
                       <table id="stateList">
                         <thead>
                           <tr>
-                            <th>State/UT</th>
+                            <th>
+                              {filterValue === "state"
+                                ? "State/UT"
+                                : "Organization"}
+                            </th>
                             <th>Active devices</th>
                           </tr>
                         </thead>
                         {filterList &&
                           filterList.map((list, index) => {
                             return (
-                              <tbody key={index}>
+                              <tbody
+                                key={index}
+                                style={{ overflowY: "scroll" }}
+                              >
                                 <tr>
                                   <td>{list.CategoryName}</td>
                                   <td>{list.TotalDevice}</td>
@@ -216,7 +222,9 @@ const DashboardContent = (props) => {
               <TicketData />
               <DeviceData duration={duration} areaLevel={areaLevel} />
               <TransactionData listView={listView} />
-              {!listView && <SoftwareUpdate />}
+              {!listView && (
+                <SoftwareUpdate duration={duration} areaLevel={areaLevel} />
+              )}
             </div>
           </div>
         </div>

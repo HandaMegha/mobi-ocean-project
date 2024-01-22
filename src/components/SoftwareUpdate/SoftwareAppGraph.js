@@ -4,10 +4,11 @@ import HighchartsReact from "highcharts-react-official";
 
 class SoftwareAppGraph extends Component {
   render() {
+    const { data, height, yLabel } = this.props;
     const options = {
       chart: {
         type: "bar",
-        height: 165,
+        height: height,
       },
       title: {
         text: "",
@@ -21,7 +22,7 @@ class SoftwareAppGraph extends Component {
         labels: {
           x: 0,
           align: "left",
-          y: -20,
+          y: yLabel,
           style: {
             color: "#06152B",
             fontSize: "16px",
@@ -63,10 +64,7 @@ class SoftwareAppGraph extends Component {
       series: [
         {
           showInLegend: false,
-          data: [
-            { y: 100, color: "#962DFF" },
-            { y: 65, color: "#E0C6FD" },
-          ],
+          data: data,
         },
       ],
     };

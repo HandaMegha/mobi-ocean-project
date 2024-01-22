@@ -14,6 +14,7 @@ import {
 } from "../constants/DashboardConstants";
 
 const initialState = {
+  loading: false,
   tokenSuccess: "",
   tokenError: "",
   deviceCount: "",
@@ -43,15 +44,18 @@ const dashboard = (state = initialState, action) => {
     case GET_DEVICE_COUNT_REQUEST:
       return {
         ...state,
+        loading: true,
       };
     case GET_DEVICE_COUNT_SUCCESS:
       return {
         ...state,
+        loading: false,
         deviceCount: action.data,
       };
     case GET_DEVICE_COUNT_ERROR:
       return {
         ...state,
+        loading: false,
         deviceCountError: action.error,
       };
     case GET_DEVICE_DATA_REQUEST:

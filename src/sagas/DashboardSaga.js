@@ -97,7 +97,6 @@ function* getDeviceCount() {
   try {
     const token = localStorage.getItem("Ns_t");
     const data = yield call(getDeviceCountData, token);
-    console.log("device count", data);
     yield put({ type: GET_DEVICE_COUNT_SUCCESS, data });
   } catch (error) {
     yield put({ type: GET_DEVICE_COUNT_ERROR, error });
@@ -121,7 +120,6 @@ function* getDeviceData() {
   try {
     const token = localStorage.getItem("Ns_t");
     const data = yield call(getData, token);
-    console.log("devices data", data);
     yield put({ type: GET_DEVICE_DATA_SUCCESS, data });
   } catch (error) {
     yield put({ type: GET_DEVICE_DATA_ERROR, error });
@@ -145,7 +143,6 @@ function* getDeviceAppData() {
   try {
     const token = localStorage.getItem("Ns_t");
     const data = yield call(getAppData, token);
-    console.log("App data", data);
     yield put({ type: GET_DEVICE_APP_DATA_SUCCESS, data });
   } catch (error) {
     yield put({ type: GET_DEVICE_APP_DATA_ERROR, error });
