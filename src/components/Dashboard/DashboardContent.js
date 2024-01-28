@@ -1,24 +1,25 @@
 import { useEffect, useState } from "react";
-import TicketData from "../TicketData/TicketData";
-import DeviceData from "../DeviceData/DeviceData";
-import TransactionData from "../TransactionData/TransactionData";
-import SoftwareUpdate from "../SoftwareUpdate/SoftwareUpdate";
-import {
-  getDeviceWiseCount,
-  getDeviceAppData,
-} from "../../actions/DashboardActions";
+import TicketSection from "../TicketData/TicketSection";
+import DeviceSection from "../DeviceData/DeviceSection";
+// import TransactionSection from "../TransactionData/TransactionSection";
+import SoftwareUpdateSection from "../SoftwareUpdate/SoftwareUpdateSection";
+import { getDeviceAppData } from "../../actions/DashboardActions";
 import { connect } from "react-redux";
-import { durationValues, filterValues } from "./DashboardConstant";
 import { isEmpty } from "lodash";
+import { Link, useLocation } from "react-router-dom";
+import ListView from "../ListView/ListView";
+import DevicesData from "../DeviceData/DevicesData";
 
 const DashboardContent = (props) => {
-  const { getDeviceWiseCount, deviceCount, getDeviceAppData } = props;
+  const { deviceCount, getDeviceAppData } = props;
   const [listView, setListView] = useState(true);
   const [duration, setDuration] = useState("last_week");
   const [filterValue, setFilterValue] = useState("state");
   const [filterList, setFilterList] = useState("");
   const [area, setArea] = useState("India");
   const [areaLevel, setAreaLevel] = useState("country");
+  const location = useLocation();
+  const { pathname } = location;
 
   useEffect(() => {
     if (!listView && !isEmpty(deviceCount)) {
@@ -29,17 +30,18 @@ const DashboardContent = (props) => {
   const changeView = () => {
     setListView((prevListView) => !prevListView);
     if (listView) {
-      getDeviceWiseCount();
       getDeviceAppData();
     }
   };
 
   const changeFilter = (value) => {
     setFilterValue(value);
-    if (value === "state") {
-      setFilterList(deviceCount.States);
-    } else {
-      setFilterList(deviceCount.Organizations);
+    if (!isEmpty(deviceCount)) {
+      if (value === "state") {
+        setFilterList(deviceCount.States);
+      } else {
+        setFilterList(deviceCount.Organizations);
+      }
     }
   };
 
@@ -51,182 +53,35 @@ const DashboardContent = (props) => {
     <div className="body-wrapper">
       <div className="container-fluid">
         <div className="row">
-          <div className="col-lg-5 d-flex align-items-strech">
-            <div className="card w-100">
-              <div className="card-body">
-                <div className="d-sm-flex d-block align-items-center justify-content-between mb-9">
-                  <div className="mb-3 mb-sm-0">
-                    <h5 className="card-title fw-semibold">
-                      {/* {listView ? "India" : "India"} */}
-                      {area}
-                    </h5>
-                  </div>
-                  <div className="mb-3 mb-sm-0">
-                    <select
-                      className="form-select w-auto"
-                      placeholder="Filter by"
-                      onChange={(e) => changeDuration(e.target.value)}
-                      value={duration}
-                    >
-                      {durationValues.map((list, index) => {
-                        return (
-                          <option key={index} value={list.value}>
-                            {list.name}
-                          </option>
-                        );
-                      })}
-                    </select>
-                  </div>
-                  <button className="viewBtn" onClick={changeView}>
-                    <img
-                      src={listView ? "/icons/list.svg" : "/icons/map.svg"}
-                      alt="list"
-                    />
-                    {listView ? "List View" : "Map View"}
-                  </button>
-                </div>
-                {listView ? (
-                  <div className="row align-items-center">
-                    <div className="col-md-12">
-                      <div className="map">
-                        <img className="vw1" src="/images/Map.png" alt="map" />{" "}
-                      </div>
-                    </div>
-                    <div className="col-md-6">
-                      <div className="hstack_1">
-                        <h4>XX</h4>
-                        <p>LOREM IPSUM</p>
-                      </div>
-                    </div>
-                    <div className="col-md-6">
-                      <div className="hstack_1">
-                        <h4>XX</h4>
-                        <p>LOREM IPSUM</p>
-                      </div>
-                    </div>
-                    <div className="col-md-6">
-                      <div className="hstack_1">
-                        <h4>XX</h4>
-                        <p>LOREM IPSUM</p>
-                      </div>
-                    </div>
-                    <div className="col-md-6">
-                      <div className="hstack_1">
-                        <h4>XX</h4>
-                        <p>LOREM IPSUM</p>
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  <>
-                    <div className="row">
-                      <div className="col-md-7">
-                        <input
-                          type="search"
-                          id="stateSearch"
-                          name="stateSearch"
-                          className="searchInput"
-                          placeholder="Search by state, district or organization"
-                        />
-                      </div>
-                      <div className="col-md-5">
-                        <select
-                          className="form-select w-auto"
-                          placeholder="Filter by"
-                          onChange={(e) => changeFilter(e.target.value)}
-                          value={filterValue}
-                        >
-                          {filterValues.map((list, index) => {
-                            return (
-                              <option key={index} value={list.value}>
-                                {list.name}
-                              </option>
-                            );
-                          })}
-                        </select>
-                      </div>
-                    </div>
-                    <div className="tableList">
-                      <table id="stateList">
-                        <thead>
-                          <tr>
-                            <th>
-                              {filterValue === "state"
-                                ? "State/UT"
-                                : "Organization"}
-                            </th>
-                            <th>Active devices</th>
-                          </tr>
-                        </thead>
-                        {filterList &&
-                          filterList.map((list, index) => {
-                            return (
-                              <tbody
-                                key={index}
-                                style={{ overflowY: "scroll" }}
-                              >
-                                <tr>
-                                  <td>{list.CategoryName}</td>
-                                  <td>{list.TotalDevice}</td>
-                                </tr>
-                              </tbody>
-                            );
-                          })}
-                      </table>
-                    </div>
-                  </>
-                )}
+          <ListView
+            changeView={changeView}
+            changeFilter={changeFilter}
+            changeDuration={changeDuration}
+            area={area}
+            duration={duration}
+            listView={listView}
+            filterValue={filterValue}
+            filterList={filterList}
+          />
+          {pathname === "/" ? (
+            <div className="col-lg-7">
+              <div className="row">
+                <TicketSection />
+                <Link to={{ pathname: "/dashboard/devices" }}>
+                  <DeviceSection duration={duration} areaLevel={areaLevel} />
+                </Link>
+                {/* <TransactionSection listView={listView} /> */}
+                <Link to={{ pathname: "/dashboard/devices" }}>
+                  <SoftwareUpdateSection
+                    duration={duration}
+                    areaLevel={areaLevel}
+                  />
+                </Link>
               </div>
             </div>
-          </div>
-          <div className="col-lg-7">
-            <div className=" card device_box">
-              <div className="card-body">
-                <div className=" align-items-center">
-                  <div className="row">
-                    <div className="col-md-3">
-                      <div className="col-box-6">
-                        <p>
-                          Total Devices <span>9,999,999</span>
-                        </p>
-                      </div>
-                    </div>
-                    <div className="col-md-3">
-                      <div className="col-box-6">
-                        <p>
-                          Average device usage <span>9,999,999</span>
-                        </p>
-                      </div>
-                    </div>
-                    <div className="col-md-3">
-                      <div className="col-box-6">
-                        <p>
-                          Warranty expires in 90 days <span>9,999,999</span>
-                        </p>
-                      </div>
-                    </div>
-                    <div className="col-md-3">
-                      <div className="col-box-6">
-                        <p>
-                          RD expires in 90 days <span>9,999,999</span>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-7">
-            <div className="row">
-              <TicketData />
-              <DeviceData duration={duration} areaLevel={areaLevel} />
-              <TransactionData listView={listView} />
-              {!listView && (
-                <SoftwareUpdate duration={duration} areaLevel={areaLevel} />
-              )}
-            </div>
-          </div>
+          ) : (
+            <DevicesData duration={duration} areaLevel={areaLevel} />
+          )}
         </div>
       </div>
     </div>
@@ -238,7 +93,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  getDeviceWiseCount,
   getDeviceAppData,
 };
 

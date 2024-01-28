@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
-class DeviceDataGraph extends Component {
+class DeviceGraph extends Component {
   render() {
     const options = {
       chart: {
@@ -17,6 +17,7 @@ class DeviceDataGraph extends Component {
       tooltip: {
         valueDecimals: 2,
       },
+      credits: { enabled: false },
       plotOptions: {
         series: {
           borderWidth: 0,
@@ -53,4 +54,4 @@ class DeviceDataGraph extends Component {
   }
 }
 
-export default DeviceDataGraph;
+export default DeviceGraph;

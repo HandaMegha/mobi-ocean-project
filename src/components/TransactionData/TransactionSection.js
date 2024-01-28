@@ -1,6 +1,6 @@
-import TransactionDataGraph from "./TransactionDataGraph";
+import TransactionGraph from "./TransactionGraph";
 
-const TransactionData = ({ listView }) => {
+const TransactionSection = ({ listView }) => {
   return (
     <div className={listView ? "col-lg-12 col-md-12" : "col-lg-7 col-md-7"}>
       <div className="card speed_sc">
@@ -30,7 +30,7 @@ const TransactionData = ({ listView }) => {
                   </div>
                 </div>
               </div>
-              <TransactionDataGraph />
+              <TransactionGraph />
             </div>
           </div>
         </div>
@@ -39,4 +39,4 @@ const TransactionData = ({ listView }) => {
   );
 };
 
-export default TransactionData;
+export default TransactionSection;

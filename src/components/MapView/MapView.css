@@ -1,0 +1,167 @@
+.stateContainer {
+  position: absolute;
+  color: black;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.statesNotPresent {
+  cursor: none;
+  display: none;
+  background-color: greenyellow;
+}
+
+.jammu {
+  top: 2rem;
+  left: 11rem;
+}
+
+.himachal-pradesh {
+  top: 5rem;
+  left: 14rem;
+}
+
+.punjab {
+  top: 7rem;
+  left: 11.5rem;
+}
+
+.haryana {
+  top: 10rem;
+  left: 13rem;
+}
+
+.uttarakhand {
+  top: 8rem;
+  left: 17rem;
+}
+
+.rajasthan {
+  top: 14rem;
+  left: 8rem;
+}
+
+.gujarat {
+  top: 21rem;
+  left: 5rem;
+}
+
+.uttar-pradesh {
+  top: 14rem;
+  left: 18rem;
+}
+
+.madhya-pradesh {
+  top: 21rem;
+  left: 16rem;
+}
+
+.maharashtra {
+  top: 26rem;
+  left: 12rem;
+}
+
+.goa {
+  top: 34rem;
+  left: 9rem;
+}
+
+.bihar {
+  top: 17rem;
+  left: 28rem;
+}
+
+.jharkhand {
+  top: 20rem;
+  left: 26rem;
+}
+
+.chhattisgarh {
+  top: 23rem;
+  left: 22rem;
+}
+
+.andhra-pradesh {
+  top: 35rem;
+  left: 16rem;
+}
+
+.karnataka {
+  top: 35rem;
+  left: 11rem;
+}
+
+.kerala {
+  top: 42rem;
+  left: 12rem;
+}
+
+.tamil-nadu {
+  top: 41rem;
+  left: 16rem;
+}
+
+.odisha {
+  top: 25rem;
+  left: 25rem;
+}
+
+.west-bengal {
+  top: 21rem;
+  left: 31rem;
+}
+
+.sikkim {
+  top: 14rem;
+  left: 33rem;
+}
+
+.meghalaya {
+  top: 17rem;
+  left: 35rem;
+}
+
+.tripura {
+  top: 20rem;
+  left: 36rem;
+}
+
+.assam {
+  top: 16rem;
+  left: 38rem;
+}
+
+.arunachal-pradesh {
+  top: 12rem;
+  left: 40rem;
+}
+
+.manipur {
+  top: 18rem;
+  left: 41rem;
+}
+
+.mizoram {
+  top: 21rem;
+  left: 40rem;
+}
+
+.nagaland {
+  top: 16rem;
+  left: 43rem;
+}
+
+.delhi {
+  top: 12rem;
+  left: 15rem;
+}
+
+.telangana {
+  top: 30rem;
+  left: 17rem;
+}
+
+.ladakh {
+  top: 1rem;
+  left: 15rem;
+}

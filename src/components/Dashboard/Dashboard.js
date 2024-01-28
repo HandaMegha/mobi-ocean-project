@@ -3,15 +3,20 @@ import Sidebar from "../Sidebar/Sidebar";
 import Header from "../Header/Header";
 import DashboardContent from "./DashboardContent";
 import "./Dashboard.css";
-import { getToken, getDeviceData } from "../../actions/DashboardActions";
+import {
+  getToken,
+  getDeviceData,
+  getDeviceWiseCount,
+} from "../../actions/DashboardActions";
 import { connect } from "react-redux";
 
 const Dashboard = (props) => {
-  const { getToken, getDeviceData, loading } = props;
+  const { getToken, getDeviceData, getDeviceWiseCount, loading } = props;
 
   useEffect(() => {
     getToken();
     getDeviceData();
+    getDeviceWiseCount();
   }, []);
 
   return (
@@ -41,6 +46,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   getToken,
   getDeviceData,
+  getDeviceWiseCount,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

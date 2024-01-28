@@ -15,23 +15,13 @@ import {
   GET_DEVICE_APP_DATA_ERROR,
 } from "../constants/DashboardConstants";
 import axios from "axios";
+import { headers, token } from "./GetHeaders";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
-const headers = {
-  "Content-Type": "application/json",
-  X_client_brow: "Chrome",
-  X_client_brow_ver: "120.0.6099.129",
-  X_client_mobi: 0,
-  X_client_usod: "Windows",
-  X_client_usod_ver: 11,
-  X_client_data_size: "1536 x 864",
-  refere: "https://mis.mobiocean.in",
-};
-
 async function getAccess() {
   const data = {
-    Access: "0440narayanan.s@mobiocean.in",
+    // Access: "mmeghahanda1996@gmail.com",
     ClientId: "NRP01SE",
     Version: "0.0.1",
   };
@@ -51,7 +41,7 @@ async function getAccess() {
 async function validateOtp(loginId) {
   const data = {
     LoginId: loginId,
-    OTP: "05dc4be3550a5f2ec6bdb5e3a2fc5059",
+    OTP: "7070baed1f0e21d1234a4b00082a1bea",
     ClientId: "NRP01SE",
     Version: "0.0.1",
   };
@@ -80,7 +70,7 @@ function* getTokenAPI() {
   }
 }
 
-async function getDeviceCountData(token) {
+async function getDeviceCountData() {
   headers["ns_t"] = token;
   return await axios({
     method: "post",
@@ -95,15 +85,14 @@ async function getDeviceCountData(token) {
 
 function* getDeviceCount() {
   try {
-    const token = localStorage.getItem("Ns_t");
-    const data = yield call(getDeviceCountData, token);
+    const data = yield call(getDeviceCountData);
     yield put({ type: GET_DEVICE_COUNT_SUCCESS, data });
   } catch (error) {
     yield put({ type: GET_DEVICE_COUNT_ERROR, error });
   }
 }
 
-async function getData(token) {
+async function getData() {
   headers["ns_t"] = token;
   return await axios({
     method: "post",
@@ -118,15 +107,14 @@ async function getData(token) {
 
 function* getDeviceData() {
   try {
-    const token = localStorage.getItem("Ns_t");
-    const data = yield call(getData, token);
+    const data = yield call(getData);
     yield put({ type: GET_DEVICE_DATA_SUCCESS, data });
   } catch (error) {
     yield put({ type: GET_DEVICE_DATA_ERROR, error });
   }
 }
 
-async function getAppData(token) {
+async function getAppData() {
   headers["ns_t"] = token;
   return await axios({
     method: "post",
@@ -141,8 +129,7 @@ async function getAppData(token) {
 
 function* getDeviceAppData() {
   try {
-    const token = localStorage.getItem("Ns_t");
-    const data = yield call(getAppData, token);
+    const data = yield call(getAppData);
     yield put({ type: GET_DEVICE_APP_DATA_SUCCESS, data });
   } catch (error) {
     yield put({ type: GET_DEVICE_APP_DATA_ERROR, error });

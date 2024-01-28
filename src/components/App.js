@@ -7,6 +7,7 @@ const App = () => {
       <Routes>
         <Route exact path="/" element={<Dashboard />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard/devices" element={<Dashboard />} />
       </Routes>
     </Router>
   );

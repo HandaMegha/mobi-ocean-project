@@ -13,6 +13,7 @@ class SoftwareFirmwareGraph extends Component {
       title: {
         text: "",
       },
+      credits: { enabled: false },
       xAxis: {
         categories: ["Firmware update pushed", "Installed"],
         title: {

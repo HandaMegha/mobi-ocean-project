@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
-class TicketDataGraph extends Component {
+class TicketGraph extends Component {
   render() {
     const options = {
       chart: {
@@ -12,6 +12,7 @@ class TicketDataGraph extends Component {
       title: {
         text: "",
       },
+      credits: { enabled: false },
       xAxis: {
         categories: ["Week 1", "Week 2", "Week 3", "Week 4"],
         style: {
@@ -64,4 +65,4 @@ class TicketDataGraph extends Component {
   }
 }
 
-export default TicketDataGraph;
+export default TicketGraph;

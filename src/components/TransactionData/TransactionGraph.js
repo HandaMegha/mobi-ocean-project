@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
-class TransactionDataGraph extends Component {
+class TransactionGraph extends Component {
   render() {
     const options = {
       chart: {
@@ -12,6 +12,7 @@ class TransactionDataGraph extends Component {
       title: {
         text: "",
       },
+      credits: { enabled: false },
       xAxis: {
         categories: [
           "Total Transaction Amount",
@@ -85,4 +86,4 @@ class TransactionDataGraph extends Component {
   }
 }
 
-export default TransactionDataGraph;
+export default TransactionGraph;

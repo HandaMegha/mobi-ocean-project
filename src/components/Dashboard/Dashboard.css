@@ -1183,7 +1183,10 @@ device_box {
   margin-bottom: 7rem;
 }
 .map2 {
-  margin-top: 5px;
+  margin-top: 15px;
+}
+.td1 {
+  margin-left: 12rem;
 }
 .tm1 {
   margin-bottom: 5px;
@@ -1304,6 +1307,10 @@ device_box {
   overflow-y: scroll;
   scrollbar-width: thin;
   margin-top: 15px;
+}
+
+.tableList tbody {
+  overflow-y: scroll;
 }
 
 #stateList {

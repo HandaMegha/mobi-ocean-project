@@ -13,6 +13,7 @@ class SoftwareAppGraph extends Component {
       title: {
         text: "",
       },
+      credits: { enabled: false },
       xAxis: {
         categories: ["App version update pushed", "Installed"],
         title: {

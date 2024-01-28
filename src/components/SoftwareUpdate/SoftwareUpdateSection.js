@@ -2,9 +2,12 @@ import SoftwareUpdatesGraph from "./SoftwareAppGraph";
 import SoftwareFirmwareGraph from "./SoftwareFirmwareGraph";
 import { connect } from "react-redux";
 import { isEmpty, filter } from "lodash";
+import { useLocation } from "react-router-dom";
 
-const SoftwareUpdate = (props) => {
+const SoftwareUpdateSection = (props) => {
   const { deviceAppData, duration, areaLevel } = props;
+  const location = useLocation();
+  const { pathname } = location;
 
   const calculateGraphData = (
     data,
@@ -76,8 +79,12 @@ const SoftwareUpdate = (props) => {
   };
 
   return (
-    <div className="col-lg-5 col-md-5">
-      <div className="card speed_sc graphContainer">
+    <div className="col-lg-12 col-md-12">
+      <div
+        className={`card speed_sc ${
+          pathname === "/dashboard/devices" ? "" : "graphContainer"
+        }`}
+      >
         <div className="card-body dev_dt2">
           <div className=" align-items-start">
             <div className="col-12">
@@ -104,4 +111,4 @@ const mapStateToProps = (state) => ({
   deviceAppDataError: state.dashboardReducer.deviceAppDataError,
 });
 
-export default connect(mapStateToProps, {})(SoftwareUpdate);
+export default connect(mapStateToProps, {})(SoftwareUpdateSection);
