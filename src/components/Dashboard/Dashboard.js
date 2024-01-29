@@ -7,16 +7,24 @@ import {
   getToken,
   getDeviceData,
   getDeviceWiseCount,
+  getDeviceAppData,
 } from "../../actions/DashboardActions";
 import { connect } from "react-redux";
 
 const Dashboard = (props) => {
-  const { getToken, getDeviceData, getDeviceWiseCount, loading } = props;
+  const {
+    getToken,
+    getDeviceData,
+    getDeviceWiseCount,
+    getDeviceAppData,
+    loading,
+  } = props;
 
   useEffect(() => {
     getToken();
     getDeviceData();
     getDeviceWiseCount();
+    getDeviceAppData();
   }, []);
 
   return (
@@ -47,6 +55,7 @@ const mapDispatchToProps = {
   getToken,
   getDeviceData,
   getDeviceWiseCount,
+  getDeviceAppData,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

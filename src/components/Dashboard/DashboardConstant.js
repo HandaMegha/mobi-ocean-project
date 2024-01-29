@@ -22,6 +22,7 @@ export const allStateList = [
   { name: "Assam", value: "Assam", className: "assam" },
   { name: "Bihar", value: "Bihar", className: "bihar" },
   { name: "Chhattisgarh", value: "Chhattisgarh", className: "chhattisgarh" },
+  { name: "Chandigarh", value: "Chandigarh", className: "chandigarh" },
   { name: "Delhi", value: "Delhi", className: "delhi" },
   { name: "Goa", value: "Goa", className: "goa" },
   { name: "Gujarat", value: "Gujarat", className: "gujarat" },

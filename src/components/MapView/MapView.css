@@ -32,8 +32,8 @@
 }
 
 .uttarakhand {
-  top: 8rem;
-  left: 17rem;
+  top: 9rem;
+  left: 19rem;
 }
 
 .rajasthan {
@@ -164,4 +164,9 @@
 .ladakh {
   top: 1rem;
   left: 15rem;
+}
+
+.chandigarh {
+  top: 8rem;
+  left: 13.5rem;
 }

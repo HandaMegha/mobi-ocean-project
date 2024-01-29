@@ -21,7 +21,7 @@ const API_URL = process.env.REACT_APP_API_URL;
 
 async function getAccess() {
   const data = {
-    // Access: "mmeghahanda1996@gmail.com",
+    Access: "mmeghahanda1996@gmail.com",
     ClientId: "NRP01SE",
     Version: "0.0.1",
   };
@@ -41,7 +41,7 @@ async function getAccess() {
 async function validateOtp(loginId) {
   const data = {
     LoginId: loginId,
-    OTP: "7070baed1f0e21d1234a4b00082a1bea",
+    OTP: "1201dc7b1ee521674eedafe176b78f73",
     ClientId: "NRP01SE",
     Version: "0.0.1",
   };

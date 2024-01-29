@@ -3,7 +3,6 @@ import TicketSection from "../TicketData/TicketSection";
 import DeviceSection from "../DeviceData/DeviceSection";
 // import TransactionSection from "../TransactionData/TransactionSection";
 import SoftwareUpdateSection from "../SoftwareUpdate/SoftwareUpdateSection";
-import { getDeviceAppData } from "../../actions/DashboardActions";
 import { connect } from "react-redux";
 import { isEmpty } from "lodash";
 import { Link, useLocation } from "react-router-dom";
@@ -11,7 +10,7 @@ import ListView from "../ListView/ListView";
 import DevicesData from "../DeviceData/DevicesData";
 
 const DashboardContent = (props) => {
-  const { deviceCount, getDeviceAppData } = props;
+  const { deviceCount } = props;
   const [listView, setListView] = useState(true);
   const [duration, setDuration] = useState("last_week");
   const [filterValue, setFilterValue] = useState("state");
@@ -29,9 +28,6 @@ const DashboardContent = (props) => {
 
   const changeView = () => {
     setListView((prevListView) => !prevListView);
-    if (listView) {
-      getDeviceAppData();
-    }
   };
 
   const changeFilter = (value) => {
@@ -92,8 +88,4 @@ const mapStateToProps = (state) => ({
   deviceCount: state.dashboardReducer.deviceCount,
 });
 
-const mapDispatchToProps = {
-  getDeviceAppData,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(DashboardContent);
+export default connect(mapStateToProps, {})(DashboardContent);

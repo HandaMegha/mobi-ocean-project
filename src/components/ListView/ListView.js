@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { durationValues, filterValues } from "../Dashboard/DashboardConstant";
 import MapView from "../MapView/MapView";
+import { toLower } from "lodash";
 
 const ListView = (props) => {
   const {
@@ -12,6 +14,27 @@ const ListView = (props) => {
     filterValue,
     filterList,
   } = props;
+  const [searchItem, setSearchItem] = useState("");
+  const [searchedList, setSearchedList] = useState(filterList);
+
+  const handleSearch = (value) => {
+    setSearchItem(value);
+
+    // const list = searchedList.filter((item) => {
+    //   console.log("aa", item.CategoryName);
+    //   console.log("bb", toLower(item.CategoryName));
+    //   console.log("cc", toLower(value));
+    //   console.log("ww", value);
+    //   if(toLower(item.CategoryName) === toLower(value)){
+    //     console.log("in iff")
+    //   }
+    // });
+    // console.log("list", list);
+    // setSearchedList((prevSearchedList) => {
+    //   return prevSearchedList.filter(item => toLower(item.CategoryName) === value(value))
+    // });
+  };
+
   return (
     <>
       <div className="col-lg-5 d-flex align-items-strech">
@@ -57,9 +80,10 @@ const ListView = (props) => {
                     <input
                       type="search"
                       id="stateSearch"
-                      name="stateSearch"
                       className="searchInput"
                       placeholder="Search by state, district or organization"
+                      value={searchItem}
+                      onChange={(event) => handleSearch(event.target.value)}
                     />
                   </div>
                   <div className="col-md-5">
