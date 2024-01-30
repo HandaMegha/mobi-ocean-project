@@ -1,4 +1,4 @@
-import DeviceGraph from "./DeviceGraph";
+import DeviceSectionGraph from "./DeviceSectionGraph";
 import { connect } from "react-redux";
 import { filter, find, isEmpty } from "lodash";
 import { useLocation } from "react-router-dom";
@@ -51,23 +51,40 @@ const DeviceSection = (props) => {
       <>
         <div className="d-sm-flex d-block align-items-center justify-content-between mb-9">
           <div className="mb-3 mb-sm-0">
-            <h5 className="card-title fw-semibold">Device Data</h5>
+            <h5
+              className={`${
+                pathname === "/dashboard/devices" ? "td1" : "td2"
+              } card-title fw-semibold`}
+            >
+              Device Data
+            </h5>
             {pathname === "/dashboard/devices" ? (
-              <p className="ac2">Devices</p>
+              <p
+                className={`${
+                  pathname === "/dashboard/devices" ? "td1" : "td2"
+                } ac2`}
+              >
+                Devices
+              </p>
             ) : (
-              <p className="ac2" style={{ color: "#1DB636" }}>{`${
+              <p
+                className={`${
+                  pathname === "/dashboard/devices" ? "td1" : "td2"
+                } ac2`}
+                style={{ color: "#1DB636" }}
+              >{`${
                 isEmpty(activeDevicesCount)
                   ? 0
                   : activeDevicesCount.device_total_active_count
               } active today`}</p>
             )}
           </div>
-          <div className="act_box w-auto new_cl">
-            <p className="ac1">Lorem</p>
-            <p className="ac2">9,99,999</p>
-          </div>
         </div>
-        <DeviceGraph data={deviceGraphData} />
+        <div className="act_box w-auto new_cl">
+          <p className="ac1">Lorem</p>
+          <p className="ac2">9,99,999</p>
+        </div>
+        <DeviceSectionGraph data={deviceGraphData} />
       </>
     );
   };
@@ -81,7 +98,7 @@ const DeviceSection = (props) => {
       }
     >
       <div className="card speed_sc">
-        <div className="card-body dev_dt1 ">
+        <div className="card-body dev_dt1">
           <div className=" align-items-start">
             <div className="col-12">{renderDeviceData()}</div>
           </div>

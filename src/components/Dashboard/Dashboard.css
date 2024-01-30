@@ -1054,19 +1054,6 @@ progress {
 }
 
 /* card 1 */
-.hstack_1 p {
-  color: #222;
-  font-size: 15px;
-  margin-bottom: 25px;
-}
-.hstack_1 h4 {
-  color: #222;
-  font-size: 25px;
-}
-.hstack_1 {
-  margin-top: 10px;
-  text-align: center;
-}
 .card-body {
   background: #fff;
   color: #222;
@@ -1188,6 +1175,12 @@ device_box {
 .td1 {
   margin-left: 12rem;
 }
+.td2 {
+  margin-left: 5rem;
+}
+.td3 {
+  margin-left: 24rem;
+}
 .tm1 {
   margin-bottom: 5px;
   margin-top: 15px;
@@ -1210,7 +1203,7 @@ device_box {
 
 /* card 3 */
 .dev_dt1 {
-  height: 426px;
+  height: 415px;
 }
 .dev_dt2 {
   height: 385px;
@@ -1388,4 +1381,14 @@ device_box {
 
 .graphContainer {
   overflow-y: scroll;
+}
+
+.highcharts-title {
+  font-size: 2rem !important;
+  position: relative;
+  white-space: nowrap;
+}
+
+.mt-15 {
+  margin-top: 15px;
 }

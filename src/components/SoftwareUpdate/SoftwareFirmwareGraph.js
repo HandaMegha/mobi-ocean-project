@@ -4,14 +4,15 @@ import HighchartsReact from "highcharts-react-official";
 
 class SoftwareFirmwareGraph extends Component {
   render() {
-    const { data, height } = this.props;
+    const { data, height, yLabel, title } = this.props;
     const options = {
       chart: {
         type: "bar",
         height: height,
       },
       title: {
-        text: "",
+        text: title,
+        align: "left",
       },
       credits: { enabled: false },
       xAxis: {
@@ -23,7 +24,7 @@ class SoftwareFirmwareGraph extends Component {
         labels: {
           x: 0,
           align: "left",
-          y: -20,
+          y: yLabel,
           style: {
             color: "#06152B",
             fontSize: "16px",
@@ -51,11 +52,19 @@ class SoftwareFirmwareGraph extends Component {
       plotOptions: {
         bar: {
           dataLabels: {
-            enabled: false,
+            enabled: true,
             x: 0,
             align: "left",
             reserveSpace: false,
-            y: -30,
+            y: -5,
+            style: {
+              color: "#06152B",
+              fontSize: "18px",
+              fontStyle: "normal",
+              fontWeight: "400",
+              fontFamily: "Inter",
+              whiteSpace: "nowrap",
+            },
           },
         },
       },
@@ -65,6 +74,7 @@ class SoftwareFirmwareGraph extends Component {
       series: [
         {
           showInLegend: false,
+          pointWidth: 35,
           data: data,
         },
       ],

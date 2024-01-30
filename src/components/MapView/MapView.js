@@ -39,7 +39,7 @@ const MapView = (props) => {
         <div className="map">
           <img
             className="vw1"
-            src="/images/Map2.jpg"
+            src="/images/Map.png"
             alt="map"
             style={{ width: "100%", height: "100%" }}
           />{" "}
@@ -64,35 +64,7 @@ const MapView = (props) => {
     );
   };
 
-  return (
-    <div className="row align-items-center">
-      {renderMap()}
-      <div className="col-md-6">
-        <div className="hstack_1">
-          <h4>XX</h4>
-          <p>LOREM IPSUM</p>
-        </div>
-      </div>
-      <div className="col-md-6">
-        <div className="hstack_1">
-          <h4>XX</h4>
-          <p>LOREM IPSUM</p>
-        </div>
-      </div>
-      <div className="col-md-6">
-        <div className="hstack_1">
-          <h4>XX</h4>
-          <p>LOREM IPSUM</p>
-        </div>
-      </div>
-      <div className="col-md-6">
-        <div className="hstack_1">
-          <h4>XX</h4>
-          <p>LOREM IPSUM</p>
-        </div>
-      </div>
-    </div>
-  );
+  return <div className="row align-items-center">{renderMap()}</div>;
 };
 
 const mapStateToProps = (state) => ({

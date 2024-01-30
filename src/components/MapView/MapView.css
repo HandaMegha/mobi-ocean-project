@@ -3,6 +3,7 @@
   color: black;
   font-weight: 700;
   cursor: pointer;
+  font-size: 11px;
 }
 
 .statesNotPresent {
@@ -12,161 +13,161 @@
 }
 
 .jammu {
-  top: 2rem;
-  left: 11rem;
+  top: 5rem;
+  left: 10rem;
 }
 
 .himachal-pradesh {
-  top: 5rem;
-  left: 14rem;
+  top: 8rem;
+  left: 16rem;
 }
 
 .punjab {
-  top: 7rem;
-  left: 11.5rem;
+  top: 8.5rem;
+  left: 12rem;
 }
 
 .haryana {
-  top: 10rem;
+  top: 13rem;
   left: 13rem;
 }
 
 .uttarakhand {
-  top: 9rem;
+  top: 11rem;
   left: 19rem;
 }
 
 .rajasthan {
-  top: 14rem;
+  top: 17rem;
   left: 8rem;
 }
 
 .gujarat {
-  top: 21rem;
-  left: 5rem;
+  top: 23rem;
+  left: 6rem;
 }
 
 .uttar-pradesh {
-  top: 14rem;
-  left: 18rem;
+  top: 17rem;
+  left: 20rem;
 }
 
 .madhya-pradesh {
-  top: 21rem;
-  left: 16rem;
+  top: 23rem;
+  left: 14rem;
 }
 
 .maharashtra {
-  top: 26rem;
+  top: 29rem;
   left: 12rem;
 }
 
 .goa {
-  top: 34rem;
+  top: 35rem;
   left: 9rem;
 }
 
 .bihar {
-  top: 17rem;
-  left: 28rem;
+  top: 18rem;
+  left: 29rem;
 }
 
 .jharkhand {
-  top: 20rem;
-  left: 26rem;
+  top: 22rem;
+  left: 28rem;
 }
 
 .chhattisgarh {
-  top: 23rem;
+  top: 26rem;
   left: 22rem;
 }
 
 .andhra-pradesh {
-  top: 35rem;
-  left: 16rem;
+  top: 38rem;
+  left: 18rem;
 }
 
 .karnataka {
-  top: 35rem;
+  top: 39rem;
   left: 11rem;
 }
 
 .kerala {
-  top: 42rem;
+  top: 45rem;
   left: 12rem;
 }
 
 .tamil-nadu {
-  top: 41rem;
-  left: 16rem;
+  top: 45rem;
+  left: 17rem;
 }
 
 .odisha {
-  top: 25rem;
-  left: 25rem;
+  top: 28rem;
+  left: 26rem;
 }
 
 .west-bengal {
-  top: 21rem;
-  left: 31rem;
+  top: 23rem;
+  left: 32rem;
 }
 
 .sikkim {
-  top: 14rem;
+  top: 15rem;
   left: 33rem;
 }
 
 .meghalaya {
-  top: 17rem;
+  top: 19rem;
   left: 35rem;
 }
 
 .tripura {
-  top: 20rem;
-  left: 36rem;
-}
-
-.assam {
-  top: 16rem;
+  top: 22rem;
   left: 38rem;
 }
 
+.assam {
+  top: 17rem;
+  left: 39rem;
+}
+
 .arunachal-pradesh {
-  top: 12rem;
+  top: 13rem;
   left: 40rem;
 }
 
 .manipur {
-  top: 18rem;
-  left: 41rem;
+  top: 19.5rem;
+  left: 42rem;
 }
 
 .mizoram {
-  top: 21rem;
-  left: 40rem;
+  top: 22rem;
+  left: 41rem;
 }
 
 .nagaland {
-  top: 16rem;
+  top: 17rem;
   left: 43rem;
 }
 
 .delhi {
-  top: 12rem;
+  top: 15rem;
   left: 15rem;
 }
 
 .telangana {
-  top: 30rem;
+  top: 33rem;
   left: 17rem;
 }
 
 .ladakh {
-  top: 1rem;
-  left: 15rem;
+  top: 2.5rem;
+  left: 16rem;
 }
 
 .chandigarh {
-  top: 8rem;
-  left: 13.5rem;
+  top: 11rem;
+  left: 11.5rem;
 }

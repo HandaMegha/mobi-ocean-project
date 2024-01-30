@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
-class DeviceGraph extends Component {
+class DeviceSectionGraph extends Component {
   render() {
     const options = {
       chart: {
-        height: 360,
+        height: 300,
       },
       title: {
         text: "",
@@ -54,4 +54,4 @@ class DeviceGraph extends Component {
   }
 }
 
-export default DeviceGraph;
+export default DeviceSectionGraph;

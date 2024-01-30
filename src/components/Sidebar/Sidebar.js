@@ -24,18 +24,14 @@ const sidebarMenu = [
   { name: "Tickets", imgUrl: "/icons/tickets.svg", alt: "tickets", href: "#" },
 ];
 
-const sidebarNotifications = [
+const sidebarUserDetails = [
   { name: "Profile", imgUrl: "/icons/profile.svg", alt: "profile", href: "#" },
   { name: "Inbox", imgUrl: "/icons/inbox.svg", alt: "inbox", href: "#" },
-  {
-    name: "Settings",
-    imgUrl: "/icons/settings.svg",
-    alt: "settings",
-    href: "#",
-  },
 ];
 
 const Sidebar = () => {
+  const date = new Date();
+  const year = date.getFullYear();
   return (
     <aside className="left-sidebar with-vertical">
       <div>
@@ -67,9 +63,9 @@ const Sidebar = () => {
               );
             })}
             <li className="nav-small-cap">
-              <span className="hide-menu">NOTIFICATIONS</span>
+              <span className="hide-menu">USER</span>
             </li>
-            {sidebarNotifications.map((notification, index) => {
+            {sidebarUserDetails.map((notification, index) => {
               return (
                 <li className="sidebar-item" key={index}>
                   <a
@@ -87,9 +83,10 @@ const Sidebar = () => {
             })}
           </ul>
         </nav>
-        <div className="fixed-profile mx-4 mb-2  mt-3">
+        <div className="fixed-profile mx-4 mb-2 mt-3">
+          <button className="btn_log_out">Log out</button>
           <div className="hstack_cd1">
-            <p className="cp1">© 2023 Mobiocean</p>
+            <p className="cp1">© {year} Mobiocean</p>
             <p className="cp2">
               <a href="#">Terms & Conditions apply</a>
             </p>

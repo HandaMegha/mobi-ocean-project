@@ -21,9 +21,9 @@ const API_URL = process.env.REACT_APP_API_URL;
 
 async function getAccess() {
   const data = {
-    Access: "mmeghahanda1996@gmail.com",
-    ClientId: "NRP01SE",
-    Version: "0.0.1",
+    Access: process.env.REACT_APP_ACCESS,
+    ClientId: process.env.REACT_APP_CLIENT_ID,
+    Version: process.env.REACT_APP_VERSION,
   };
 
   return await axios({
@@ -41,9 +41,9 @@ async function getAccess() {
 async function validateOtp(loginId) {
   const data = {
     LoginId: loginId,
-    OTP: "1201dc7b1ee521674eedafe176b78f73",
-    ClientId: "NRP01SE",
-    Version: "0.0.1",
+    OTP: process.env.REACT_APP_OTP,
+    ClientId: process.env.REACT_APP_CLIENT_ID,
+    Version: process.env.REACT_APP_VERSION,
   };
 
   return await axios({

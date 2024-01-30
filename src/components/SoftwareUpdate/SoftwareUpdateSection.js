@@ -33,8 +33,9 @@ const SoftwareUpdateSection = (props) => {
         <Graph
           key={index}
           data={finalData}
-          height={data.length <= 1 ? 330 : 165}
-          yLabel={data.length <= 1 ? -40 : -20}
+          height={data.length <= 1 ? 330 : 207}
+          yLabel={-20}
+          title={`${item.app_name + " " + item.version_no}`}
         />
       );
     });
@@ -79,7 +80,13 @@ const SoftwareUpdateSection = (props) => {
   };
 
   return (
-    <div className="col-lg-12 col-md-12">
+    <div
+      className={`${
+        pathname === "/dashboard/devices"
+          ? "col-lg-5 col-md-5"
+          : "col-lg-12 col-md-12"
+      }`}
+    >
       <div
         className={`card speed_sc ${
           pathname === "/dashboard/devices" ? "" : "graphContainer"
@@ -88,13 +95,21 @@ const SoftwareUpdateSection = (props) => {
         <div className="card-body dev_dt2">
           <div className=" align-items-start">
             <div className="col-12">
-              <div className="d-sm-flex d-block align-items-center justify-content-between mb-9">
-                <div className="mb-3 mb-sm-0">
-                  <h5 className="card-title fw-semibold">Software Update</h5>
-                  <span className="ac2">Launched on 23/11/2023</span>
-                </div>
+              <div
+                className={`${
+                  pathname === "/dashboard/devices" ? "" : "mb-9"
+                } d-sm-flex d-block align-items-center justify-content-between`}
+              >
+                {pathname === "/dashboard/devices" ? null : (
+                  <div className="mb-3 mb-sm-0">
+                    <h5 className="card-title fw-semibold td3">
+                      Software Update
+                    </h5>
+                    <span className="ac2 td3">Launched on 23/11/2023</span>
+                  </div>
+                )}
               </div>
-              <div>
+              <div className="row">
                 {renderAppGraph()}
                 {renderFirmwareGraph()}
               </div>

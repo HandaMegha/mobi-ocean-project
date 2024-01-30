@@ -1,6 +1,6 @@
 import { UAParser } from "ua-parser-js";
 
-const refere = process.env.REACT_APP_REFERE;
+const refere = process.env.REACT_APP_API_URL;
 
 let parser = new UAParser(window.navigator.userAgent);
 let parserResults = parser.getResult();

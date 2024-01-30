@@ -2,21 +2,20 @@ import React, { Component } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
-class SoftwareAppGraph extends Component {
+class DevicesGraph extends Component {
   render() {
-    const { data, height, yLabel, title } = this.props;
+    const { data, categories, height } = this.props;
     const options = {
       chart: {
         type: "bar",
         height: height,
       },
       title: {
-        text: title,
-        align: "left",
+        text: "",
       },
       credits: { enabled: false },
       xAxis: {
-        categories: ["App version update pushed", "Installed"],
+        categories: categories,
         title: {
           text: null,
         },
@@ -24,7 +23,7 @@ class SoftwareAppGraph extends Component {
         labels: {
           x: 0,
           align: "left",
-          y: yLabel,
+          y: -15,
           style: {
             color: "#06152B",
             fontSize: "16px",
@@ -52,19 +51,11 @@ class SoftwareAppGraph extends Component {
       plotOptions: {
         bar: {
           dataLabels: {
-            enabled: true,
+            enabled: false,
             x: 0,
             align: "left",
             reserveSpace: false,
-            y: -5,
-            style: {
-              color: "#06152B",
-              fontSize: "18px",
-              fontStyle: "normal",
-              fontWeight: "400",
-              fontFamily: "Inter",
-              whiteSpace: "nowrap",
-            },
+            y: -30,
           },
         },
       },
@@ -74,7 +65,6 @@ class SoftwareAppGraph extends Component {
       series: [
         {
           showInLegend: false,
-          pointWidth: 35,
           data: data,
         },
       ],
@@ -83,4 +73,4 @@ class SoftwareAppGraph extends Component {
   }
 }
 
-export default SoftwareAppGraph;
+export default DevicesGraph;

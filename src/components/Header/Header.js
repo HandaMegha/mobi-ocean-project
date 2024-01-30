@@ -17,14 +17,11 @@ const Header = () => {
             className="collapse navbar-collapse justify-content-end"
             id="navbarNav"
           >
-            <div className="btn_ex">
-              <button className="btn_log_out">Log out</button>
-              <img
-                src="/images/iffco.png"
-                className="iffc_logo"
-                alt="iffc_logo"
-              />
-            </div>
+            <img
+              src="/images/iffco.png"
+              className="iffc_logo"
+              alt="iffc_logo"
+            />
           </div>
         </nav>
       </div>
