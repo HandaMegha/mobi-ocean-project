@@ -28,7 +28,8 @@ class DeviceSectionGraph extends Component {
           dataLabels: {
             enabled: true,
             crop: false,
-            distance: "-25%",
+            distance: "-5%",
+            format: "<b>{point.name}</b> <br /> {point.y}",
             style: {
               color: "#06152B",
               fontSize: "15px",

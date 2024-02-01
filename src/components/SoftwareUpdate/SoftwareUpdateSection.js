@@ -6,6 +6,7 @@ import { useLocation } from "react-router-dom";
 
 const SoftwareUpdateSection = (props) => {
   const { deviceAppData, duration, areaLevel } = props;
+  // const areaLevel = "district";
   const location = useLocation();
   const { pathname } = location;
 
@@ -33,7 +34,7 @@ const SoftwareUpdateSection = (props) => {
         <Graph
           key={index}
           data={finalData}
-          height={data.length <= 1 ? 330 : 207}
+          height={data.length <= 1 ? 250 : 207}
           yLabel={-20}
           title={`${item.app_name + " " + item.version_no}`}
         />
@@ -79,7 +80,7 @@ const SoftwareUpdateSection = (props) => {
     }
   };
 
-  return (
+  return !isEmpty(deviceAppData) ? (
     <div
       className={`${
         pathname === "/dashboard/devices"
@@ -87,25 +88,25 @@ const SoftwareUpdateSection = (props) => {
           : "col-lg-12 col-md-12"
       }`}
     >
-      <div
-        className={`card speed_sc ${
-          pathname === "/dashboard/devices" ? "" : "graphContainer"
-        }`}
-      >
-        <div className="card-body dev_dt2">
+      <div className="card speed_sc graphContainer">
+        <div
+          className={`${
+            pathname === "/dashboard/devices" ? "dev_dt1" : "dev_dt2"
+          } card-body`}
+        >
           <div className=" align-items-start">
             <div className="col-12">
               <div
                 className={`${
                   pathname === "/dashboard/devices" ? "" : "mb-9"
-                } d-sm-flex d-block align-items-center justify-content-between`}
+                } d-block align-items-center justify-content-between`}
               >
                 {pathname === "/dashboard/devices" ? null : (
                   <div className="mb-3 mb-sm-0">
-                    <h5 className="card-title fw-semibold td3">
+                    <h5 className="card-title fw-semibold text-center">
                       Software Update
                     </h5>
-                    <span className="ac2 td3">Launched on 23/11/2023</span>
+                    <p className="ac2 text-center">Launched on 23/11/2023</p>
                   </div>
                 )}
               </div>
@@ -118,7 +119,7 @@ const SoftwareUpdateSection = (props) => {
         </div>
       </div>
     </div>
-  );
+  ) : null;
 };
 
 const mapStateToProps = (state) => ({

@@ -25,9 +25,9 @@ const DevicesData = (props) => {
             <div className="card-body">
               <div className=" align-items-start">
                 <div className="col-12">
-                  <div className="d-sm-flex d-block align-items-center justify-content-between mb-9">
+                  <div className="d-block align-items-center justify-content-between mb-9">
                     <div className="mb-3 mb-sm-0">
-                      <h5 className="card-title fw-semibold">
+                      <h5 className="card-title fw-semibold text-center">
                         Device Under repair
                       </h5>
                     </div>
@@ -56,9 +56,9 @@ const DevicesData = (props) => {
             <div className="card-body">
               <div className=" align-items-start">
                 <div className="col-12">
-                  <div className="d-sm-flex d-block align-items-center justify-content-between mb-9">
+                  <div className="d-block align-items-center justify-content-between mb-9">
                     <div className="mb-3 mb-sm-0">
-                      <h5 className="card-title fw-semibold">
+                      <h5 className="card-title fw-semibold text-center">
                         Warranty renewal
                       </h5>
                     </div>
@@ -87,9 +87,9 @@ const DevicesData = (props) => {
             <div className="card-body">
               <div className=" align-items-start">
                 <div className="col-12">
-                  <div className="d-sm-flex d-block align-items-center justify-content-between mb-9">
+                  <div className="d-block align-items-center justify-content-between mb-9">
                     <div className="mb-3 mb-sm-0">
-                      <h5 className="card-title fw-semibold">
+                      <h5 className="card-title fw-semibold text-center">
                         RD service expiry
                       </h5>
                     </div>

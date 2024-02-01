@@ -1145,7 +1145,7 @@ device_box {
 }
 .col-box-6 p {
   background: #ffe6db;
-  font-size: 13px;
+  font-size: 14px;
   padding: 5px 10px;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -1160,6 +1160,29 @@ device_box {
   font-weight: bold;
 }
 
+.col-box1 p {
+  background-color: #6c3bff4d;
+}
+
+.col-box2 p {
+  background-color: #ffc1a4;
+}
+
+.col-box3 p {
+  background-color: #cce9ff;
+}
+
+.col-box4 p {
+  background-color: #d1f7ea;
+}
+
+.col-box1 span,
+.col-box2 span,
+.col-box3 span,
+.col-box4 span {
+  font-size: 14px;
+}
+
 .select-box-6 p {
   color: #222;
   margin-bottom: 5px;
@@ -1171,15 +1194,6 @@ device_box {
 }
 .map2 {
   margin-top: 15px;
-}
-.td1 {
-  margin-left: 12rem;
-}
-.td2 {
-  margin-left: 5rem;
-}
-.td3 {
-  margin-left: 24rem;
 }
 .tm1 {
   margin-bottom: 5px;
@@ -1206,7 +1220,7 @@ device_box {
   height: 415px;
 }
 .dev_dt2 {
-  height: 385px;
+  height: 315px;
 }
 .card.speed_sc {
   margin-bottom: 15px;

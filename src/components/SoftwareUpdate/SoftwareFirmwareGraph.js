@@ -59,7 +59,7 @@ class SoftwareFirmwareGraph extends Component {
             y: -5,
             style: {
               color: "#06152B",
-              fontSize: "18px",
+              fontSize: "14px",
               fontStyle: "normal",
               fontWeight: "400",
               fontFamily: "Inter",
@@ -68,13 +68,10 @@ class SoftwareFirmwareGraph extends Component {
           },
         },
       },
-      credits: {
-        enabled: false,
-      },
       series: [
         {
           showInLegend: false,
-          pointWidth: 35,
+          pointWidth: 15,
           data: data,
         },
       ],

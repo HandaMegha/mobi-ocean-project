@@ -97,7 +97,7 @@ const ListView = (props) => {
                     >
                       {filterValues.map((list, index) => {
                         return (
-                          <div key={index}>
+                          <div key={index} style={{ whiteSpace: "nowrap" }}>
                             <input
                               type="radio"
                               id={list.name}
@@ -153,30 +153,30 @@ const ListView = (props) => {
             <div className=" align-items-center">
               <div className="row">
                 <div className="col-md-3">
-                  <div className="col-box-6">
-                    <p style={{ backgroundColor: "#6C3BFF4D" }}>
-                      Total Devices <span>9,999,999</span>
+                  <div className="col-box-6 col-box1">
+                    <p>
+                      Total <br /> Devices <br /> <span>9,999,999</span>
                     </p>
                   </div>
                 </div>
                 <div className="col-md-3">
-                  <div className="col-box-6">
-                    <p style={{ backgroundColor: "#FFC1A4" }}>
-                      Average device usage <span>9,999,999</span>
+                  <div className="col-box-6 col-box2">
+                    <p>
+                      Average device usage <br /> <span>9,999,999</span>
                     </p>
                   </div>
                 </div>
                 <div className="col-md-3">
-                  <div className="col-box-6">
-                    <p style={{ backgroundColor: "#CCE9FF" }}>
-                      Warranty expires in 90 days <span>9,999,999</span>
+                  <div className="col-box-6 col-box3">
+                    <p>
+                      Warranty expires in 90 days <br /> <span>9,999,999</span>
                     </p>
                   </div>
                 </div>
                 <div className="col-md-3">
-                  <div className="col-box-6">
-                    <p style={{ backgroundColor: "#D1F7EA" }}>
-                      RD expires in 90 days <span>9,999,999</span>
+                  <div className="col-box-6 col-box4">
+                    <p>
+                      RD expires in 90 days <br /> <span>9,999,999</span>
                     </p>
                   </div>
                 </div>

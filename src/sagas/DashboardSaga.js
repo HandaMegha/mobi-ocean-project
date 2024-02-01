@@ -61,8 +61,10 @@ async function validateOtp(loginId) {
 function* getTokenAPI() {
   try {
     const loginId = yield call(getAccess);
-    const OtpData = yield call(validateOtp, loginId);
-    localStorage.setItem("Ns_t", OtpData.Token);
+    const result = yield call(validateOtp, loginId);
+    localStorage.setItem("Ns_t", result.Token);
+    localStorage.setItem("userName", result.UserDetails.UserName);
+    localStorage.setItem("userImage", result.UserDetails.UserImage);
     const msg = "Token Saved";
     yield put({ type: GET_TOKEN_SUCCESS, msg });
   } catch (error) {

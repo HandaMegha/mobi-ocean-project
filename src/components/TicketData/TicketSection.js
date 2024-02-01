@@ -1,18 +1,24 @@
 import { useLocation } from "react-router-dom";
 import TicketGraph from "./TicketGraph";
 
-const TicketSection = (props) => {
+const TicketSection = () => {
   const location = useLocation();
   const { pathname } = location;
 
   return (
-    <div className="col-lg-7 col-md-7">
+    <div
+      className={`${
+        pathname === "/dashboard/devices"
+          ? "col-lg-12 col-md-12"
+          : "col-lg-7 col-md-7"
+      }`}
+    >
       <div className="card">
         <div className="card-body">
           <div className=" align-items-center">
-            <div className="d-sm-flex d-block align-items-center justify-content-between mb-9">
+            <div className="d-block align-items-center justify-content-between mb-9">
               <div className="mb-3 mb-sm-0">
-                <h5 className="card-title fw-semibold td1">
+                <h5 className="card-title fw-semibold text-center">
                   {pathname === "/dashboard/devices"
                     ? "Active device"
                     : "Ticket Data"}
@@ -49,7 +55,7 @@ const TicketSection = (props) => {
               <div className="col-md-6">
                 <div className="select-box-6">
                   <p>Comparison criteria 1</p>
-                  <select className="form-select w-auto">
+                  <select className="form-select">
                     <option defaultValue="0"> Past Month</option>
                     <option value="1">March 2023</option>
                     <option value="2">April 2023</option>
@@ -61,7 +67,7 @@ const TicketSection = (props) => {
               <div className="col-md-6">
                 <div className="select-box-6">
                   <p>Comparison criteria 2</p>
-                  <select className="form-select w-auto">
+                  <select className="form-select">
                     <option defaultValue="0"> Present Month</option>
                     <option value="1">March 2023</option>
                     <option value="2">April 2023</option>

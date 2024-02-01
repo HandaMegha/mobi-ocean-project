@@ -4,7 +4,7 @@ import { filter, find, isEmpty } from "lodash";
 import { useLocation } from "react-router-dom";
 
 const DeviceSection = (props) => {
-  const { deviceData, duration, areaLevel } = props;
+  const { deviceData, duration, areaLevel, deviceAppData } = props;
   const location = useLocation();
   const { pathname } = location;
 
@@ -49,30 +49,13 @@ const DeviceSection = (props) => {
     }
     return (
       <>
-        <div className="d-sm-flex d-block align-items-center justify-content-between mb-9">
+        <div className="d-block align-items-center justify-content-between mb-9">
           <div className="mb-3 mb-sm-0">
-            <h5
-              className={`${
-                pathname === "/dashboard/devices" ? "td1" : "td2"
-              } card-title fw-semibold`}
-            >
-              Device Data
-            </h5>
+            <h5 className="card-title fw-semibold text-center">Device Data</h5>
             {pathname === "/dashboard/devices" ? (
-              <p
-                className={`${
-                  pathname === "/dashboard/devices" ? "td1" : "td2"
-                } ac2`}
-              >
-                Devices
-              </p>
+              <p className="ac2 text-center">Devices</p>
             ) : (
-              <p
-                className={`${
-                  pathname === "/dashboard/devices" ? "td1" : "td2"
-                } ac2`}
-                style={{ color: "#1DB636" }}
-              >{`${
+              <p className="ac2 text-center" style={{ color: "#1DB636" }}>{`${
                 isEmpty(activeDevicesCount)
                   ? 0
                   : activeDevicesCount.device_total_active_count
@@ -93,7 +76,9 @@ const DeviceSection = (props) => {
     <div
       className={
         pathname === "/dashboard/devices"
-          ? "col-lg-7 col-md-7"
+          ? isEmpty(deviceAppData)
+            ? "col-lg-12 col-md-12"
+            : "col-lg-7 col-md-7"
           : "col-lg-5 col-md-5"
       }
     >
@@ -111,6 +96,7 @@ const DeviceSection = (props) => {
 const mapStateToProps = (state) => ({
   deviceData: state.dashboardReducer.deviceData,
   deviceDataError: state.dashboardReducer.deviceDataError,
+  deviceAppData: state.dashboardReducer.deviceAppData,
 });
 
 export default connect(mapStateToProps, {})(DeviceSection);
