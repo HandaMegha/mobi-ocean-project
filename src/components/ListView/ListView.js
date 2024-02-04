@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { durationValues, filterValues } from "../Dashboard/DashboardConstant";
 import MapView from "../MapView/MapView";
-import { toLower } from "lodash";
+import { isEmpty, toLower } from "lodash";
 
 const ListView = (props) => {
   const {
@@ -9,10 +9,15 @@ const ListView = (props) => {
     changeFilter,
     changeDuration,
     area,
+    changeArea,
+    changeAreaLevel,
     duration,
     listView,
     filterValue,
     filterList,
+    setFilterList,
+    showDistrict,
+    showDistrictList,
   } = props;
   const [searchItem, setSearchItem] = useState("");
   const [searchedList, setSearchedList] = useState(filterList);
@@ -35,6 +40,95 @@ const ListView = (props) => {
     // });
   };
 
+  const getSearchBar = () => {
+    return (
+      <div className={`${showDistrict ? "col-md-12" : "col-md-7"}`}>
+        <input
+          type="search"
+          id="stateSearch"
+          className="searchInput"
+          placeholder="Search by state, district or organization"
+          value={searchItem}
+          onChange={(event) => handleSearch(event.target.value)}
+        />
+      </div>
+    );
+  };
+
+  const getRadioButtons = () => {
+    return (
+      <div className="col-md-5">
+        <div
+          style={{
+            fontSize: "15px",
+            padding: "8px 38px 8px 16px",
+            border: "1px solid #dfe5ef",
+            borderRadius: "7px",
+          }}
+        >
+          {filterValues.map((list, index) => {
+            return (
+              <div key={index} style={{ whiteSpace: "nowrap" }}>
+                <input
+                  type="radio"
+                  id={list.name}
+                  value={list.value}
+                  checked={list.value === filterValue}
+                  onChange={(e) => changeFilter(e.target.value)}
+                />
+                <label htmlFor={list.name} style={{ marginLeft: "5px" }}>
+                  {list.name}
+                </label>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  };
+
+  const getTable = () => {
+    return isEmpty(filterList) ? (
+      <div className="emptyTable">
+        {showDistrict
+          ? "No District Available"
+          : filterValue === "state"
+          ? "No State Available"
+          : "No Organisation Available"}
+      </div>
+    ) : (
+      <table id="stateList">
+        <thead>
+          <tr>
+            <th>
+              {filterValue === "state"
+                ? showDistrict
+                  ? "District"
+                  : "State/UT"
+                : "Organization"}
+            </th>
+            <th>Active devices</th>
+          </tr>
+        </thead>
+        {filterList &&
+          filterList.map((list, index) => {
+            return (
+              <tbody key={index}>
+                <tr>
+                  <td>{showDistrict ? list.area : list.CategoryName}</td>
+                  <td>
+                    {showDistrict
+                      ? list.device_total_active_count
+                      : list.TotalDevice}
+                  </td>
+                </tr>
+              </tbody>
+            );
+          })}
+      </table>
+    );
+  };
+
   return (
     <>
       <div className="col-lg-5 d-flex align-items-strech">
@@ -42,10 +136,7 @@ const ListView = (props) => {
           <div className="card-body">
             <div className="d-sm-flex d-block align-items-center justify-content-between mb-9">
               <div className="mb-3 mb-sm-0">
-                <h5 className="card-title fw-semibold">
-                  {/* {listView ? "India" : "India"} */}
-                  {area}
-                </h5>
+                <h5 className="card-title fw-semibold">{area}</h5>
               </div>
               <div className="mb-3 mb-sm-0">
                 <select
@@ -63,7 +154,7 @@ const ListView = (props) => {
                   })}
                 </select>
               </div>
-              <button className="viewBtn" onClick={changeView}>
+              <button className="viewBtn" onClick={() => changeView(!listView)}>
                 <img
                   src={listView ? "/icons/list.svg" : "/icons/map.svg"}
                   alt="list"
@@ -72,76 +163,23 @@ const ListView = (props) => {
               </button>
             </div>
             {listView ? (
-              <MapView filterValue={filterValue} />
+              <MapView
+                changeArea={changeArea}
+                changeAreaLevel={changeAreaLevel}
+                showDistrictList={showDistrictList}
+                changeView={changeView}
+                duration={duration}
+                setFilterList={setFilterList}
+              />
             ) : (
               <>
-                <div className="row">
-                  <div className="col-md-7">
-                    <input
-                      type="search"
-                      id="stateSearch"
-                      className="searchInput"
-                      placeholder="Search by state, district or organization"
-                      value={searchItem}
-                      onChange={(event) => handleSearch(event.target.value)}
-                    />
+                {!isEmpty(filterList) ? (
+                  <div className="row">
+                    {getSearchBar()}
+                    {showDistrict ? null : getRadioButtons()}
                   </div>
-                  <div className="col-md-5">
-                    <div
-                      style={{
-                        fontSize: "15px",
-                        padding: "8px 38px 8px 16px",
-                        border: "1px solid #dfe5ef",
-                        borderRadius: "7px",
-                      }}
-                    >
-                      {filterValues.map((list, index) => {
-                        return (
-                          <div key={index} style={{ whiteSpace: "nowrap" }}>
-                            <input
-                              type="radio"
-                              id={list.name}
-                              value={list.value}
-                              checked={list.value === filterValue}
-                              onChange={(e) => changeFilter(e.target.value)}
-                            />
-                            <label
-                              htmlFor={list.name}
-                              style={{ marginLeft: "5px" }}
-                            >
-                              {list.name}
-                            </label>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </div>
-                <div className="tableList">
-                  <table id="stateList">
-                    <thead>
-                      <tr>
-                        <th>
-                          {filterValue === "state"
-                            ? "State/UT"
-                            : "Organization"}
-                        </th>
-                        <th>Active devices</th>
-                      </tr>
-                    </thead>
-                    {filterList &&
-                      filterList.map((list, index) => {
-                        return (
-                          <tbody key={index}>
-                            <tr>
-                              <td>{list.CategoryName}</td>
-                              <td>{list.TotalDevice}</td>
-                            </tr>
-                          </tbody>
-                        );
-                      })}
-                  </table>
-                </div>
+                ) : null}
+                <div className="tableList">{getTable()}</div>
               </>
             )}
           </div>

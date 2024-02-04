@@ -4,7 +4,7 @@ import DevicesGraph from "./DevicesGraph";
 import DeviceSection from "./DeviceSection";
 
 const DevicesData = (props) => {
-  const { duration, areaLevel } = props;
+  const { duration, areaLevel, area } = props;
   const deviceGraphData = [
     { y: 999995, color: "#6D3AFF" },
     { y: 520000, color: "#DB5AEE" },
@@ -15,8 +15,12 @@ const DevicesData = (props) => {
   return (
     <div className="col-lg-7">
       <div className="row">
-        <DeviceSection duration={duration} areaLevel={areaLevel} />
-        <SoftwareUpdateSection duration={duration} areaLevel={areaLevel} />
+        <DeviceSection duration={duration} areaLevel={areaLevel} area={area} />
+        <SoftwareUpdateSection
+          duration={duration}
+          areaLevel={areaLevel}
+          area={area}
+        />
         <TicketSection />
       </div>
       <div className="row mt-15">

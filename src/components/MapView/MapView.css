@@ -7,9 +7,8 @@
 }
 
 .statesNotPresent {
-  cursor: none;
-  display: none;
-  background-color: greenyellow;
+  cursor: not-allowed;
+  color: grey;
 }
 
 .jammu {
@@ -143,7 +142,7 @@
 }
 
 .mizoram {
-  top: 22rem;
+  top: 23rem;
   left: 41rem;
 }
 

@@ -4,7 +4,7 @@ import { filter, find, isEmpty } from "lodash";
 import { useLocation } from "react-router-dom";
 
 const DeviceSection = (props) => {
-  const { deviceData, duration, areaLevel, deviceAppData } = props;
+  const { deviceData, duration, areaLevel, deviceAppData, area } = props;
   const location = useLocation();
   const { pathname } = location;
 
@@ -15,6 +15,7 @@ const DeviceSection = (props) => {
       const filteredData = filter(deviceData, {
         area_level: areaLevel,
         duration: duration,
+        area: area,
       });
       activeDevicesCount = find(deviceData, "device_total_active_count");
 
@@ -38,7 +39,7 @@ const DeviceSection = (props) => {
               y: item.device_avg_usage_count,
             });
           }
-          if (item.hasOwnProperty("device_total_active_count")) {
+          if (item.hasOwnProperty("device_avg_active_count")) {
             deviceGraphData.push({
               name: "Avg. Active",
               y: item.device_avg_usage_count,

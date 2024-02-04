@@ -1309,15 +1309,23 @@ device_box {
 }
 /* card 3 */
 
+.emptyTable {
+  text-align: center;
+  font-size: 22px;
+  margin-top: 10rem;
+  font-weight: bold;
+}
+
 .tableList {
   height: 756px;
-  overflow-y: scroll;
+  overflow-y: auto;
   scrollbar-width: thin;
   margin-top: 15px;
 }
 
-.tableList tbody {
-  overflow-y: scroll;
+.tableList thead th {
+  position: sticky;
+  top: 0;
 }
 
 #stateList {

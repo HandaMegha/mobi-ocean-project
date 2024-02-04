@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import TicketSection from "../TicketData/TicketSection";
 import DeviceSection from "../DeviceData/DeviceSection";
-// import TransactionSection from "../TransactionData/TransactionSection";
 import SoftwareUpdateSection from "../SoftwareUpdate/SoftwareUpdateSection";
 import { connect } from "react-redux";
 import { isEmpty } from "lodash";
@@ -17,17 +16,23 @@ const DashboardContent = (props) => {
   const [filterList, setFilterList] = useState("");
   const [area, setArea] = useState("India");
   const [areaLevel, setAreaLevel] = useState("country");
+  const [showDistrict, setShowDistrict] = useState(false);
   const location = useLocation();
   const { pathname } = location;
 
   useEffect(() => {
-    if (!listView && !isEmpty(deviceCount)) {
+    if (!listView && !isEmpty(deviceCount) && !showDistrict) {
       setFilterList(deviceCount.States);
     }
   }, [deviceCount, listView]);
 
-  const changeView = () => {
-    setListView((prevListView) => !prevListView);
+  const changeView = (val) => {
+    setListView(val);
+    if (val === true) {
+      setShowDistrict(false);
+      setAreaLevel("country");
+      setArea("India");
+    }
   };
 
   const changeFilter = (value) => {
@@ -45,6 +50,18 @@ const DashboardContent = (props) => {
     setDuration(value);
   };
 
+  const changeArea = (val) => {
+    setArea(val);
+  };
+
+  const changeAreaLevel = (val) => {
+    setAreaLevel(val);
+  };
+
+  const showDistrictList = (val) => {
+    setShowDistrict(val);
+  };
+
   return (
     <div className="body-wrapper">
       <div className="container-fluid">
@@ -54,29 +71,42 @@ const DashboardContent = (props) => {
             changeFilter={changeFilter}
             changeDuration={changeDuration}
             area={area}
+            changeArea={changeArea}
+            changeAreaLevel={changeAreaLevel}
             duration={duration}
             listView={listView}
             filterValue={filterValue}
             filterList={filterList}
+            setFilterList={setFilterList}
+            showDistrict={showDistrict}
+            showDistrictList={showDistrictList}
           />
           {pathname === "/" ? (
             <div className="col-lg-7">
               <div className="row">
                 <TicketSection />
                 <Link to={{ pathname: "/dashboard/devices" }}>
-                  <DeviceSection duration={duration} areaLevel={areaLevel} />
+                  <DeviceSection
+                    duration={duration}
+                    areaLevel={areaLevel}
+                    area={area}
+                  />
                 </Link>
-                {/* <TransactionSection listView={listView} /> */}
                 <Link to={{ pathname: "/dashboard/devices" }}>
                   <SoftwareUpdateSection
                     duration={duration}
                     areaLevel={areaLevel}
+                    area={area}
                   />
                 </Link>
               </div>
             </div>
           ) : (
-            <DevicesData duration={duration} areaLevel={areaLevel} />
+            <DevicesData
+              duration={duration}
+              areaLevel={areaLevel}
+              area={area}
+            />
           )}
         </div>
       </div>

@@ -1,11 +1,35 @@
 import React from "react";
 import "./MapView.css";
 import { connect } from "react-redux";
-import { isEmpty, get, toLower, trim, replace } from "lodash";
+import { isEmpty, get, toLower, replace, filter } from "lodash";
 import { allStateList } from "../Dashboard/DashboardConstant";
 
 const MapView = (props) => {
-  const { deviceCount, filterValue } = props;
+  const {
+    deviceCount,
+    changeArea,
+    changeAreaLevel,
+    deviceData,
+    showDistrictList,
+    changeView,
+    setFilterList,
+    duration,
+  } = props;
+
+  const handleChange = (value) => {
+    if (!isEmpty(deviceData)) {
+      const list = filter(deviceData, {
+        duration: duration,
+        area_parent: value,
+        area_level: "district",
+      });
+      setFilterList(list);
+      changeArea(value);
+      changeAreaLevel("state");
+      showDistrictList(true);
+      changeView(false);
+    }
+  };
 
   const renderMap = () => {
     const finalStateList = [];
@@ -28,8 +52,11 @@ const MapView = (props) => {
         difference.map((list) => {
           finalStateList.push({
             name: list.name,
-            deviceCount: 0,
-            className: "statesNotPresent",
+            className: `${replace(
+              toLower(list.name),
+              " ",
+              "-"
+            )} statesNotPresent`,
           });
         });
       }
@@ -52,6 +79,7 @@ const MapView = (props) => {
                     : list.className
                 }
                 key={index}
+                onClick={() => handleChange(list.name)}
               >
                 {list.name}
                 <br />
@@ -69,6 +97,7 @@ const MapView = (props) => {
 
 const mapStateToProps = (state) => ({
   deviceCount: state.dashboardReducer.deviceCount,
+  deviceData: state.dashboardReducer.deviceData,
 });
 
 export default connect(mapStateToProps, {})(MapView);

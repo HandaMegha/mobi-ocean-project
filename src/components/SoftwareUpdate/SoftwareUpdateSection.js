@@ -5,7 +5,7 @@ import { isEmpty, filter } from "lodash";
 import { useLocation } from "react-router-dom";
 
 const SoftwareUpdateSection = (props) => {
-  const { deviceAppData, duration, areaLevel } = props;
+  const { deviceAppData, duration, areaLevel, area } = props;
   // const areaLevel = "district";
   const location = useLocation();
   const { pathname } = location;
@@ -48,6 +48,7 @@ const SoftwareUpdateSection = (props) => {
         area_level: areaLevel,
         duration: duration,
         app_firmware_bool: true,
+        area: area,
       });
 
       if (!isEmpty(filteredAppData)) {
@@ -67,6 +68,7 @@ const SoftwareUpdateSection = (props) => {
         area_level: areaLevel,
         duration: duration,
         app_firmware_bool: false,
+        area: area,
       });
 
       if (!isEmpty(filteredFirmwareData)) {
