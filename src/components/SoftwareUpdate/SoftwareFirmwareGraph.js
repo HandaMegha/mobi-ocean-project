@@ -4,7 +4,7 @@ import HighchartsReact from "highcharts-react-official";
 
 class SoftwareFirmwareGraph extends Component {
   render() {
-    const { data, height, yLabel, title } = this.props;
+    const { data, height, yLabel, title, subtitle } = this.props;
     const options = {
       chart: {
         type: "bar",
@@ -13,6 +13,15 @@ class SoftwareFirmwareGraph extends Component {
       title: {
         text: title,
         align: "left",
+      },
+      subtitle: {
+        text: subtitle,
+        align: "left",
+        style: {
+          fontSize: "12px",
+          fontWeight: 600,
+          color: "#222",
+        },
       },
       credits: { enabled: false },
       xAxis: {

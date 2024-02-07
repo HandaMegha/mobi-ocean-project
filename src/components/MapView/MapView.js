@@ -14,6 +14,7 @@ const MapView = (props) => {
     changeView,
     setFilterList,
     duration,
+    setFilterValue,
   } = props;
 
   const handleChange = (value) => {
@@ -28,6 +29,7 @@ const MapView = (props) => {
       changeAreaLevel("state");
       showDistrictList(true);
       changeView(false);
+      setFilterValue("state");
     }
   };
 

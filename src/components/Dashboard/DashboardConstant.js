@@ -4,6 +4,7 @@ export const durationValues = [
 ];
 
 export const filterValues = [
+  { name: "List View", value: "list_view" },
   { name: "State", value: "state" },
   { name: "Organization", value: "organization" },
 ];

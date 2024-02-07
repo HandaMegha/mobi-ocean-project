@@ -51,20 +51,26 @@ class DevicesGraph extends Component {
       plotOptions: {
         bar: {
           dataLabels: {
-            enabled: false,
+            enabled: true,
             x: 0,
             align: "left",
             reserveSpace: false,
-            y: -30,
+            y: -3,
+            style: {
+              color: "#06152B",
+              fontSize: "14px",
+              fontStyle: "normal",
+              fontWeight: "400",
+              fontFamily: "Inter",
+              whiteSpace: "nowrap",
+            },
           },
         },
-      },
-      credits: {
-        enabled: false,
       },
       series: [
         {
           showInLegend: false,
+          pointWidth: 15,
           data: data,
         },
       ],

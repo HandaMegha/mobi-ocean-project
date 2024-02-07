@@ -42,7 +42,7 @@ class DeviceSectionGraph extends Component {
           },
         },
       },
-      colors: ["#4A3AFF", "#DB5AEE", "#1AD598", "#F9B959"],
+      colors: ["#7E74E9", "#E9A5F3", "#98EDD1", "#F4D6A8"],
       series: [
         {
           type: "pie",

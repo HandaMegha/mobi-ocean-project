@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import Header from "../Header/Header";
 import DashboardContent from "./DashboardContent";
@@ -25,7 +25,7 @@ const Dashboard = (props) => {
     getDeviceData();
     getDeviceWiseCount();
     getDeviceAppData();
-  }, []);
+  }, [getToken, getDeviceData, getDeviceWiseCount, getDeviceAppData]);
 
   return (
     <div id="main-wrapper">

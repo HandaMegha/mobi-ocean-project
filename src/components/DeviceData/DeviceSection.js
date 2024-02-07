@@ -10,14 +10,14 @@ const DeviceSection = (props) => {
 
   const renderDeviceData = () => {
     const deviceGraphData = [];
-    let activeDevicesCount = 0;
+    let activeDevicesCount = {};
     if (!isEmpty(deviceData)) {
       const filteredData = filter(deviceData, {
         area_level: areaLevel,
         duration: duration,
         area: area,
       });
-      activeDevicesCount = find(deviceData, "device_total_active_count");
+      activeDevicesCount = find(filteredData, "device_total_active_count");
 
       if (!isEmpty(filteredData)) {
         filteredData.map((item) => {
@@ -48,6 +48,7 @@ const DeviceSection = (props) => {
         });
       }
     }
+
     return (
       <>
         <div className="d-block align-items-center justify-content-between mb-9">
@@ -59,7 +60,7 @@ const DeviceSection = (props) => {
               <p className="ac2 text-center" style={{ color: "#1DB636" }}>{`${
                 isEmpty(activeDevicesCount)
                   ? 0
-                  : activeDevicesCount.device_total_active_count
+                  : activeDevicesCount.device_total_active_count.toLocaleString()
               } active today`}</p>
             )}
           </div>
@@ -68,7 +69,11 @@ const DeviceSection = (props) => {
           <p className="ac1">Lorem</p>
           <p className="ac2">9,99,999</p>
         </div>
-        <DeviceSectionGraph data={deviceGraphData} />
+        {!isEmpty(deviceGraphData) ? (
+          <DeviceSectionGraph data={deviceGraphData} />
+        ) : (
+          <div className="emptyTable">No Device Data Available</div>
+        )}
       </>
     );
   };
@@ -84,7 +89,11 @@ const DeviceSection = (props) => {
       }
     >
       <div className="card speed_sc">
-        <div className="card-body dev_dt1">
+        <div
+          className={`${
+            pathname === "/dashboard/devices" ? "dev_dt3" : "dev_dt1"
+          } card-body`}
+        >
           <div className=" align-items-start">
             <div className="col-12">{renderDeviceData()}</div>
           </div>

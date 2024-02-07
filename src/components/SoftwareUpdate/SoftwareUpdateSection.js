@@ -37,49 +37,60 @@ const SoftwareUpdateSection = (props) => {
           height={data.length <= 1 ? 250 : 207}
           yLabel={-20}
           title={`${item.app_name + " " + item.version_no}`}
+          subtitle="Launched on 23/11/2023"
         />
       );
     });
   };
 
-  const renderAppGraph = () => {
+  const renderAppGraph = (filteredAppData) => {
+    if (!isEmpty(filteredAppData)) {
+      return calculateGraphData(
+        filteredAppData,
+        SoftwareUpdatesGraph,
+        "#962DFF",
+        "#E0C6FD"
+      );
+    }
+  };
+
+  const renderFirmwareGraph = (filteredFirmwareData) => {
+    if (!isEmpty(filteredFirmwareData)) {
+      return calculateGraphData(
+        filteredFirmwareData,
+        SoftwareFirmwareGraph,
+        "#4A3AFF",
+        "#C6D2FD"
+      );
+    }
+  };
+
+  const renderSoftwareGraph = () => {
+    let filteredAppData = [],
+      filteredFirmwareData = [];
     if (!isEmpty(deviceAppData)) {
-      const filteredAppData = filter(deviceAppData, {
+      filteredAppData = filter(deviceAppData, {
         area_level: areaLevel,
         duration: duration,
         app_firmware_bool: true,
         area: area,
       });
 
-      if (!isEmpty(filteredAppData)) {
-        return calculateGraphData(
-          filteredAppData,
-          SoftwareUpdatesGraph,
-          "#962DFF",
-          "#E0C6FD"
-        );
-      }
-    }
-  };
-
-  const renderFirmwareGraph = () => {
-    if (!isEmpty(deviceAppData)) {
-      const filteredFirmwareData = filter(deviceAppData, {
+      filteredFirmwareData = filter(deviceAppData, {
         area_level: areaLevel,
         duration: duration,
         app_firmware_bool: false,
         area: area,
       });
-
-      if (!isEmpty(filteredFirmwareData)) {
-        return calculateGraphData(
-          filteredFirmwareData,
-          SoftwareFirmwareGraph,
-          "#4A3AFF",
-          "#C6D2FD"
-        );
-      }
     }
+    return !isEmpty(filteredAppData) || !isEmpty(filteredFirmwareData) ? (
+      <div className="row">
+        {renderAppGraph(filteredAppData)}
+        {renderFirmwareGraph(filteredFirmwareData)}
+      </div>
+    ) : (
+      <div className="emptyTable">No Software Data Available</div>
+    );
   };
 
   return !isEmpty(deviceAppData) ? (
@@ -93,7 +104,7 @@ const SoftwareUpdateSection = (props) => {
       <div className="card speed_sc graphContainer">
         <div
           className={`${
-            pathname === "/dashboard/devices" ? "dev_dt1" : "dev_dt2"
+            pathname === "/dashboard/devices" ? "dev_dt3" : "dev_dt2"
           } card-body`}
         >
           <div className=" align-items-start">
@@ -108,14 +119,10 @@ const SoftwareUpdateSection = (props) => {
                     <h5 className="card-title fw-semibold text-center">
                       Software Update
                     </h5>
-                    <p className="ac2 text-center">Launched on 23/11/2023</p>
                   </div>
                 )}
               </div>
-              <div className="row">
-                {renderAppGraph()}
-                {renderFirmwareGraph()}
-              </div>
+              {renderSoftwareGraph()}
             </div>
           </div>
         </div>

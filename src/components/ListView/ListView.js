@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { durationValues, filterValues } from "../Dashboard/DashboardConstant";
 import MapView from "../MapView/MapView";
-import { isEmpty, toLower } from "lodash";
+import { isEmpty, toLower, find, filter } from "lodash";
+import { connect } from "react-redux";
 
 const ListView = (props) => {
   const {
@@ -18,9 +19,13 @@ const ListView = (props) => {
     setFilterList,
     showDistrict,
     showDistrictList,
+    deviceData,
+    areaLevel,
+    setFilterValue,
   } = props;
   const [searchItem, setSearchItem] = useState("");
   const [searchedList, setSearchedList] = useState(filterList);
+  const [areaParent, setAreaParent] = useState("");
 
   const handleSearch = (value) => {
     setSearchItem(value);
@@ -40,14 +45,45 @@ const ListView = (props) => {
     // });
   };
 
+  const showDistrictGraph = (list) => {
+    changeArea(list.area);
+    changeAreaLevel(list.area_level);
+    setAreaParent(list.area_parent);
+  };
+
+  const onChange = (value) => {
+    changeDuration(value);
+    if (!isEmpty(deviceData)) {
+      if (!showDistrict) {
+        const list = filter(deviceData, {
+          area_level: areaLevel,
+          duration: value,
+          area: area,
+        });
+        setFilterList(list);
+      } else {
+        const list = filter(deviceData, {
+          area_parent: areaLevel === "state" ? area : areaParent,
+          duration: value,
+          area_level: "district",
+        });
+        setFilterList(list);
+      }
+    }
+  };
+
   const getSearchBar = () => {
     return (
-      <div className={`${showDistrict ? "col-md-12" : "col-md-7"}`}>
+      <div className="col-md-6">
         <input
           type="search"
           id="stateSearch"
           className="searchInput"
-          placeholder="Search by state, district or organization"
+          placeholder={
+            filterValue === "state"
+              ? "Search by state"
+              : "Search by organization"
+          }
           value={searchItem}
           onChange={(event) => handleSearch(event.target.value)}
         />
@@ -55,20 +91,21 @@ const ListView = (props) => {
     );
   };
 
-  const getRadioButtons = () => {
+  const getDropdowns = () => {
     return (
-      <div className="col-md-5">
+      <div className="col-md-6">
         <div
           style={{
             fontSize: "15px",
-            padding: "8px 38px 8px 16px",
+            display: "flex",
+            padding: "2px",
             border: "1px solid #dfe5ef",
             borderRadius: "7px",
           }}
         >
           {filterValues.map((list, index) => {
-            return (
-              <div key={index} style={{ whiteSpace: "nowrap" }}>
+            return index >= 1 ? (
+              <div key={index} style={{ whiteSpace: "nowrap", padding: "4px" }}>
                 <input
                   type="radio"
                   id={list.name}
@@ -80,7 +117,7 @@ const ListView = (props) => {
                   {list.name}
                 </label>
               </div>
-            );
+            ) : null;
           })}
         </div>
       </div>
@@ -101,10 +138,10 @@ const ListView = (props) => {
         <thead>
           <tr>
             <th>
-              {filterValue === "state"
-                ? showDistrict
-                  ? "District"
-                  : "State/UT"
+              {showDistrict
+                ? "District"
+                : filterValue === "state"
+                ? "State/UT"
                 : "Organization"}
             </th>
             <th>Active devices</th>
@@ -114,7 +151,10 @@ const ListView = (props) => {
           filterList.map((list, index) => {
             return (
               <tbody key={index}>
-                <tr>
+                <tr
+                  onClick={() => showDistrictGraph(list)}
+                  className={list.area === area ? "tableRowActive" : ""}
+                >
                   <td>{showDistrict ? list.area : list.CategoryName}</td>
                   <td>
                     {showDistrict
@@ -129,6 +169,77 @@ const ListView = (props) => {
     );
   };
 
+  const renderDeviceSummary = () => {
+    let deviceSummaryCount = {};
+    if (!isEmpty(deviceData)) {
+      deviceSummaryCount = find(deviceData, {
+        area_level: areaLevel,
+        duration: duration,
+        area: area,
+      });
+    }
+    return (
+      <div className="col-lg-7">
+        <div className=" card device_box">
+          <div className="card-body">
+            <div className=" align-items-center">
+              <div className="row">
+                <div className="col-md-3">
+                  <div className="col-box-6 col-box1">
+                    <p>
+                      Total <br /> Devices <br />{" "}
+                      <span>
+                        {isEmpty(deviceSummaryCount)
+                          ? 0
+                          : deviceSummaryCount.device_total_ordered_count.toLocaleString()}
+                      </span>
+                    </p>
+                  </div>
+                </div>
+                <div className="col-md-3">
+                  <div className="col-box-6 col-box2">
+                    <p>
+                      Average device usage <br />{" "}
+                      <span>
+                        {isEmpty(deviceSummaryCount)
+                          ? 0
+                          : deviceSummaryCount.device_avg_usage_count.toLocaleString()}
+                      </span>
+                    </p>
+                  </div>
+                </div>
+                <div className="col-md-3">
+                  <div className="col-box-6 col-box3">
+                    <p>
+                      Warranty expires in 90 days <br />{" "}
+                      <span>
+                        {isEmpty(deviceSummaryCount)
+                          ? 0
+                          : deviceSummaryCount.device_warrantee_expiry_in_90days.toLocaleString()}
+                      </span>
+                    </p>
+                  </div>
+                </div>
+                <div className="col-md-3">
+                  <div className="col-box-6 col-box4">
+                    <p>
+                      RD expires in 90 days <br />{" "}
+                      <span>
+                        {isEmpty(deviceSummaryCount)
+                          ? 0
+                          : deviceSummaryCount.device_RD_expiry_in_90days.toLocaleString()}
+                      </span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <>
       <div className="col-lg-5 d-flex align-items-strech">
@@ -136,31 +247,54 @@ const ListView = (props) => {
           <div className="card-body">
             <div className="d-sm-flex d-block align-items-center justify-content-between mb-9">
               <div className="mb-3 mb-sm-0">
-                <h5 className="card-title fw-semibold">{area}</h5>
+                <h5 className="card-title fw-semibold areaheading">{area}</h5>
               </div>
-              <div className="mb-3 mb-sm-0">
-                <select
-                  className="form-select w-auto"
-                  placeholder="Filter by"
-                  onChange={(e) => changeDuration(e.target.value)}
-                  value={duration}
-                >
-                  {durationValues.map((list, index) => {
-                    return (
-                      <option key={index} value={list.value}>
-                        {list.name}
-                      </option>
-                    );
-                  })}
-                </select>
-              </div>
-              <button className="viewBtn" onClick={() => changeView(!listView)}>
-                <img
-                  src={listView ? "/icons/list.svg" : "/icons/map.svg"}
-                  alt="list"
-                />
-                {listView ? "List View" : "Map View"}
-              </button>
+              {areaLevel !== "district" ? (
+                <div className="mb-3 mb-sm-0">
+                  <select
+                    className="form-select w-auto"
+                    placeholder="Filter by"
+                    onChange={(e) => onChange(e.target.value)}
+                    value={duration}
+                  >
+                    {durationValues.map((list, index) => {
+                      return (
+                        <option key={index} value={list.value}>
+                          {list.name}
+                        </option>
+                      );
+                    })}
+                  </select>
+                </div>
+              ) : null}
+              {listView ? (
+                <div className="mb-3 mb-sm-0">
+                  <select
+                    className="form-select w-auto"
+                    placeholder="List view"
+                    onChange={(e) => changeFilter(e.target.value)}
+                    value={filterValue}
+                  >
+                    {filterValues.map((list, index) => {
+                      return (
+                        <option key={index} value={list.value}>
+                          {list.name}
+                        </option>
+                      );
+                    })}
+                  </select>
+                </div>
+              ) : (
+                <div className="mb-3 mb-sm-0">
+                  <button
+                    className="viewBtn"
+                    onClick={() => changeView(!listView)}
+                  >
+                    <img src="/icons/map.svg" alt="list" />
+                    Map View
+                  </button>
+                </div>
+              )}
             </div>
             {listView ? (
               <MapView
@@ -170,13 +304,14 @@ const ListView = (props) => {
                 changeView={changeView}
                 duration={duration}
                 setFilterList={setFilterList}
+                setFilterValue={setFilterValue}
               />
             ) : (
               <>
                 {!isEmpty(filterList) ? (
                   <div className="row">
                     {getSearchBar()}
-                    {showDistrict ? null : getRadioButtons()}
+                    {getDropdowns()}
                   </div>
                 ) : null}
                 <div className="tableList">{getTable()}</div>
@@ -185,46 +320,13 @@ const ListView = (props) => {
           </div>
         </div>
       </div>
-      <div className="col-lg-7">
-        <div className=" card device_box">
-          <div className="card-body">
-            <div className=" align-items-center">
-              <div className="row">
-                <div className="col-md-3">
-                  <div className="col-box-6 col-box1">
-                    <p>
-                      Total <br /> Devices <br /> <span>9,999,999</span>
-                    </p>
-                  </div>
-                </div>
-                <div className="col-md-3">
-                  <div className="col-box-6 col-box2">
-                    <p>
-                      Average device usage <br /> <span>9,999,999</span>
-                    </p>
-                  </div>
-                </div>
-                <div className="col-md-3">
-                  <div className="col-box-6 col-box3">
-                    <p>
-                      Warranty expires in 90 days <br /> <span>9,999,999</span>
-                    </p>
-                  </div>
-                </div>
-                <div className="col-md-3">
-                  <div className="col-box-6 col-box4">
-                    <p>
-                      RD expires in 90 days <br /> <span>9,999,999</span>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      {renderDeviceSummary()}
     </>
   );
 };
 
-export default ListView;
+const mapStateToProps = (state) => ({
+  deviceData: state.dashboardReducer.deviceData,
+});
+
+export default connect(mapStateToProps, {})(ListView);

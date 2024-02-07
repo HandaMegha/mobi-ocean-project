@@ -7,12 +7,13 @@ import { isEmpty } from "lodash";
 import { Link, useLocation } from "react-router-dom";
 import ListView from "../ListView/ListView";
 import DevicesData from "../DeviceData/DevicesData";
+import Breadcrumb from "../Breadcrumb/Breadcrumb";
 
 const DashboardContent = (props) => {
   const { deviceCount } = props;
   const [listView, setListView] = useState(true);
   const [duration, setDuration] = useState("last_week");
-  const [filterValue, setFilterValue] = useState("state");
+  const [filterValue, setFilterValue] = useState("");
   const [filterList, setFilterList] = useState("");
   const [area, setArea] = useState("India");
   const [areaLevel, setAreaLevel] = useState("country");
@@ -32,11 +33,14 @@ const DashboardContent = (props) => {
       setShowDistrict(false);
       setAreaLevel("country");
       setArea("India");
+      setFilterValue("list_view");
     }
   };
 
   const changeFilter = (value) => {
     setFilterValue(value);
+    setListView(false);
+    setShowDistrict(false);
     if (!isEmpty(deviceCount)) {
       if (value === "state") {
         setFilterList(deviceCount.States);
@@ -65,6 +69,12 @@ const DashboardContent = (props) => {
   return (
     <div className="body-wrapper">
       <div className="container-fluid">
+        <Breadcrumb
+          title="Dashboard"
+          subTitle={
+            pathname === "/" || pathname === "/dashboard" ? "" : "devices"
+          }
+        />
         <div className="row">
           <ListView
             changeView={changeView}
@@ -80,8 +90,10 @@ const DashboardContent = (props) => {
             setFilterList={setFilterList}
             showDistrict={showDistrict}
             showDistrictList={showDistrictList}
+            areaLevel={areaLevel}
+            setFilterValue={setFilterValue}
           />
-          {pathname === "/" ? (
+          {pathname === "/" || pathname === "/dashboard" ? (
             <div className="col-lg-7">
               <div className="row">
                 <TicketSection />
