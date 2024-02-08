@@ -10,14 +10,16 @@ const DeviceSection = (props) => {
 
   const renderDeviceData = () => {
     const deviceGraphData = [];
-    let activeDevicesCount = {};
+    let activeDevicesCount = {},
+      totalDevicesCount = {};
     if (!isEmpty(deviceData)) {
       const filteredData = filter(deviceData, {
         area_level: areaLevel,
         duration: duration,
         area: area,
       });
-      activeDevicesCount = find(filteredData, "device_total_active_count");
+      activeDevicesCount = find(filteredData, "device_active_today_count");
+      totalDevicesCount = find(filteredData, "device_total_active_count");
 
       if (!isEmpty(filteredData)) {
         filteredData.map((item) => {
@@ -54,20 +56,22 @@ const DeviceSection = (props) => {
         <div className="d-block align-items-center justify-content-between mb-9">
           <div className="mb-3 mb-sm-0">
             <h5 className="card-title fw-semibold text-center">Device Data</h5>
-            {pathname === "/dashboard/devices" ? (
-              <p className="ac2 text-center">Devices</p>
-            ) : (
+            {pathname === "/dashboard/devices" ? null : (
               <p className="ac2 text-center" style={{ color: "#1DB636" }}>{`${
                 isEmpty(activeDevicesCount)
                   ? 0
-                  : activeDevicesCount.device_total_active_count.toLocaleString()
+                  : activeDevicesCount.device_active_today_count.toLocaleString()
               } active today`}</p>
             )}
           </div>
         </div>
         <div className="act_box w-auto new_cl">
-          <p className="ac1">Lorem</p>
-          <p className="ac2">9,99,999</p>
+          <p className="ac1">Total Active Count</p>
+          <p className="ac2">
+            {isEmpty(totalDevicesCount)
+              ? 0
+              : totalDevicesCount.device_total_active_count.toLocaleString()}
+          </p>
         </div>
         {!isEmpty(deviceGraphData) ? (
           <DeviceSectionGraph data={deviceGraphData} />

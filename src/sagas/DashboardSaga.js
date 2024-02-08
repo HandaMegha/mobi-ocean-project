@@ -64,7 +64,7 @@ function* getTokenAPI() {
     const result = yield call(validateOtp, loginId);
     localStorage.setItem("Ns_t", result.Token);
     localStorage.setItem("userName", result.UserDetails.UserName);
-    localStorage.setItem("userImage", result.UserDetails.UserImage);
+    localStorage.setItem("companyLogo", result.Company.CompanyLogo);
     const msg = "Token Saved";
     yield put({ type: GET_TOKEN_SUCCESS, msg });
   } catch (error) {

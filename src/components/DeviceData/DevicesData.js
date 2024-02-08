@@ -15,7 +15,7 @@ const DevicesData = (props) => {
     "Over 1 Week",
   ];
 
-  const renewalAndExpiry = [
+  const expiryCategories = [
     "Coming Quarter",
     "Coming Month",
     "Coming Week",
@@ -61,7 +61,7 @@ const DevicesData = (props) => {
               });
             }
           }
-          if (key === "renewal") {
+          if (key === "warrantyExpiry") {
             totalCount = find(filteredData, "device_warranteeExpiry_total");
             if (item.hasOwnProperty("device_warranteeExpiry_inaQuarter")) {
               deviceGraphData.push({
@@ -88,7 +88,7 @@ const DevicesData = (props) => {
               });
             }
           }
-          if (key === "expiry") {
+          if (key === "RDExpiry") {
             totalCount = find(filteredData, "device_RDServiceExpiry_total");
             if (item.hasOwnProperty("device_RDServiceExpiry_inaQuarter")) {
               deviceGraphData.push({
@@ -119,7 +119,7 @@ const DevicesData = (props) => {
       }
     }
     return (
-      <div className="card speed_sc mt-20">
+      <div className="card speed_sc">
         <div className="card-body">
           <div className=" align-items-start">
             <div className="col-12">
@@ -134,13 +134,16 @@ const DevicesData = (props) => {
                 <p className="ac1">Total</p>
                 <p className="ac2">
                   {key === "repair"
-                    ? !isEmpty(totalCount) &&
-                      totalCount.device_inRepair_Total.toLocaleString()
-                    : key === "renewal"
-                    ? !isEmpty(totalCount) &&
-                      totalCount.device_warranteeExpiry_total.toLocaleString()
-                    : !isEmpty(totalCount) &&
-                      totalCount.device_RDServiceExpiry_total.toLocaleString()}
+                    ? isEmpty(totalCount)
+                      ? 0
+                      : totalCount.device_inRepair_Total.toLocaleString()
+                    : key === "warrantyExpiry"
+                    ? isEmpty(totalCount)
+                      ? 0
+                      : totalCount.device_warranteeExpiry_total.toLocaleString()
+                    : isEmpty(totalCount)
+                    ? 0
+                    : totalCount.device_RDServiceExpiry_total.toLocaleString()}
                 </p>
               </div>
               <DevicesGraph
@@ -173,7 +176,6 @@ const DevicesData = (props) => {
       </div>
       <div className="col-lg-12">
         <div className="row mt-5">
-          <TicketSection />
           <div className="col-lg-4 col-md-4">
             {renderGraphs(
               "Device Under repair",
@@ -183,11 +185,22 @@ const DevicesData = (props) => {
             )}
           </div>
           <div className="col-lg-4 col-md-4">
-            {renderGraphs("Warranty renewal", renewalAndExpiry, 250, "renewal")}
+            {renderGraphs(
+              "Warranty expiry",
+              expiryCategories,
+              250,
+              "warrantyExpiry"
+            )}
           </div>
           <div className="col-lg-4 col-md-4">
-            {renderGraphs("RD service expiry", renewalAndExpiry, 250, "expiry")}
+            {renderGraphs(
+              "RD service expiry",
+              expiryCategories,
+              250,
+              "RDExpiry"
+            )}
           </div>
+          <TicketSection />
         </div>
       </div>
     </>

@@ -1,3 +1,4 @@
+import { useLocation } from "react-router-dom";
 import "./Sidebar.css";
 
 const sidebarMenu = [
@@ -8,19 +9,19 @@ const sidebarMenu = [
     href: "/dashboard",
     class: "active",
   },
-  { name: "Devices", imgUrl: "/icons/devices.svg", alt: "devices", href: "#" },
   {
-    name: "APP/Firmware",
-    imgUrl: "/icons/firmware.svg",
-    alt: "firmware",
-    href: "#",
+    name: "Devices/APP/Firmware",
+    imgUrl: "/icons/devices.svg",
+    alt: "devices",
+    href: "/dashboard/devices",
+    class: "active",
   },
-  {
-    name: "Transactions",
-    imgUrl: "/icons/transactions.svg",
-    alt: "transactions",
-    href: "#",
-  },
+  // {
+  //   name: "Transactions",
+  //   imgUrl: "/icons/transactions.svg",
+  //   alt: "transactions",
+  //   href: "#",
+  // },
   { name: "Tickets", imgUrl: "/icons/tickets.svg", alt: "tickets", href: "#" },
 ];
 
@@ -32,6 +33,9 @@ const sidebarUserDetails = [
 const Sidebar = () => {
   const date = new Date();
   const year = date.getFullYear();
+  const location = useLocation();
+  const { pathname } = location;
+
   return (
     <aside className="left-sidebar with-vertical">
       <div>
@@ -50,7 +54,9 @@ const Sidebar = () => {
               return (
                 <li className="sidebar-item" key={index}>
                   <a
-                    className={`sidebar-link ${menu.class}`}
+                    className={`sidebar-link ${
+                      pathname === menu.href ? menu.class : ""
+                    }`}
                     href={menu.href}
                     aria-expanded="false"
                   >

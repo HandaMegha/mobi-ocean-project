@@ -5,7 +5,7 @@ import "./Header.css";
 const Header = () => {
   const dateTime = getDateTime();
   const userName = localStorage.getItem("userName");
-  const userImage = localStorage.getItem("userImage");
+  const companyLogo = localStorage.getItem("companyLogo");
 
   return (
     <header className="topbar">
@@ -21,14 +21,12 @@ const Header = () => {
             className="collapse navbar-collapse justify-content-end"
             id="navbarNav"
           >
-            {!isEmpty(userImage) ? (
-              <img
-                // src="/images/iffco.png"
-                src={userImage}
-                className="iffc_logo"
-                alt=""
-              />
-            ) : null}
+            <img
+              // src="/images/iffco.png"
+              src={companyLogo}
+              className="iffc_logo"
+              alt="companyLogo"
+            />
           </div>
         </nav>
       </div>
