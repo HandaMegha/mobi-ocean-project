@@ -104,13 +104,11 @@ const DashboardContent = (props) => {
                     area={area}
                   />
                 </Link>
-                <Link to={{ pathname: "/dashboard/devices" }}>
-                  <SoftwareUpdateSection
-                    duration={duration}
-                    areaLevel={areaLevel}
-                    area={area}
-                  />
-                </Link>
+                <SoftwareUpdateSection
+                  duration={duration}
+                  areaLevel={areaLevel}
+                  area={area}
+                />
               </div>
             </div>
           ) : (

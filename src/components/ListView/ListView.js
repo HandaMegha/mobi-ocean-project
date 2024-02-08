@@ -95,6 +95,7 @@ const ListView = (props) => {
     return (
       <div className="col-md-6">
         <div
+          className="radiobtns"
           style={{
             fontSize: "15px",
             display: "flex",
@@ -113,7 +114,7 @@ const ListView = (props) => {
                   checked={list.value === filterValue}
                   onChange={(e) => changeFilter(e.target.value)}
                 />
-                <label htmlFor={list.name} style={{ marginLeft: "5px" }}>
+                <label htmlFor={list.name} style={{ marginLeft: "4px" }}>
                   {list.name}
                 </label>
               </div>
@@ -243,7 +244,7 @@ const ListView = (props) => {
   return (
     <>
       <div className="col-lg-5 d-flex align-items-strech">
-        <div className="card w-100">
+        <div className="card w-104">
           <div className="card-body">
             <div className="d-sm-flex d-block align-items-center justify-content-between mb-9">
               <div className="mb-3 mb-sm-0">

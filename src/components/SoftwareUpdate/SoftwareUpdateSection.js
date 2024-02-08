@@ -97,7 +97,7 @@ const SoftwareUpdateSection = (props) => {
     <div
       className={`${
         pathname === "/dashboard/devices"
-          ? "col-lg-5 col-md-5"
+          ? "col-lg-5 col-md-5 padding-0"
           : "col-lg-12 col-md-12"
       }`}
     >

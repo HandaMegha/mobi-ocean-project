@@ -1332,7 +1332,7 @@ device_box {
 }
 
 .tableList {
-  height: 756px;
+  height: 515px;
   overflow-y: auto;
   scrollbar-width: thin;
   margin-top: 15px;
@@ -1356,7 +1356,7 @@ device_box {
   border: 1px solid #f8f8ff;
   padding: 8px;
   text-align: center;
-  font-size: 18px;
+  font-size: 14px;
 }
 
 #stateList tr:nth-child(odd) {
@@ -1438,4 +1438,44 @@ device_box {
 
 .mt-5 {
   margin-top: 5px;
+}
+
+.padding-0 {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+@media (max-width: 1366px) {
+  .topbar {
+    width: 1052px !important;
+  }
+
+  .w-104 {
+    width: 104%;
+  }
+
+  .radiobtns {
+    width: 106%;
+  }
+
+  .col-box1,
+  .col-box2 {
+    width: 110%;
+  }
+
+  .col-box3 {
+    width: 112%;
+  }
+
+  .tableList {
+    height: 435px;
+  }
+
+  .dev_dt3 {
+    height: 444px;
+  }
+
+  .map2 {
+    margin-top: 0;
+  }
 }

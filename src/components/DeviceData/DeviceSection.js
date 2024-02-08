@@ -89,7 +89,7 @@ const DeviceSection = (props) => {
           ? isEmpty(deviceAppData)
             ? "col-lg-12 col-md-12"
             : "col-lg-7 col-md-7"
-          : "col-lg-5 col-md-5"
+          : "col-lg-5 col-md-5 padding-0"
       }
     >
       <div className="card speed_sc">

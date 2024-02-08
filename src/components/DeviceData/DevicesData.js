@@ -184,7 +184,7 @@ const DevicesData = (props) => {
               "repair"
             )}
           </div>
-          <div className="col-lg-4 col-md-4">
+          <div className="col-lg-4 col-md-4 padding-0">
             {renderGraphs(
               "Warranty expiry",
               expiryCategories,
