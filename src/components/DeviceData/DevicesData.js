@@ -4,9 +4,18 @@ import DevicesGraph from "./DevicesGraph";
 import DeviceSection from "./DeviceSection";
 import { connect } from "react-redux";
 import { filter, find, isEmpty } from "lodash";
+import SoftwareUpdateTable from "../SoftwareUpdate/SoftwareUpdateTable";
 
 const DevicesData = (props) => {
-  const { duration, areaLevel, area, deviceData } = props;
+  const {
+    duration,
+    areaLevel,
+    area,
+    deviceData,
+    showSoftwareTable,
+    changeSoftwareAppSection,
+    softwareTableData,
+  } = props;
 
   const deviceCategories = [
     "Last 24 Hour",
@@ -167,11 +176,16 @@ const DevicesData = (props) => {
             areaLevel={areaLevel}
             area={area}
           />
-          <SoftwareUpdateSection
-            duration={duration}
-            areaLevel={areaLevel}
-            area={area}
-          />
+          {!showSoftwareTable ? (
+            <SoftwareUpdateSection
+              duration={duration}
+              areaLevel={areaLevel}
+              area={area}
+              changeSoftwareAppSection={changeSoftwareAppSection}
+            />
+          ) : (
+            <SoftwareUpdateTable softwareTableData={softwareTableData} />
+          )}
         </div>
       </div>
       <div className="col-lg-12">

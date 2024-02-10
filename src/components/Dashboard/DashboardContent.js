@@ -8,6 +8,7 @@ import { Link, useLocation } from "react-router-dom";
 import ListView from "../ListView/ListView";
 import DevicesData from "../DeviceData/DevicesData";
 import Breadcrumb from "../Breadcrumb/Breadcrumb";
+import SoftwareUpdateTable from "../SoftwareUpdate/SoftwareUpdateTable";
 
 const DashboardContent = (props) => {
   const { deviceCount } = props;
@@ -18,6 +19,8 @@ const DashboardContent = (props) => {
   const [area, setArea] = useState("India");
   const [areaLevel, setAreaLevel] = useState("country");
   const [showDistrict, setShowDistrict] = useState(false);
+  const [showSoftwareTable, setShowSoftwareTable] = useState(false);
+  const [softwareTableData, setSoftwareTableData] = useState("");
   const location = useLocation();
   const { pathname } = location;
 
@@ -70,6 +73,11 @@ const DashboardContent = (props) => {
     setShowDistrict(val);
   };
 
+  const changeSoftwareAppSection = (data) => {
+    setShowSoftwareTable(true);
+    setSoftwareTableData(data);
+  };
+
   return (
     <div className="body-wrapper">
       <div className="container-fluid">
@@ -108,11 +116,16 @@ const DashboardContent = (props) => {
                     area={area}
                   />
                 </Link>
-                <SoftwareUpdateSection
-                  duration={duration}
-                  areaLevel={areaLevel}
-                  area={area}
-                />
+                {!showSoftwareTable ? (
+                  <SoftwareUpdateSection
+                    duration={duration}
+                    areaLevel={areaLevel}
+                    area={area}
+                    changeSoftwareAppSection={changeSoftwareAppSection}
+                  />
+                ) : (
+                  <SoftwareUpdateTable softwareTableData={softwareTableData} />
+                )}
               </div>
             </div>
           ) : (
@@ -120,6 +133,9 @@ const DashboardContent = (props) => {
               duration={duration}
               areaLevel={areaLevel}
               area={area}
+              showSoftwareTable={showSoftwareTable}
+              changeSoftwareAppSection={changeSoftwareAppSection}
+              softwareTableData={softwareTableData}
             />
           )}
         </div>

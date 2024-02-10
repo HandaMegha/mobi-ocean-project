@@ -5,8 +5,8 @@ import { isEmpty, filter } from "lodash";
 import { useLocation } from "react-router-dom";
 
 const SoftwareUpdateSection = (props) => {
-  const { deviceAppData, duration, areaLevel, area } = props;
-  // const areaLevel = "district";
+  const { deviceAppData, duration, areaLevel, area, changeSoftwareAppSection } =
+    props;
   const location = useLocation();
   const { pathname } = location;
 
@@ -36,13 +36,18 @@ const SoftwareUpdateSection = (props) => {
         color: remainingDeviceColor,
       });
       return (
-        <Graph
+        <div
+          onClick={() => changeSoftwareAppSection(item)}
           key={index}
-          data={finalData}
-          height={data.length <= 1 ? 250 : 207}
-          title={`${item.app_name + " " + `(${item.version_no})`}`}
-          subtitle="Published Date: 23/11/2023"
-        />
+          style={{ cursor: "pointer" }}
+        >
+          <Graph
+            data={finalData}
+            height={data.length <= 1 ? 250 : 207}
+            title={`${item.app_name + " " + `(${item.version_no})`}`}
+            subtitle="Published Date: 23/11/2023"
+          />
+        </div>
       );
     });
   };

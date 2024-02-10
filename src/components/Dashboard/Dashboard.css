@@ -1344,33 +1344,33 @@ device_box {
   font-weight: 700;
 }
 
-#stateList {
+#tableListId {
   font-family: inherit;
   border-collapse: collapse;
   width: 100%;
   margin-top: 20px;
 }
 
-#stateList td,
-#stateList th {
+#tableListId td,
+#tableListId th {
   border: 1px solid #dfe5ef;
   padding: 8px;
   text-align: center;
   font-size: 14px;
 }
 
-#stateList tr:nth-child(odd) {
+#tableListId tr:nth-child(odd) {
   background-color: white;
 }
 
-#stateList th {
+#tableListId th {
   padding-top: 12px;
   padding-bottom: 12px;
   background-color: #e2e8fe;
   color: #000;
 }
 
-#stateList td {
+#tableListId td {
   font-weight: 500;
 }
 
