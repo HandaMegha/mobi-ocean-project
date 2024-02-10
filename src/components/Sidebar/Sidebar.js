@@ -5,6 +5,7 @@ const sidebarMenu = [
   {
     name: "Dashboard",
     imgUrl: "/icons/dashboard.svg",
+    imgUrlActive: "/icons/dashboard-white.svg",
     alt: "dashboard",
     href: "/dashboard",
     class: "active",
@@ -12,6 +13,7 @@ const sidebarMenu = [
   {
     name: "Devices/APP/Firmware",
     imgUrl: "/icons/devices.svg",
+    imgUrlActive: "/icons/devices-white.svg",
     alt: "devices",
     href: "/dashboard/devices",
     class: "active",
@@ -22,7 +24,13 @@ const sidebarMenu = [
   //   alt: "transactions",
   //   href: "#",
   // },
-  { name: "Tickets", imgUrl: "/icons/tickets.svg", alt: "tickets", href: "#" },
+  {
+    name: "Tickets",
+    imgUrl: "/icons/tickets.svg",
+    imgUrlActive: "/icons/tickets.svg",
+    alt: "tickets",
+    href: "#",
+  },
 ];
 
 const sidebarUserDetails = [
@@ -61,7 +69,14 @@ const Sidebar = () => {
                     aria-expanded="false"
                   >
                     <span>
-                      <img src={menu.imgUrl} alt={menu.alt} />
+                      <img
+                        src={
+                          pathname === menu.href
+                            ? menu.imgUrlActive
+                            : menu.imgUrl
+                        }
+                        alt={menu.alt}
+                      />
                     </span>
                     <span className="hide-menu">{menu.name}</span>
                   </a>

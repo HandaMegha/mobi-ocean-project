@@ -7,7 +7,7 @@ class TicketGraph extends Component {
     const options = {
       chart: {
         type: "column",
-        height: 150,
+        height: 210,
       },
       title: {
         text: "",

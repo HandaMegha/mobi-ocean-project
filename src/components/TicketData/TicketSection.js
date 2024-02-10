@@ -52,30 +52,6 @@ const TicketSection = () => {
                   </div>
                 </>
               )}
-              <div className="col-md-6">
-                <div className="select-box-6">
-                  <p>Comparison criteria 1</p>
-                  <select className="form-select">
-                    <option defaultValue="0"> Past Month</option>
-                    <option value="1">March 2023</option>
-                    <option value="2">April 2023</option>
-                    <option value="3">May 2023</option>
-                    <option value="4">June 2023</option>
-                  </select>
-                </div>
-              </div>
-              <div className="col-md-6">
-                <div className="select-box-6">
-                  <p>Comparison criteria 2</p>
-                  <select className="form-select">
-                    <option defaultValue="0"> Present Month</option>
-                    <option value="1">March 2023</option>
-                    <option value="2">April 2023</option>
-                    <option value="3">May 2023</option>
-                    <option value="4">June 2023</option>
-                  </select>
-                </div>
-              </div>
               <div className="col-md-12">
                 <div className="map2">
                   {pathname === "/dashboard/devices" ? (
@@ -88,6 +64,38 @@ const TicketSection = () => {
                       </p>
                     </>
                   ) : null}
+                </div>
+              </div>
+              {pathname === "/dashboard/devices" ? (
+                <>
+                  <div className="col-md-6">
+                    <div className="select-box-6">
+                      <p>Comparison criteria 1</p>
+                      <select className="form-select">
+                        <option defaultValue="0"> Past Month</option>
+                        <option value="1">March 2023</option>
+                        <option value="2">April 2023</option>
+                        <option value="3">May 2023</option>
+                        <option value="4">June 2023</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <div className="select-box-6">
+                      <p>Comparison criteria 2</p>
+                      <select className="form-select">
+                        <option defaultValue="0"> Present Month</option>
+                        <option value="1">March 2023</option>
+                        <option value="2">April 2023</option>
+                        <option value="3">May 2023</option>
+                        <option value="4">June 2023</option>
+                      </select>
+                    </div>
+                  </div>
+                </>
+              ) : null}
+              <div className="col-md-12">
+                <div className="map2">
                   <TicketGraph />
                 </div>
               </div>

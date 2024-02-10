@@ -14,7 +14,8 @@ const SoftwareUpdateSection = (props) => {
     data,
     Graph,
     pushedDeviceColor,
-    installedDeviceColor
+    installedDeviceColor,
+    remainingDeviceColor
   ) => {
     return data.map((item, index) => {
       const finalData = [];
@@ -30,14 +31,17 @@ const SoftwareUpdateSection = (props) => {
           color: installedDeviceColor,
         });
       }
+      finalData.push({
+        y: item.pushed_device_count - item.installed_device_count,
+        color: remainingDeviceColor,
+      });
       return (
         <Graph
           key={index}
           data={finalData}
           height={data.length <= 1 ? 250 : 207}
-          yLabel={-20}
-          title={`${item.app_name + " " + item.version_no}`}
-          subtitle="Launched on 23/11/2023"
+          title={`${item.app_name + " " + `(${item.version_no})`}`}
+          subtitle="Published Date: 23/11/2023"
         />
       );
     });
@@ -49,7 +53,8 @@ const SoftwareUpdateSection = (props) => {
         filteredAppData,
         SoftwareUpdatesGraph,
         "#962DFF",
-        "#E0C6FD"
+        "#E0C6FD",
+        "#bdacef"
       );
     }
   };
@@ -60,7 +65,8 @@ const SoftwareUpdateSection = (props) => {
         filteredFirmwareData,
         SoftwareFirmwareGraph,
         "#4A3AFF",
-        "#C6D2FD"
+        "#C6D2FD",
+        "#5b52c1"
       );
     }
   };
@@ -109,18 +115,12 @@ const SoftwareUpdateSection = (props) => {
         >
           <div className=" align-items-start">
             <div className="col-12">
-              <div
-                className={`${
-                  pathname === "/dashboard/devices" ? "" : "mb-9"
-                } d-block align-items-center justify-content-between`}
-              >
-                {pathname === "/dashboard/devices" ? null : (
-                  <div className="mb-3 mb-sm-0">
-                    <h5 className="card-title fw-semibold text-center">
-                      Software Update
-                    </h5>
-                  </div>
-                )}
+              <div className="d-block align-items-center justify-content-between mb-9">
+                <div className="mb-3 mb-sm-0">
+                  <h5 className="card-title fw-semibold text-center">
+                    Software Update
+                  </h5>
+                </div>
               </div>
               {renderSoftwareGraph()}
             </div>

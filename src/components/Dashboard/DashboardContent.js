@@ -23,7 +23,11 @@ const DashboardContent = (props) => {
 
   useEffect(() => {
     if (!listView && !isEmpty(deviceCount) && !showDistrict) {
-      setFilterList(deviceCount.States);
+      if (filterValue === "state") {
+        setFilterList(deviceCount.States);
+      } else {
+        setFilterList(deviceCount.Organizations);
+      }
     }
   }, [deviceCount, listView]);
 

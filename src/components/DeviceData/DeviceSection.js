@@ -10,41 +10,37 @@ const DeviceSection = (props) => {
 
   const renderDeviceData = () => {
     const deviceGraphData = [];
-    let activeDevicesCount = {},
-      totalDevicesCount = {};
+    let totalDevicesCount = {};
     if (!isEmpty(deviceData)) {
       const filteredData = filter(deviceData, {
         area_level: areaLevel,
         duration: duration,
         area: area,
       });
-      activeDevicesCount = find(filteredData, "device_active_today_count");
       totalDevicesCount = find(filteredData, "device_total_active_count");
 
       if (!isEmpty(filteredData)) {
         filteredData.map((item) => {
-          if (item.hasOwnProperty("device_total_deployed_count")) {
+          if (item.hasOwnProperty("device_total_ordered_count")) {
             deviceGraphData.push({
-              name: "Total Deployed",
-              y: item.device_avg_usage_count,
+              name: "Total Ordered",
+              y: item.device_total_ordered_count,
             });
           }
           if (item.hasOwnProperty("device_total_shipped_count")) {
             deviceGraphData.push({
               name: "Total Shipped",
-              y: item.device_avg_usage_count,
+              y:
+                item.device_total_ordered_count -
+                item.device_total_shipped_count,
             });
           }
-          if (item.hasOwnProperty("device_avg_usage_count")) {
+          if (item.hasOwnProperty("device_total_deployed_count")) {
+            const shippedCount =
+              item.device_total_ordered_count - item.device_total_shipped_count;
             deviceGraphData.push({
-              name: "Avg. Usage",
-              y: item.device_avg_usage_count,
-            });
-          }
-          if (item.hasOwnProperty("device_avg_active_count")) {
-            deviceGraphData.push({
-              name: "Avg. Active",
-              y: item.device_avg_usage_count,
+              name: "Total Deployed",
+              y: shippedCount - item.device_total_deployed_count,
             });
           }
         });
@@ -56,22 +52,12 @@ const DeviceSection = (props) => {
         <div className="d-block align-items-center justify-content-between mb-9">
           <div className="mb-3 mb-sm-0">
             <h5 className="card-title fw-semibold text-center">Device Data</h5>
-            {pathname === "/dashboard/devices" ? null : (
-              <p className="ac2 text-center" style={{ color: "#1DB636" }}>{`${
-                isEmpty(activeDevicesCount)
-                  ? 0
-                  : activeDevicesCount.device_active_today_count.toLocaleString()
-              } active today`}</p>
-            )}
+            <p className="ac2 text-center" style={{ color: "#1DB636" }}>{`${
+              isEmpty(totalDevicesCount)
+                ? 0
+                : totalDevicesCount.device_total_active_count.toLocaleString()
+            } total active count`}</p>
           </div>
-        </div>
-        <div className="act_box w-auto new_cl">
-          <p className="ac1">Total Active Count</p>
-          <p className="ac2">
-            {isEmpty(totalDevicesCount)
-              ? 0
-              : totalDevicesCount.device_total_active_count.toLocaleString()}
-          </p>
         </div>
         {!isEmpty(deviceGraphData) ? (
           <DeviceSectionGraph data={deviceGraphData} />

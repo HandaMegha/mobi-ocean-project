@@ -1210,7 +1210,7 @@ device_box {
   font-size: 14px;
 }
 .tm2 {
-  margin-bottom: 5px;
+  margin-bottom: 15px;
   color: #222;
   font-size: 12px;
 }
@@ -1353,14 +1353,14 @@ device_box {
 
 #stateList td,
 #stateList th {
-  border: 1px solid #f8f8ff;
+  border: 1px solid #dfe5ef;
   padding: 8px;
   text-align: center;
   font-size: 14px;
 }
 
 #stateList tr:nth-child(odd) {
-  background-color: #e2e8fe;
+  background-color: white;
 }
 
 #stateList th {

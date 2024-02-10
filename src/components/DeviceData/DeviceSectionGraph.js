@@ -28,9 +28,8 @@ class DeviceSectionGraph extends Component {
           dataLabels: {
             enabled: true,
             crop: false,
-            distance: "-5%",
+            distance: "-15%",
             format: "<b>{point.name}</b> <br /> {point.y}",
-            shadow: false,
             style: {
               color: "#06152B",
               fontSize: "15px",
@@ -43,7 +42,7 @@ class DeviceSectionGraph extends Component {
           },
         },
       },
-      colors: ["#7E74E9", "#E9A5F3", "#98EDD1", "#F4D6A8"],
+      colors: ["#E9A5F3", "#98EDD1", "#F4D6A8"],
       series: [
         {
           type: "pie",

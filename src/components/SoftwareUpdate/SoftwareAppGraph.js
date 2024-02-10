@@ -4,7 +4,7 @@ import HighchartsReact from "highcharts-react-official";
 
 class SoftwareAppGraph extends Component {
   render() {
-    const { data, height, yLabel, title, subtitle } = this.props;
+    const { data, height, title, subtitle } = this.props;
     const options = {
       chart: {
         type: "bar",
@@ -13,27 +13,26 @@ class SoftwareAppGraph extends Component {
       title: {
         text: title,
         align: "left",
+        style: {
+          fontWeight: 100,
+        },
       },
       subtitle: {
         text: subtitle,
         align: "left",
         style: {
           fontSize: "12px",
-          fontWeight: 600,
           color: "#222",
         },
       },
       credits: { enabled: false },
       xAxis: {
-        categories: ["App version update pushed", "Installed"],
+        categories: ["Pushed", "Installed", "Remaining"],
         title: {
           text: null,
         },
         lineWidth: 0,
         labels: {
-          x: 0,
-          align: "left",
-          y: yLabel,
           style: {
             color: "#06152B",
             fontSize: "16px",
