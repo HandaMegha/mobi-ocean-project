@@ -27,7 +27,7 @@ const sidebarMenu = [
   {
     name: "Tickets",
     imgUrl: "/icons/tickets.svg",
-    imgUrlActive: "/icons/tickets.svg",
+    imgUrlActive: "/icons/tickets-white.svg",
     alt: "tickets",
     href: "#",
   },

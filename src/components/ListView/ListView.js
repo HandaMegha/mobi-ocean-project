@@ -106,7 +106,7 @@ const ListView = (props) => {
         >
           {filterValues.map((list, index) => {
             return index >= 1 ? (
-              <div key={index} style={{ whiteSpace: "nowrap", padding: "4px" }}>
+              <div key={index} style={{ whiteSpace: "nowrap", padding: "3px" }}>
                 <input
                   type="radio"
                   id={list.name}
@@ -244,7 +244,7 @@ const ListView = (props) => {
   return (
     <>
       <div className="col-lg-5 d-flex align-items-strech">
-        <div className="card w-104">
+        <div className="card wscreen">
           <div className="card-body">
             <div className="d-sm-flex d-block align-items-center justify-content-between mb-9">
               <div className="mb-3 mb-sm-0">

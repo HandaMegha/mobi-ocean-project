@@ -26,7 +26,7 @@ class DevicesGraph extends Component {
           y: -15,
           style: {
             color: "#06152B",
-            fontSize: "16px",
+            fontSize: "12px",
             fontStyle: "normal",
             fontWeight: "400",
             fontFamily: "inherit",

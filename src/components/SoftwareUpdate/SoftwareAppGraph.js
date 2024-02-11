@@ -35,7 +35,7 @@ class SoftwareAppGraph extends Component {
         labels: {
           style: {
             color: "#06152B",
-            fontSize: "16px",
+            fontSize: "12px",
             fontStyle: "normal",
             fontWeight: "400",
             fontFamily: "inherit",

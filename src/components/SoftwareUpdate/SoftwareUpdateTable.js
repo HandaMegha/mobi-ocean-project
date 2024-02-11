@@ -1,8 +1,11 @@
 import { isEmpty } from "lodash";
+import { connect } from "react-redux";
 import { useLocation } from "react-router-dom";
 
 const SoftwareUpdateTable = (props) => {
-  const { softwareTableData } = props;
+  const { softwareTableData, deviceAppData } = props;
+  console.log("softwareTableData", softwareTableData);
+  console.log("deviceAppData", deviceAppData);
   const location = useLocation();
   const { pathname } = location;
 
@@ -51,6 +54,14 @@ const SoftwareUpdateTable = (props) => {
             } total count`}</p>
           </div>
         </div>
+        <div className="map2">
+          <p className="tm3">{`${
+            softwareTableData.app_name +
+            " " +
+            `(${softwareTableData.version_no})`
+          }`}</p>
+          <p className="tm4">Published Date: 23/11/2023</p>
+        </div>
         {renderTable()}
       </div>
     );
@@ -77,4 +88,8 @@ const SoftwareUpdateTable = (props) => {
   );
 };
 
-export default SoftwareUpdateTable;
+const mapStateToProps = (state) => ({
+  deviceAppData: state.dashboardReducer.deviceAppData,
+});
+
+export default connect(mapStateToProps, {})(SoftwareUpdateTable);

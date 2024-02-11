@@ -53,7 +53,7 @@ const TicketSection = () => {
                 </>
               )}
               <div className="col-md-12">
-                <div className="map2">
+                <div className="map2 text-center">
                   {pathname === "/dashboard/devices" ? (
                     <>
                       <p className="tm1">
@@ -95,7 +95,7 @@ const TicketSection = () => {
                 </>
               ) : null}
               <div className="col-md-12">
-                <div className="map2">
+                <div className="map2 th1">
                   <TicketGraph />
                 </div>
               </div>
