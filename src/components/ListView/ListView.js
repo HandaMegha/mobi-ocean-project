@@ -22,6 +22,7 @@ const ListView = (props) => {
     deviceData,
     areaLevel,
     setFilterValue,
+    changeSoftwareAppSection,
   } = props;
   const [searchItem, setSearchItem] = useState("");
   const [searchedList, setSearchedList] = useState(filterList);
@@ -49,6 +50,7 @@ const ListView = (props) => {
     changeArea(list.area);
     changeAreaLevel(list.area_level);
     setAreaParent(list.area_parent);
+    changeSoftwareAppSection("", false);
   };
 
   const onChange = (value) => {
@@ -306,6 +308,7 @@ const ListView = (props) => {
                 duration={duration}
                 setFilterList={setFilterList}
                 setFilterValue={setFilterValue}
+                changeSoftwareAppSection={changeSoftwareAppSection}
               />
             ) : (
               <>

@@ -6,3 +6,8 @@
 .titleList {
   cursor: pointer;
 }
+.pagetitle {
+  margin-bottom: 8px;
+  color: black;
+  font-weight: 600;
+}

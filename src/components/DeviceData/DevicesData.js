@@ -184,7 +184,11 @@ const DevicesData = (props) => {
               changeSoftwareAppSection={changeSoftwareAppSection}
             />
           ) : (
-            <SoftwareUpdateTable softwareTableData={softwareTableData} />
+            <SoftwareUpdateTable
+              softwareTableData={softwareTableData}
+              area={area}
+              changeSoftwareAppSection={changeSoftwareAppSection}
+            />
           )}
         </div>
       </div>

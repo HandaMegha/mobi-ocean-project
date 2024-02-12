@@ -15,6 +15,7 @@ const MapView = (props) => {
     setFilterList,
     duration,
     setFilterValue,
+    changeSoftwareAppSection,
   } = props;
 
   const handleChange = (value) => {
@@ -30,6 +31,7 @@ const MapView = (props) => {
       showDistrictList(true);
       changeView(false);
       setFilterValue("state");
+      changeSoftwareAppSection("", false);
     }
   };
 
@@ -65,31 +67,29 @@ const MapView = (props) => {
     }
     return (
       <div className="col-md-12">
-        <div className="map">
-          <img
-            className="vw1"
-            src="/images/Map.png"
-            alt="map"
-            style={{ width: "100%", height: "100%" }}
-          />{" "}
-          {finalStateList.map((list, index) => {
-            return (
-              <div
-                className={
-                  list.className !== "statesNotPresent"
-                    ? `${list.className} stateContainer`
-                    : list.className
-                }
-                key={index}
-                onClick={() => handleChange(list.name)}
-              >
-                {list.name}
-                <br />
-                <span>{list.deviceCount}</span>
-              </div>
-            );
-          })}
-        </div>
+        <img
+          className="vw1"
+          src="/images/Map.png"
+          alt="map"
+          style={{ width: "100%", height: "100%" }}
+        />{" "}
+        {finalStateList.map((list, index) => {
+          return (
+            <div
+              className={
+                list.className !== "statesNotPresent"
+                  ? `${list.className} stateContainer`
+                  : list.className
+              }
+              key={index}
+              onClick={() => handleChange(list.name)}
+            >
+              {list.name}
+              <br />
+              <span>{list.deviceCount}</span>
+            </div>
+          );
+        })}
       </div>
     );
   };

@@ -37,7 +37,7 @@ const SoftwareUpdateSection = (props) => {
       });
       return (
         <div
-          onClick={() => changeSoftwareAppSection(item)}
+          onClick={() => changeSoftwareAppSection(item, true)}
           key={index}
           style={{ cursor: "pointer" }}
         >
@@ -108,7 +108,7 @@ const SoftwareUpdateSection = (props) => {
     <div
       className={`${
         pathname === "/dashboard/devices"
-          ? "col-lg-5 col-md-5 padding-0"
+          ? "col-lg-6 col-md-6 padding-0"
           : "col-lg-12 col-md-12"
       }`}
     >

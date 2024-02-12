@@ -1,42 +1,81 @@
-import { isEmpty } from "lodash";
+import { filter, isEmpty } from "lodash";
 import { connect } from "react-redux";
 import { useLocation } from "react-router-dom";
 
 const SoftwareUpdateTable = (props) => {
-  const { softwareTableData, deviceAppData } = props;
-  console.log("softwareTableData", softwareTableData);
-  console.log("deviceAppData", deviceAppData);
+  const { softwareTableData, deviceAppData, area, changeSoftwareAppSection } =
+    props;
   const location = useLocation();
   const { pathname } = location;
 
   const renderTable = () => {
-    return isEmpty(softwareTableData) ? (
-      <div className="emptyTable">No Data Available</div>
-    ) : (
-      <table id="tableListId">
-        <thead>
-          <tr>
-            <th>Total Device</th>
-            <th>Pushed devices</th>
-            <th>Installed devices</th>
-            <th>Pending devices</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{softwareTableData.total_device_count.toLocaleString()}</td>
-            <td>{softwareTableData.pushed_device_count.toLocaleString()}</td>
-            <td>{softwareTableData.installed_device_count.toLocaleString()}</td>
-            <td>
-              {(
-                softwareTableData.pushed_device_count -
-                softwareTableData.installed_device_count
-              ).toLocaleString()}
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    );
+    if (isEmpty(softwareTableData)) {
+      return <div className="emptyTable">No Data Available</div>;
+    } else {
+      let filteredData = [];
+      if (!isEmpty(deviceAppData)) {
+        filteredData = filter(deviceAppData, {
+          area_parent: area,
+          duration: softwareTableData.duration,
+          app_name: softwareTableData.app_name,
+        });
+
+        if (!isEmpty(filteredData)) {
+          return <div className="emptyTable">No Data Available</div>;
+        } else {
+          return (
+            <>
+              <button
+                className="backBtn"
+                onClick={() => changeSoftwareAppSection("", false)}
+              >
+                Back
+              </button>
+              <div className="map2">
+                <p className="tm3">{`${
+                  softwareTableData.app_name +
+                  " " +
+                  `(${softwareTableData.version_no})`
+                }`}</p>
+                <p className="tm4">Published Date: 23/11/2023</p>
+              </div>
+              <table id="tableListId">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Total Device</th>
+                    <th>Pushed devices</th>
+                    <th>Installed devices</th>
+                    <th>Pending devices</th>
+                  </tr>
+                </thead>
+                {filteredData &&
+                  filteredData.map((list, index) => {
+                    return (
+                      <tbody key={index}>
+                        <tr>
+                          <td>{list.area}</td>
+                          <td>{list.total_device_count.toLocaleString()}</td>
+                          <td>{list.pushed_device_count.toLocaleString()}</td>
+                          <td>
+                            {list.installed_device_count.toLocaleString()}
+                          </td>
+                          <td>
+                            {(
+                              list.pushed_device_count -
+                              list.installed_device_count
+                            ).toLocaleString()}
+                          </td>
+                        </tr>
+                      </tbody>
+                    );
+                  })}
+              </table>
+            </>
+          );
+        }
+      }
+    }
   };
 
   const renderSoftwareData = () => {
@@ -53,14 +92,6 @@ const SoftwareUpdateTable = (props) => {
                 : softwareTableData.total_device_count.toLocaleString()
             } total count`}</p>
           </div>
-        </div>
-        <div className="map2">
-          <p className="tm3">{`${
-            softwareTableData.app_name +
-            " " +
-            `(${softwareTableData.version_no})`
-          }`}</p>
-          <p className="tm4">Published Date: 23/11/2023</p>
         </div>
         {renderTable()}
       </div>

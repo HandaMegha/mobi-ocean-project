@@ -1,11 +1,13 @@
 import { isEmpty } from "lodash";
 import React from "react";
 import "./Breadcrumb.css";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Breadcrumb = (props) => {
   const { title, subTitle } = props;
   const navigate = useNavigate();
+  const location = useLocation();
+  const { pathname } = location;
 
   const handleChange = () => {
     navigate(-1);
@@ -14,6 +16,13 @@ const Breadcrumb = (props) => {
   return (
     <nav aria-label="breadcrumb">
       <ol className="breadcrumb">
+        <li className="pagetitle">
+          Title:{" "}
+          {pathname === "/" || pathname === "/dashboard"
+            ? "Dashboard"
+            : "DeviceDashboard"}
+        </li>
+        <br />
         <li className="breadcrumb-item titleList" onClick={handleChange}>
           {title}
         </li>

@@ -30,9 +30,10 @@ const DeviceSection = (props) => {
           if (item.hasOwnProperty("device_total_shipped_count")) {
             deviceGraphData.push({
               name: "Total Shipped",
-              y:
-                item.device_total_ordered_count -
-                item.device_total_shipped_count,
+              // y:
+              //   item.device_total_ordered_count -
+              //   item.device_total_shipped_count,
+              y: item.device_total_shipped_count,
             });
           }
           if (item.hasOwnProperty("device_total_deployed_count")) {
@@ -40,7 +41,8 @@ const DeviceSection = (props) => {
               item.device_total_ordered_count - item.device_total_shipped_count;
             deviceGraphData.push({
               name: "Total Deployed",
-              y: shippedCount - item.device_total_deployed_count,
+              // y: shippedCount - item.device_total_deployed_count,
+              y: item.device_total_deployed_count,
             });
           }
         });
@@ -74,7 +76,7 @@ const DeviceSection = (props) => {
         pathname === "/dashboard/devices"
           ? isEmpty(deviceAppData)
             ? "col-lg-12 col-md-12"
-            : "col-lg-7 col-md-7"
+            : "col-lg-6 col-md-6"
           : "col-lg-5 col-md-5 padding-0"
       }
     >

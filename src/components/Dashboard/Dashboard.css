@@ -1197,9 +1197,6 @@ device_box {
   font-size: 13px;
   margin-top: 6px;
 }
-.map {
-  margin-bottom: 7rem;
-}
 .map2 {
   margin-top: 15px;
 }
@@ -1235,7 +1232,7 @@ device_box {
 
 /* card 3 */
 .dev_dt1 {
-  height: 415px;
+  height: 447px;
 }
 .dev_dt2 {
   height: 315px;
@@ -1244,7 +1241,8 @@ device_box {
   height: 505px;
 }
 .card.speed_sc {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
+  margin-top: 8px;
 }
 
 .fs-3 {
@@ -1330,6 +1328,18 @@ device_box {
 }
 /* card 3 */
 
+.backBtn {
+  float: right;
+  margin-top: 12px;
+  border: 1px solid #dfe5ef;
+  color: #000;
+  background: #fff;
+  padding: 9px 26px;
+  border-radius: 14px;
+  font-size: 14px;
+  position: relative;
+}
+
 .emptyTable {
   text-align: center;
   font-size: 22px;
@@ -1342,7 +1352,7 @@ device_box {
 }
 
 .tableList {
-  height: 515px;
+  height: 454px;
   overflow-y: auto;
   scrollbar-width: thin;
   margin-top: 15px;
@@ -1464,7 +1474,11 @@ device_box {
   }
 
   .th1 {
-    height: 232px !important;
+    height: 177px !important;
+  }
+
+  .dev_dt1 {
+    height: 374px !important;
   }
 
   .radiobtns {
@@ -1481,11 +1495,11 @@ device_box {
   }
 
   .tableList {
-    height: 444px;
+    height: 382px !important;
   }
 
   .dev_dt3 {
-    height: 436px;
+    height: 436px !important;
   }
 
   .map2 {
@@ -1499,7 +1513,11 @@ device_box {
   }
 
   .th1 {
-    height: 227px;
+    height: 240px;
+  }
+
+  .tableList {
+    height: 436px;
   }
 
   .radiobtns {
@@ -1521,6 +1539,14 @@ device_box {
     width: 1124px !important;
   }
 
+  .th1 {
+    height: 221px !important;
+  }
+
+  .dev_dt1 {
+    height: 426px !important;
+  }
+
   .wscreen {
     width: 103% !important;
   }
@@ -1530,6 +1556,6 @@ device_box {
   }
 
   .tableList {
-    height: 444px;
+    height: 416px !important;
   }
 }

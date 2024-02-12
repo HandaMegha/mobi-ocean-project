@@ -48,6 +48,7 @@ const DashboardContent = (props) => {
     setFilterValue(value);
     setListView(false);
     setShowDistrict(false);
+    changeSoftwareAppSection("", false);
     if (!isEmpty(deviceCount)) {
       if (value === "state") {
         setFilterList(deviceCount.States);
@@ -59,6 +60,7 @@ const DashboardContent = (props) => {
 
   const changeDuration = (value) => {
     setDuration(value);
+    changeSoftwareAppSection("", false);
   };
 
   const changeArea = (val) => {
@@ -73,8 +75,8 @@ const DashboardContent = (props) => {
     setShowDistrict(val);
   };
 
-  const changeSoftwareAppSection = (data) => {
-    setShowSoftwareTable(true);
+  const changeSoftwareAppSection = (data, val) => {
+    setShowSoftwareTable(val);
     setSoftwareTableData(data);
   };
 
@@ -104,30 +106,41 @@ const DashboardContent = (props) => {
             showDistrictList={showDistrictList}
             areaLevel={areaLevel}
             setFilterValue={setFilterValue}
+            changeSoftwareAppSection={changeSoftwareAppSection}
           />
           {pathname === "/" || pathname === "/dashboard" ? (
-            <div className="col-lg-7">
-              <div className="row">
-                <TicketSection />
-                <Link to={{ pathname: "/dashboard/devices" }}>
-                  <DeviceSection
-                    duration={duration}
-                    areaLevel={areaLevel}
-                    area={area}
-                  />
-                </Link>
-                {!showSoftwareTable ? (
-                  <SoftwareUpdateSection
-                    duration={duration}
-                    areaLevel={areaLevel}
-                    area={area}
-                    changeSoftwareAppSection={changeSoftwareAppSection}
-                  />
-                ) : (
-                  <SoftwareUpdateTable softwareTableData={softwareTableData} />
-                )}
+            <>
+              <div className="col-lg-7">
+                <div className="row">
+                  <TicketSection />
+                  <Link to={{ pathname: "/dashboard/devices" }}>
+                    <DeviceSection
+                      duration={duration}
+                      areaLevel={areaLevel}
+                      area={area}
+                    />
+                  </Link>
+                </div>
               </div>
-            </div>
+              <div className="col-lg-12">
+                <div className="row">
+                  {!showSoftwareTable ? (
+                    <SoftwareUpdateSection
+                      duration={duration}
+                      areaLevel={areaLevel}
+                      area={area}
+                      changeSoftwareAppSection={changeSoftwareAppSection}
+                    />
+                  ) : (
+                    <SoftwareUpdateTable
+                      softwareTableData={softwareTableData}
+                      area={area}
+                      changeSoftwareAppSection={changeSoftwareAppSection}
+                    />
+                  )}
+                </div>
+              </div>
+            </>
           ) : (
             <DevicesData
               duration={duration}
