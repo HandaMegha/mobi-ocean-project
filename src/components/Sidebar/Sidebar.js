@@ -29,7 +29,8 @@ const sidebarMenu = [
     imgUrl: "/icons/tickets.svg",
     imgUrlActive: "/icons/tickets-white.svg",
     alt: "tickets",
-    href: "#",
+    href: "/dashboard/tickets",
+    class: "active",
   },
 ];
 

@@ -20,7 +20,7 @@ const SoftwareUpdateTable = (props) => {
           app_name: softwareTableData.app_name,
         });
 
-        if (!isEmpty(filteredData)) {
+        if (isEmpty(filteredData)) {
           return <div className="emptyTable">No Data Available</div>;
         } else {
           return (

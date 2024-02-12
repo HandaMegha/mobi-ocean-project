@@ -9,6 +9,7 @@ import ListView from "../ListView/ListView";
 import DevicesData from "../DeviceData/DevicesData";
 import Breadcrumb from "../Breadcrumb/Breadcrumb";
 import SoftwareUpdateTable from "../SoftwareUpdate/SoftwareUpdateTable";
+import TicketData from "../TicketData/TicketData";
 
 const DashboardContent = (props) => {
   const { deviceCount } = props;
@@ -86,7 +87,11 @@ const DashboardContent = (props) => {
         <Breadcrumb
           title="Dashboard"
           subTitle={
-            pathname === "/" || pathname === "/dashboard" ? "" : "devices"
+            pathname === "/" || pathname === "/dashboard"
+              ? ""
+              : pathname === "/dashboard/devices"
+              ? "devices"
+              : "tickets"
           }
         />
         <div className="row">
@@ -141,7 +146,7 @@ const DashboardContent = (props) => {
                 </div>
               </div>
             </>
-          ) : (
+          ) : pathname === "/dashboard/devices" ? (
             <DevicesData
               duration={duration}
               areaLevel={areaLevel}
@@ -150,6 +155,8 @@ const DashboardContent = (props) => {
               changeSoftwareAppSection={changeSoftwareAppSection}
               softwareTableData={softwareTableData}
             />
+          ) : (
+            <TicketData />
           )}
         </div>
       </div>

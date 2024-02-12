@@ -19,13 +19,15 @@ const TicketSection = () => {
             <div className="d-block align-items-center justify-content-between mb-9">
               <div className="mb-3 mb-sm-0">
                 <h5 className="card-title fw-semibold text-center">
-                  {pathname === "/dashboard/devices"
+                  {pathname === "/dashboard/devices" ||
+                  pathname === "/dashboard/tickets"
                     ? "Active device"
                     : "Ticket Data"}
                 </h5>
               </div>
             </div>
-            {pathname === "/dashboard/devices" ? null : (
+            {pathname === "/dashboard/devices" ||
+            pathname === "/dashboard/tickets" ? null : (
               <div className="act_box w-auto">
                 <p className="ac1">
                   Active tickets <span>(unresolved)</span>
@@ -34,7 +36,8 @@ const TicketSection = () => {
               </div>
             )}
             <div className="row">
-              {pathname === "/dashboard/devices" ? null : (
+              {pathname === "/dashboard/devices" ||
+              pathname === "/dashboard/tickets" ? null : (
                 <>
                   <div className="col-md-6">
                     <div className="col-box-6">
@@ -54,7 +57,8 @@ const TicketSection = () => {
               )}
               <div className="col-md-12">
                 <div className="map2 text-center">
-                  {pathname === "/dashboard/devices" ? (
+                  {pathname === "/dashboard/devices" ||
+                  pathname === "/dashboard/tickets" ? (
                     <>
                       <p className="tm1">
                         Time over time comparative data (Active)
@@ -66,7 +70,8 @@ const TicketSection = () => {
                   ) : null}
                 </div>
               </div>
-              {pathname === "/dashboard/devices" ? (
+              {pathname === "/dashboard/devices" ||
+              pathname === "/dashboard/tickets" ? (
                 <>
                   <div className="col-md-6">
                     <div className="select-box-6">

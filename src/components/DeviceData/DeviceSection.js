@@ -9,8 +9,27 @@ const DeviceSection = (props) => {
   const { pathname } = location;
 
   const renderDeviceData = () => {
-    const deviceGraphData = [];
+    const deviceGraphData = [],
+      ticketGraphData = [];
     let totalDevicesCount = {};
+    ticketGraphData.push(
+      {
+        name: "Last 24 Hour",
+        y: 80000,
+      },
+      {
+        name: "Last 48 Hour",
+        y: 50000,
+      },
+      {
+        name: "Last 72 Hour",
+        y: 25000,
+      },
+      {
+        name: "Over 1 week",
+        y: 10000,
+      }
+    );
     if (!isEmpty(deviceData)) {
       const filteredData = filter(deviceData, {
         area_level: areaLevel,
@@ -53,15 +72,31 @@ const DeviceSection = (props) => {
       <>
         <div className="d-block align-items-center justify-content-between mb-9">
           <div className="mb-3 mb-sm-0">
-            <h5 className="card-title fw-semibold text-center">Device Data</h5>
-            <p className="ac2 text-center" style={{ color: "#1DB636" }}>{`${
-              isEmpty(totalDevicesCount)
-                ? 0
-                : totalDevicesCount.device_total_active_count.toLocaleString()
-            } total active count`}</p>
+            <h5 className="card-title fw-semibold text-center">
+              {pathname === "/dashboard/tickets"
+                ? "Current status for a specific device"
+                : "Device Data"}
+            </h5>
+            {pathname === "/dashboard/tickets" ? (
+              <p className="ac2 text-center" style={{ color: "#1DB636" }}>
+                0 total count
+              </p>
+            ) : (
+              <p className="ac2 text-center" style={{ color: "#1DB636" }}>{`${
+                isEmpty(totalDevicesCount)
+                  ? 0
+                  : totalDevicesCount.device_total_active_count.toLocaleString()
+              } total active count`}</p>
+            )}
           </div>
         </div>
-        {!isEmpty(deviceGraphData) ? (
+        {pathname === "/dashboard/tickets" ? (
+          !isEmpty(ticketGraphData) ? (
+            <DeviceSectionGraph data={ticketGraphData} />
+          ) : (
+            <div className="emptyTable">No Data Available</div>
+          )
+        ) : !isEmpty(deviceGraphData) ? (
           <DeviceSectionGraph data={deviceGraphData} />
         ) : (
           <div className="emptyTable">No Device Data Available</div>

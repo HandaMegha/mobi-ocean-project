@@ -4,6 +4,12 @@ import HighchartsReact from "highcharts-react-official";
 
 class DeviceSectionGraph extends Component {
   render() {
+    let colors = [];
+    if (this.props.data && this.props.data.length == 3) {
+      colors = ["#E9A5F3", "#98EDD1", "#F4D6A8"];
+    } else {
+      colors = ["#E9A5F3", "#98EDD1", "#F4D6A8", "#b4d4ed"];
+    }
     const options = {
       chart: {
         height: 300,
@@ -28,7 +34,7 @@ class DeviceSectionGraph extends Component {
           dataLabels: {
             enabled: true,
             crop: false,
-            distance: "-15%",
+            distance: "-25%",
             format: "<b>{point.name}</b> <br /> {point.y}",
             style: {
               color: "#06152B",
@@ -42,7 +48,7 @@ class DeviceSectionGraph extends Component {
           },
         },
       },
-      colors: ["#E9A5F3", "#98EDD1", "#F4D6A8"],
+      colors: colors,
       series: [
         {
           type: "pie",

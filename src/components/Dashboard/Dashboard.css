@@ -1168,15 +1168,18 @@ device_box {
   font-weight: bold;
 }
 
-.col-box1 p {
+.col-box1 p,
+.col-boxt1 p {
   background-color: #6c3bff4d;
 }
 
-.col-box2 p {
+.col-box2 p,
+.col-boxt2 p {
   background-color: #ffc1a4;
 }
 
-.col-box3 p {
+.col-box3 p,
+.col-boxt3 p {
   background-color: #cce9ff;
 }
 
@@ -1242,7 +1245,7 @@ device_box {
 }
 .card.speed_sc {
   margin-bottom: 20px;
-  margin-top: 8px;
+  /* margin-top: 8px; */
 }
 
 .fs-3 {
@@ -1352,10 +1355,10 @@ device_box {
 }
 
 .tableList {
-  height: 454px;
+  height: 450px;
   overflow-y: auto;
   scrollbar-width: thin;
-  margin-top: 15px;
+  /* margin-top: 15px; */
 }
 
 .tableList thead th {
@@ -1516,9 +1519,9 @@ device_box {
     height: 240px;
   }
 
-  .tableList {
-    height: 436px;
-  }
+  /* .tableList {
+    height: 438px;
+  } */
 
   .radiobtns {
     width: 100%;
@@ -1556,6 +1559,6 @@ device_box {
   }
 
   .tableList {
-    height: 416px !important;
+    height: 418px !important;
   }
 }

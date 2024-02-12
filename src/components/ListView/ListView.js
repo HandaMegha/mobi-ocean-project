@@ -3,6 +3,7 @@ import { durationValues, filterValues } from "../Dashboard/DashboardConstant";
 import MapView from "../MapView/MapView";
 import { isEmpty, toLower, find, filter } from "lodash";
 import { connect } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 const ListView = (props) => {
   const {
@@ -27,6 +28,8 @@ const ListView = (props) => {
   const [searchItem, setSearchItem] = useState("");
   const [searchedList, setSearchedList] = useState(filterList);
   const [areaParent, setAreaParent] = useState("");
+  const location = useLocation();
+  const { pathname } = location;
 
   const handleSearch = (value) => {
     setSearchItem(value);
@@ -186,56 +189,84 @@ const ListView = (props) => {
         <div className=" card device_box">
           <div className="card-body">
             <div className=" align-items-center">
-              <div className="row">
-                <div className="col-md-3">
-                  <div className="col-box-6 col-box1">
-                    <p>
-                      Total <br /> Devices <br />{" "}
-                      <span>
-                        {isEmpty(deviceSummaryCount)
-                          ? 0
-                          : deviceSummaryCount.device_total_ordered_count.toLocaleString()}
-                      </span>
-                    </p>
+              {pathname === "/" ||
+              pathname === "/dashboard" ||
+              pathname === "/dashboard/devices" ? (
+                <div className="row">
+                  <div className="col-md-3">
+                    <div className="col-box-6 col-box1">
+                      <p>
+                        Total <br /> Devices <br />{" "}
+                        <span>
+                          {isEmpty(deviceSummaryCount)
+                            ? 0
+                            : deviceSummaryCount.device_total_ordered_count.toLocaleString()}
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                  <div className="col-md-3">
+                    <div className="col-box-6 col-box2">
+                      <p>
+                        Average device usage <br />{" "}
+                        <span>
+                          {isEmpty(deviceSummaryCount)
+                            ? 0
+                            : deviceSummaryCount.device_avg_usage_count.toLocaleString()}
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                  <div className="col-md-3">
+                    <div className="col-box-6 col-box3">
+                      <p>
+                        Warranty expires in 90 days <br />{" "}
+                        <span>
+                          {isEmpty(deviceSummaryCount)
+                            ? 0
+                            : deviceSummaryCount.device_warrantee_expiry_in_90days.toLocaleString()}
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                  <div className="col-md-3">
+                    <div className="col-box-6 col-box4">
+                      <p>
+                        RD expires in 90 days <br />{" "}
+                        <span>
+                          {isEmpty(deviceSummaryCount)
+                            ? 0
+                            : deviceSummaryCount.device_RD_expiry_in_90days.toLocaleString()}
+                        </span>
+                      </p>
+                    </div>
                   </div>
                 </div>
-                <div className="col-md-3">
-                  <div className="col-box-6 col-box2">
-                    <p>
-                      Average device usage <br />{" "}
-                      <span>
-                        {isEmpty(deviceSummaryCount)
-                          ? 0
-                          : deviceSummaryCount.device_avg_usage_count.toLocaleString()}
-                      </span>
-                    </p>
+              ) : (
+                <div className="row">
+                  <div className="col-md-4">
+                    <div className="col-box-6 col-boxt1">
+                      <p>
+                        Active tickets <br /> <span>999,99,99,999</span>
+                      </p>
+                    </div>
+                  </div>
+                  <div className="col-md-4">
+                    <div className="col-box-6 col-boxt2">
+                      <p>
+                        Open in the duration <br /> <span>999,99,99,999</span>
+                      </p>
+                    </div>
+                  </div>
+                  <div className="col-md-4">
+                    <div className="col-box-6 col-boxt3">
+                      <p>
+                        Closed in the duration <br /> <span>999,99,99,999</span>
+                      </p>
+                    </div>
                   </div>
                 </div>
-                <div className="col-md-3">
-                  <div className="col-box-6 col-box3">
-                    <p>
-                      Warranty expires in 90 days <br />{" "}
-                      <span>
-                        {isEmpty(deviceSummaryCount)
-                          ? 0
-                          : deviceSummaryCount.device_warrantee_expiry_in_90days.toLocaleString()}
-                      </span>
-                    </p>
-                  </div>
-                </div>
-                <div className="col-md-3">
-                  <div className="col-box-6 col-box4">
-                    <p>
-                      RD expires in 90 days <br />{" "}
-                      <span>
-                        {isEmpty(deviceSummaryCount)
-                          ? 0
-                          : deviceSummaryCount.device_RD_expiry_in_90days.toLocaleString()}
-                      </span>
-                    </p>
-                  </div>
-                </div>
-              </div>
+              )}
             </div>
           </div>
         </div>

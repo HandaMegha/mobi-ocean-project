@@ -20,7 +20,9 @@ const Breadcrumb = (props) => {
           Title:{" "}
           {pathname === "/" || pathname === "/dashboard"
             ? "Dashboard"
-            : "DeviceDashboard"}
+            : pathname === "/dashboard/devices"
+            ? "DeviceDashboard"
+            : "TicketDashboard"}
         </li>
         <br />
         <li className="breadcrumb-item titleList" onClick={handleChange}>
