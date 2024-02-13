@@ -50,6 +50,7 @@ const DashboardContent = (props) => {
     setListView(false);
     setShowDistrict(false);
     changeSoftwareAppSection("", false);
+    setArea("India");
     if (!isEmpty(deviceCount)) {
       if (value === "state") {
         setFilterList(deviceCount.States);
@@ -117,7 +118,9 @@ const DashboardContent = (props) => {
             <>
               <div className="col-lg-7">
                 <div className="row">
-                  <TicketSection />
+                  <Link to={{ pathname: "/dashboard/tickets" }}>
+                    <TicketSection />
+                  </Link>
                   <Link to={{ pathname: "/dashboard/devices" }}>
                     <DeviceSection
                       duration={duration}

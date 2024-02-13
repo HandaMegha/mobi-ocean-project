@@ -50,10 +50,14 @@ const ListView = (props) => {
   };
 
   const showDistrictGraph = (list) => {
-    changeArea(list.area);
-    changeAreaLevel(list.area_level);
-    setAreaParent(list.area_parent);
     changeSoftwareAppSection("", false);
+    if (showDistrict) {
+      changeArea(list.area);
+      changeAreaLevel(list.area_level);
+      setAreaParent(list.area_parent);
+    } else {
+      changeArea(list.CategoryName);
+    }
   };
 
   const onChange = (value) => {
@@ -159,7 +163,11 @@ const ListView = (props) => {
               <tbody key={index}>
                 <tr
                   onClick={() => showDistrictGraph(list)}
-                  className={list.area === area ? "tableRowActive" : ""}
+                  className={
+                    list.area === area || list.CategoryName === area
+                      ? "tableRowActive"
+                      : ""
+                  }
                 >
                   <td>{showDistrict ? list.area : list.CategoryName}</td>
                   <td>

@@ -11,7 +11,7 @@ const sidebarMenu = [
     class: "active",
   },
   {
-    name: "Devices/APP/Firmware",
+    name: "Devices",
     imgUrl: "/icons/devices.svg",
     imgUrlActive: "/icons/devices-white.svg",
     alt: "devices",
@@ -65,7 +65,7 @@ const Sidebar = () => {
                   <a
                     className={`sidebar-link ${
                       pathname === menu.href ? menu.class : ""
-                    }`}
+                    } ${index !== 0 ? "childItems" : ""}`}
                     href={menu.href}
                     aria-expanded="false"
                   >

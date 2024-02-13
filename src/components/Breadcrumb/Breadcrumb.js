@@ -17,12 +17,11 @@ const Breadcrumb = (props) => {
     <nav aria-label="breadcrumb">
       <ol className="breadcrumb">
         <li className="pagetitle">
-          Title:{" "}
           {pathname === "/" || pathname === "/dashboard"
             ? "Dashboard"
             : pathname === "/dashboard/devices"
-            ? "DeviceDashboard"
-            : "TicketDashboard"}
+            ? "Device Dashboard"
+            : "Ticket Dashboard"}
         </li>
         <br />
         <li className="breadcrumb-item titleList" onClick={handleChange}>

@@ -25,12 +25,6 @@ const SoftwareUpdateTable = (props) => {
         } else {
           return (
             <>
-              <button
-                className="backBtn"
-                onClick={() => changeSoftwareAppSection("", false)}
-              >
-                Back
-              </button>
               <div className="map2">
                 <p className="tm3">{`${
                   softwareTableData.app_name +
@@ -93,6 +87,12 @@ const SoftwareUpdateTable = (props) => {
             } total count`}</p>
           </div>
         </div>
+        <button
+          className="backBtn"
+          onClick={() => changeSoftwareAppSection("", false)}
+        >
+          Back
+        </button>
         {renderTable()}
       </div>
     );
