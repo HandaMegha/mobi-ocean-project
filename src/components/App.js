@@ -18,6 +18,10 @@ const App = () => {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/dashboard/devices" element={<Dashboard />} />
         <Route path="/dashboard/tickets" element={<Dashboard />} />
+        <Route
+          path="/dashboard/tickets/activetickets"
+          element={<Dashboard />}
+        />
       </Routes>
     </Router>
   );

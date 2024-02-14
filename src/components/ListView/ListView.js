@@ -3,7 +3,7 @@ import { durationValues, filterValues } from "../Dashboard/DashboardConstant";
 import MapView from "../MapView/MapView";
 import { isEmpty, toLower, find, filter } from "lodash";
 import { connect } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const ListView = (props) => {
   const {
@@ -456,9 +456,15 @@ const ListView = (props) => {
                           </h4>
                         </div>
                         <div className="col-md-6">
-                          <button className="ticketBtn">
-                            View all tickets
-                          </button>
+                          <Link
+                            to={{
+                              pathname: "/dashboard/tickets/activetickets",
+                            }}
+                          >
+                            <button className="ticketBtn">
+                              View all tickets
+                            </button>
+                          </Link>
                         </div>
                       </div>
                     ) : null}

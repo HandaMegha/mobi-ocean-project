@@ -10,6 +10,7 @@ import DevicesData from "../DeviceData/DevicesData";
 import Breadcrumb from "../Breadcrumb/Breadcrumb";
 import SoftwareUpdateTable from "../SoftwareUpdate/SoftwareUpdateTable";
 import TicketData from "../TicketData/TicketData";
+import ActiveTicket from "../TicketData/ActiveTicket";
 
 const DashboardContent = (props) => {
   const { deviceCount, ticketCount } = props;
@@ -112,76 +113,86 @@ const DashboardContent = (props) => {
               ? ""
               : pathname === "/dashboard/devices"
               ? "devices"
-              : "tickets"
+              : pathname === "/dashboard/tickets"
+              ? "tickets"
+              : "active tickets"
           }
         />
-        <div className="row">
-          <ListView
-            changeView={changeView}
-            changeFilter={changeFilter}
-            changeDuration={changeDuration}
-            area={area}
-            changeArea={changeArea}
-            changeAreaLevel={changeAreaLevel}
-            duration={duration}
-            listView={listView}
-            filterValue={filterValue}
-            filterList={filterList}
-            setFilterList={setFilterList}
-            showDistrict={showDistrict}
-            showDistrictList={showDistrictList}
-            areaLevel={areaLevel}
-            setFilterValue={setFilterValue}
-            changeSoftwareAppSection={changeSoftwareAppSection}
-          />
-          {pathname === "/" || pathname === "/dashboard" ? (
-            <>
-              <div className="col-lg-7">
-                <div className="row">
-                  <Link to={{ pathname: "/dashboard/tickets" }}>
-                    <TicketSection />
-                  </Link>
-                  <Link to={{ pathname: "/dashboard/devices" }}>
-                    <DeviceSection
-                      duration={duration}
-                      areaLevel={areaLevel}
-                      area={area}
-                    />
-                  </Link>
-                </div>
-              </div>
-              <div className="col-lg-12">
-                <div className="row">
-                  {!showSoftwareTable ? (
-                    <SoftwareUpdateSection
-                      duration={duration}
-                      areaLevel={areaLevel}
-                      area={area}
-                      changeSoftwareAppSection={changeSoftwareAppSection}
-                    />
-                  ) : (
-                    <SoftwareUpdateTable
-                      softwareTableData={softwareTableData}
-                      area={area}
-                      changeSoftwareAppSection={changeSoftwareAppSection}
-                    />
-                  )}
-                </div>
-              </div>
-            </>
-          ) : pathname === "/dashboard/devices" ? (
-            <DevicesData
-              duration={duration}
-              areaLevel={areaLevel}
+        {pathname === "/dashboard/tickets/activetickets" ? (
+          <ActiveTicket />
+        ) : (
+          <div className="row">
+            <ListView
+              changeView={changeView}
+              changeFilter={changeFilter}
+              changeDuration={changeDuration}
               area={area}
-              showSoftwareTable={showSoftwareTable}
+              changeArea={changeArea}
+              changeAreaLevel={changeAreaLevel}
+              duration={duration}
+              listView={listView}
+              filterValue={filterValue}
+              filterList={filterList}
+              setFilterList={setFilterList}
+              showDistrict={showDistrict}
+              showDistrictList={showDistrictList}
+              areaLevel={areaLevel}
+              setFilterValue={setFilterValue}
               changeSoftwareAppSection={changeSoftwareAppSection}
-              softwareTableData={softwareTableData}
             />
-          ) : (
-            <TicketData duration={duration} areaLevel={areaLevel} area={area} />
-          )}
-        </div>
+            {pathname === "/" || pathname === "/dashboard" ? (
+              <>
+                <div className="col-lg-7">
+                  <div className="row">
+                    <Link to={{ pathname: "/dashboard/tickets" }}>
+                      <TicketSection />
+                    </Link>
+                    <Link to={{ pathname: "/dashboard/devices" }}>
+                      <DeviceSection
+                        duration={duration}
+                        areaLevel={areaLevel}
+                        area={area}
+                      />
+                    </Link>
+                  </div>
+                </div>
+                <div className="col-lg-12">
+                  <div className="row">
+                    {!showSoftwareTable ? (
+                      <SoftwareUpdateSection
+                        duration={duration}
+                        areaLevel={areaLevel}
+                        area={area}
+                        changeSoftwareAppSection={changeSoftwareAppSection}
+                      />
+                    ) : (
+                      <SoftwareUpdateTable
+                        softwareTableData={softwareTableData}
+                        area={area}
+                        changeSoftwareAppSection={changeSoftwareAppSection}
+                      />
+                    )}
+                  </div>
+                </div>
+              </>
+            ) : pathname === "/dashboard/devices" ? (
+              <DevicesData
+                duration={duration}
+                areaLevel={areaLevel}
+                area={area}
+                showSoftwareTable={showSoftwareTable}
+                changeSoftwareAppSection={changeSoftwareAppSection}
+                softwareTableData={softwareTableData}
+              />
+            ) : (
+              <TicketData
+                duration={duration}
+                areaLevel={areaLevel}
+                area={area}
+              />
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
