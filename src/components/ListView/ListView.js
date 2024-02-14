@@ -24,6 +24,7 @@ const ListView = (props) => {
     areaLevel,
     setFilterValue,
     changeSoftwareAppSection,
+    tickets,
   } = props;
   const [searchItem, setSearchItem] = useState("");
   const [searchedList, setSearchedList] = useState(filterList);
@@ -60,24 +61,32 @@ const ListView = (props) => {
     }
   };
 
-  const onChange = (value) => {
-    changeDuration(value);
-    if (!isEmpty(deviceData)) {
+  const calculateListData = (deviceTicketData, value) => {
+    if (!isEmpty(deviceTicketData)) {
       if (!showDistrict) {
-        const list = filter(deviceData, {
+        const list = filter(deviceTicketData, {
           area_level: areaLevel,
           duration: value,
           area: area,
         });
         setFilterList(list);
       } else {
-        const list = filter(deviceData, {
+        const list = filter(deviceTicketData, {
           area_parent: areaLevel === "state" ? area : areaParent,
           duration: value,
           area_level: "district",
         });
         setFilterList(list);
       }
+    }
+  };
+
+  const onChange = (value) => {
+    changeDuration(value);
+    if (pathname === "/dashboard/tickets") {
+      calculateListData(tickets, value);
+    } else {
+      calculateListData(deviceData, value);
     }
   };
 
@@ -183,10 +192,77 @@ const ListView = (props) => {
     );
   };
 
+  const getTicketTable = () => {
+    return isEmpty(filterList) ? (
+      <div className="emptyTable">
+        {showDistrict
+          ? "No District Available"
+          : filterValue === "state"
+          ? "No State Available"
+          : "No Organisation Available"}
+      </div>
+    ) : (
+      <table id="tableListId">
+        <thead>
+          <tr>
+            <th>
+              {showDistrict
+                ? "District"
+                : filterValue === "state"
+                ? "State/UT"
+                : "Organization"}
+            </th>
+            <th>Total Tickets</th>
+            {pathname === "/dashboard/tickets" && showDistrict ? (
+              <th>Open Tickets</th>
+            ) : null}
+            {pathname === "/dashboard/tickets" && showDistrict ? (
+              <th>Closed Tickets</th>
+            ) : null}
+          </tr>
+        </thead>
+        {filterList &&
+          filterList.map((list, index) => {
+            return (
+              <tbody key={index}>
+                <tr
+                  onClick={() => showDistrictGraph(list)}
+                  className={
+                    list.area === area || list.CategoryName === area
+                      ? "tableRowActive"
+                      : ""
+                  }
+                >
+                  <td>{showDistrict ? list.area : list.CategoryName}</td>
+                  <td>
+                    {showDistrict ? list.total_tickets : list.TotalDevice}
+                  </td>
+                  {pathname === "/dashboard/tickets" && showDistrict ? (
+                    <td>{list.open_tickets}</td>
+                  ) : null}
+                  {pathname === "/dashboard/tickets" && showDistrict ? (
+                    <td>{list.closed_tickets}</td>
+                  ) : null}
+                </tr>
+              </tbody>
+            );
+          })}
+      </table>
+    );
+  };
+
   const renderDeviceSummary = () => {
-    let deviceSummaryCount = {};
+    let deviceSummaryCount = {},
+      ticketSummaryCount = {};
     if (!isEmpty(deviceData)) {
       deviceSummaryCount = find(deviceData, {
+        area_level: areaLevel,
+        duration: duration,
+        area: area,
+      });
+    }
+    if (!isEmpty(tickets)) {
+      ticketSummaryCount = find(tickets, {
         area_level: areaLevel,
         duration: duration,
         area: area,
@@ -255,21 +331,36 @@ const ListView = (props) => {
                   <div className="col-md-4">
                     <div className="col-box-6 col-boxt1">
                       <p>
-                        Active tickets <br /> <span>999,99,99,999</span>
+                        Total tickets <br />{" "}
+                        <span>
+                          {isEmpty(ticketSummaryCount)
+                            ? 0
+                            : ticketSummaryCount.total_tickets.toLocaleString()}
+                        </span>
                       </p>
                     </div>
                   </div>
                   <div className="col-md-4">
                     <div className="col-box-6 col-boxt2">
                       <p>
-                        Open in the duration <br /> <span>999,99,99,999</span>
+                        Open in the duration <br />{" "}
+                        <span>
+                          {isEmpty(ticketSummaryCount)
+                            ? 0
+                            : ticketSummaryCount.open_tickets.toLocaleString()}
+                        </span>
                       </p>
                     </div>
                   </div>
                   <div className="col-md-4">
                     <div className="col-box-6 col-boxt3">
                       <p>
-                        Closed in the duration <br /> <span>999,99,99,999</span>
+                        Closed in the duration <br />{" "}
+                        <span>
+                          {isEmpty(ticketSummaryCount)
+                            ? 0
+                            : ticketSummaryCount.closed_tickets.toLocaleString()}
+                        </span>
                       </p>
                     </div>
                   </div>
@@ -352,12 +443,32 @@ const ListView = (props) => {
             ) : (
               <>
                 {!isEmpty(filterList) ? (
-                  <div className="row">
-                    {getSearchBar()}
-                    {getDropdowns()}
-                  </div>
+                  <>
+                    <div className="row">
+                      {getSearchBar()}
+                      {getDropdowns()}
+                    </div>
+                    {pathname === "/dashboard/tickets" && showDistrict ? (
+                      <div className="row">
+                        <div className="col-md-6">
+                          <h4 className="tableheading">
+                            District wise ticket data
+                          </h4>
+                        </div>
+                        <div className="col-md-6">
+                          <button className="ticketBtn">
+                            View all tickets
+                          </button>
+                        </div>
+                      </div>
+                    ) : null}
+                  </>
                 ) : null}
-                <div className="tableList">{getTable()}</div>
+                <div className="tableList">
+                  {pathname === "/dashboard/tickets"
+                    ? getTicketTable()
+                    : getTable()}
+                </div>
               </>
             )}
           </div>
@@ -370,6 +481,7 @@ const ListView = (props) => {
 
 const mapStateToProps = (state) => ({
   deviceData: state.dashboardReducer.deviceData,
+  tickets: state.dashboardReducer.tickets,
 });
 
 export default connect(mapStateToProps, {})(ListView);

@@ -8,6 +8,9 @@ import {
   getDeviceData,
   getDeviceWiseCount,
   getDeviceAppData,
+  getTicketWiseCount,
+  getTickets,
+  getTicketTopIssues,
 } from "../../actions/DashboardActions";
 import { connect } from "react-redux";
 
@@ -17,6 +20,9 @@ const Dashboard = (props) => {
     getDeviceData,
     getDeviceWiseCount,
     getDeviceAppData,
+    getTicketWiseCount,
+    getTickets,
+    getTicketTopIssues,
     loading,
   } = props;
 
@@ -25,7 +31,18 @@ const Dashboard = (props) => {
     getDeviceData();
     getDeviceWiseCount();
     getDeviceAppData();
-  }, [getToken, getDeviceData, getDeviceWiseCount, getDeviceAppData]);
+    getTicketWiseCount();
+    getTickets();
+    getTicketTopIssues();
+  }, [
+    getToken,
+    getDeviceData,
+    getDeviceWiseCount,
+    getDeviceAppData,
+    getTicketWiseCount,
+    getTickets,
+    getTicketTopIssues,
+  ]);
 
   return (
     <div id="main-wrapper">
@@ -56,6 +73,9 @@ const mapDispatchToProps = {
   getDeviceData,
   getDeviceWiseCount,
   getDeviceAppData,
+  getTicketWiseCount,
+  getTickets,
+  getTicketTopIssues,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

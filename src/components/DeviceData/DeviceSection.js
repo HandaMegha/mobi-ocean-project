@@ -4,32 +4,16 @@ import { filter, find, isEmpty } from "lodash";
 import { useLocation } from "react-router-dom";
 
 const DeviceSection = (props) => {
-  const { deviceData, duration, areaLevel, deviceAppData, area } = props;
+  const { deviceData, duration, areaLevel, deviceAppData, area, tickets } =
+    props;
   const location = useLocation();
   const { pathname } = location;
 
   const renderDeviceData = () => {
     const deviceGraphData = [],
       ticketGraphData = [];
-    let totalDevicesCount = {};
-    ticketGraphData.push(
-      {
-        name: "Last 24 Hour",
-        y: 80000,
-      },
-      {
-        name: "Last 48 Hour",
-        y: 50000,
-      },
-      {
-        name: "Last 72 Hour",
-        y: 25000,
-      },
-      {
-        name: "Over 1 week",
-        y: 10000,
-      }
-    );
+    let totalDevicesCount = {},
+      totalTicketCount = {};
     if (!isEmpty(deviceData)) {
       const filteredData = filter(deviceData, {
         area_level: areaLevel,
@@ -68,6 +52,44 @@ const DeviceSection = (props) => {
       }
     }
 
+    if (!isEmpty(tickets)) {
+      const filteredData = filter(tickets, {
+        area_level: areaLevel,
+        duration: duration,
+        area: area,
+      });
+      totalTicketCount = find(filteredData, "total_tickets");
+
+      if (!isEmpty(filteredData)) {
+        filteredData.map((item) => {
+          if (item.hasOwnProperty("active_tickets_last24Hour")) {
+            ticketGraphData.push({
+              name: "Last 24 Hour",
+              y: item.active_tickets_last24Hour,
+            });
+          }
+          if (item.hasOwnProperty("active_tickets_last48Hour")) {
+            ticketGraphData.push({
+              name: "Last 48 Hour",
+              y: item.active_tickets_last48Hour,
+            });
+          }
+          if (item.hasOwnProperty("active_tickets_last72Hour")) {
+            ticketGraphData.push({
+              name: "Last 72 Hour",
+              y: item.active_tickets_last72Hour,
+            });
+          }
+          if (item.hasOwnProperty("active_tickets_lastweek")) {
+            ticketGraphData.push({
+              name: "Over 1 week",
+              y: item.active_tickets_lastweek,
+            });
+          }
+        });
+      }
+    }
+
     return (
       <>
         <div className="d-block align-items-center justify-content-between mb-9">
@@ -79,7 +101,11 @@ const DeviceSection = (props) => {
             </h5>
             {pathname === "/dashboard/tickets" ? (
               <p className="ac2 text-center" style={{ color: "#1DB636" }}>
-                0 total count
+                {`${
+                  isEmpty(totalTicketCount)
+                    ? 0
+                    : totalTicketCount.total_tickets.toLocaleString()
+                } total count`}
               </p>
             ) : (
               <p className="ac2 text-center" style={{ color: "#1DB636" }}>{`${
@@ -134,6 +160,7 @@ const mapStateToProps = (state) => ({
   deviceData: state.dashboardReducer.deviceData,
   deviceDataError: state.dashboardReducer.deviceDataError,
   deviceAppData: state.dashboardReducer.deviceAppData,
+  tickets: state.dashboardReducer.tickets,
 });
 
 export default connect(mapStateToProps, {})(DeviceSection);

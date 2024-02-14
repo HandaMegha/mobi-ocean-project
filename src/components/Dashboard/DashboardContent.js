@@ -12,7 +12,7 @@ import SoftwareUpdateTable from "../SoftwareUpdate/SoftwareUpdateTable";
 import TicketData from "../TicketData/TicketData";
 
 const DashboardContent = (props) => {
-  const { deviceCount } = props;
+  const { deviceCount, ticketCount } = props;
   const [listView, setListView] = useState(true);
   const [duration, setDuration] = useState("last_week");
   const [filterValue, setFilterValue] = useState("");
@@ -26,14 +26,24 @@ const DashboardContent = (props) => {
   const { pathname } = location;
 
   useEffect(() => {
-    if (!listView && !isEmpty(deviceCount) && !showDistrict) {
-      if (filterValue === "state") {
-        setFilterList(deviceCount.States);
-      } else {
-        setFilterList(deviceCount.Organizations);
+    if (pathname === "/dashboard/tickets") {
+      if (!listView && !isEmpty(ticketCount) && !showDistrict) {
+        if (filterValue === "state") {
+          setFilterList(ticketCount.States);
+        } else {
+          setFilterList(ticketCount.Organizations);
+        }
+      }
+    } else {
+      if (!listView && !isEmpty(deviceCount) && !showDistrict) {
+        if (filterValue === "state") {
+          setFilterList(deviceCount.States);
+        } else {
+          setFilterList(deviceCount.Organizations);
+        }
       }
     }
-  }, [deviceCount, listView]);
+  }, [deviceCount, listView, ticketCount, pathname, filterValue, showDistrict]);
 
   const changeView = (val) => {
     setListView(val);
@@ -51,11 +61,21 @@ const DashboardContent = (props) => {
     setShowDistrict(false);
     changeSoftwareAppSection("", false);
     setArea("India");
-    if (!isEmpty(deviceCount)) {
-      if (value === "state") {
-        setFilterList(deviceCount.States);
-      } else {
-        setFilterList(deviceCount.Organizations);
+    if (pathname === "/dashboard/tickets") {
+      if (!isEmpty(ticketCount)) {
+        if (value === "state") {
+          setFilterList(ticketCount.States);
+        } else {
+          setFilterList(ticketCount.Organizations);
+        }
+      }
+    } else {
+      if (!isEmpty(deviceCount)) {
+        if (value === "state") {
+          setFilterList(deviceCount.States);
+        } else {
+          setFilterList(deviceCount.Organizations);
+        }
       }
     }
   };
@@ -159,7 +179,7 @@ const DashboardContent = (props) => {
               softwareTableData={softwareTableData}
             />
           ) : (
-            <TicketData />
+            <TicketData duration={duration} areaLevel={areaLevel} area={area} />
           )}
         </div>
       </div>
@@ -169,6 +189,7 @@ const DashboardContent = (props) => {
 
 const mapStateToProps = (state) => ({
   deviceCount: state.dashboardReducer.deviceCount,
+  ticketCount: state.dashboardReducer.ticketCount,
 });
 
 export default connect(mapStateToProps, {})(DashboardContent);

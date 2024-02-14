@@ -3,10 +3,12 @@ import "./MapView.css";
 import { connect } from "react-redux";
 import { isEmpty, get, toLower, replace, filter } from "lodash";
 import { allStateList } from "../Dashboard/DashboardConstant";
+import { useLocation } from "react-router-dom";
 
 const MapView = (props) => {
   const {
     deviceCount,
+    ticketCount,
     changeArea,
     changeAreaLevel,
     deviceData,
@@ -16,29 +18,42 @@ const MapView = (props) => {
     duration,
     setFilterValue,
     changeSoftwareAppSection,
+    tickets,
   } = props;
+  const location = useLocation();
+  const { pathname } = location;
 
   const handleChange = (value) => {
-    if (!isEmpty(deviceData)) {
-      const list = filter(deviceData, {
-        duration: duration,
-        area_parent: value,
-        area_level: "district",
-      });
-      setFilterList(list);
-      changeArea(value);
-      changeAreaLevel("state");
-      showDistrictList(true);
-      changeView(false);
-      setFilterValue("state");
-      changeSoftwareAppSection("", false);
+    if (pathname === "/dashboard/tickets") {
+      if (!isEmpty(tickets)) {
+        const list = filter(tickets, {
+          duration: duration,
+          area_parent: value,
+          area_level: "district",
+        });
+        setFilterList(list);
+      }
+    } else {
+      if (!isEmpty(deviceData)) {
+        const list = filter(deviceData, {
+          duration: duration,
+          area_parent: value,
+          area_level: "district",
+        });
+        setFilterList(list);
+      }
     }
+    changeArea(value);
+    changeAreaLevel("state");
+    showDistrictList(true);
+    changeView(false);
+    setFilterValue("state");
+    changeSoftwareAppSection("", false);
   };
 
-  const renderMap = () => {
-    const finalStateList = [];
-    if (!isEmpty(deviceCount)) {
-      const statesList = get(deviceCount, "States");
+  const getCounts = (counts, finalStateList) => {
+    if (!isEmpty(counts)) {
+      const statesList = get(counts, "States");
       const difference = allStateList.filter(
         (obj1) => !statesList.some((obj2) => obj1.name === obj2.CategoryName)
       );
@@ -46,7 +61,7 @@ const MapView = (props) => {
         statesList.map((list) => {
           finalStateList.push({
             name: list.CategoryName,
-            deviceCount: list.TotalDevice,
+            count: list.TotalDevice,
             className:
               list.CategoryName === "Jammu and Kashmir"
                 ? "jammu"
@@ -64,6 +79,15 @@ const MapView = (props) => {
           });
         });
       }
+    }
+  };
+
+  const renderMap = () => {
+    const finalStateList = [];
+    if (pathname === "/dashboard/tickets") {
+      getCounts(ticketCount, finalStateList);
+    } else {
+      getCounts(deviceCount, finalStateList);
     }
     return (
       <div className="col-md-12">
@@ -86,7 +110,7 @@ const MapView = (props) => {
             >
               {list.name}
               <br />
-              <span>{list.deviceCount}</span>
+              <span>{list.count}</span>
             </div>
           );
         })}
@@ -100,6 +124,8 @@ const MapView = (props) => {
 const mapStateToProps = (state) => ({
   deviceCount: state.dashboardReducer.deviceCount,
   deviceData: state.dashboardReducer.deviceData,
+  ticketCount: state.dashboardReducer.ticketCount,
+  tickets: state.dashboardReducer.tickets,
 });
 
 export default connect(mapStateToProps, {})(MapView);
