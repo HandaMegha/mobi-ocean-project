@@ -442,7 +442,7 @@ const ListView = (props) => {
               />
             ) : (
               <>
-                {!isEmpty(filterList) ? (
+                {isEmpty(filterList) ? (
                   <>
                     <div className="row">
                       {getSearchBar()}
@@ -460,6 +460,7 @@ const ListView = (props) => {
                             to={{
                               pathname: "/dashboard/tickets/activetickets",
                             }}
+                            state={area}
                           >
                             <button className="ticketBtn">
                               View all tickets
