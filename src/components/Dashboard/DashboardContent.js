@@ -23,6 +23,7 @@ const DashboardContent = (props) => {
   const [showDistrict, setShowDistrict] = useState(false);
   const [showSoftwareTable, setShowSoftwareTable] = useState(false);
   const [softwareTableData, setSoftwareTableData] = useState("");
+  const [areaParent, setAreaParent] = useState("");
   const location = useLocation();
   const { pathname } = location;
 
@@ -98,6 +99,10 @@ const DashboardContent = (props) => {
     setShowDistrict(val);
   };
 
+  const changeAreaParent = (val) => {
+    setAreaParent(val);
+  };
+
   const changeSoftwareAppSection = (data, val) => {
     setShowSoftwareTable(val);
     setSoftwareTableData(data);
@@ -117,6 +122,10 @@ const DashboardContent = (props) => {
               ? "tickets"
               : "active tickets"
           }
+          filterValue={filterValue}
+          area={area}
+          showDistrict={showDistrict}
+          areaParent={areaParent}
         />
         {pathname === "/dashboard/tickets/activetickets" ? (
           <ActiveTicket />
@@ -139,6 +148,8 @@ const DashboardContent = (props) => {
               areaLevel={areaLevel}
               setFilterValue={setFilterValue}
               changeSoftwareAppSection={changeSoftwareAppSection}
+              areaParent={areaParent}
+              changeAreaParent={changeAreaParent}
             />
             {pathname === "/" || pathname === "/dashboard" ? (
               <>

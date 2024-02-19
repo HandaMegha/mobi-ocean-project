@@ -191,7 +191,6 @@ const ActiveTicket = (props) => {
               <th>Close Date</th>
               <th>City</th>
               <th>Status</th>
-              <th></th>
             </tr>
           </thead>
           {filteredData &&
@@ -200,7 +199,14 @@ const ActiveTicket = (props) => {
                 <tbody key={index}>
                   <tr>
                     <td>{list.device_no}</td>
-                    <td>{list.ticket_no}</td>
+                    <td>
+                      <button
+                        className="detailsBtn"
+                        onClick={() => handleClick(index)}
+                      >
+                        {list.ticket_no}
+                      </button>
+                    </td>
                     <td>{list.customer_name}</td>
                     <td>{list.created_date}</td>
                     <td>{list.close_date}</td>
@@ -214,14 +220,6 @@ const ActiveTicket = (props) => {
                         }
                       >
                         {list.status === "open" ? "Active" : "Closed"}
-                      </button>
-                    </td>
-                    <td>
-                      <button
-                        className="detailsBtn"
-                        onClick={() => handleClick(index)}
-                      >
-                        Details
                       </button>
                     </td>
                   </tr>

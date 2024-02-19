@@ -17,7 +17,7 @@ const SoftwareUpdateTable = (props) => {
         filteredData = filter(deviceAppData, {
           area_parent: area,
           duration: softwareTableData.duration,
-          app_name: softwareTableData.app_name,
+          // app_name: softwareTableData.app_name,
         });
 
         if (isEmpty(filteredData)) {
@@ -49,7 +49,9 @@ const SoftwareUpdateTable = (props) => {
                       <tbody key={index}>
                         <tr>
                           <td>{list.area}</td>
-                          <td>{list.total_device_count.toLocaleString()}</td>
+                          <td style={{ backgroundColor: "#e2e8fe" }}>
+                            {list.total_device_count.toLocaleString()}
+                          </td>
                           <td>{list.pushed_device_count.toLocaleString()}</td>
                           <td>
                             {list.installed_device_count.toLocaleString()}
@@ -80,11 +82,14 @@ const SoftwareUpdateTable = (props) => {
             <h5 className="card-title fw-semibold text-center">
               Software Data
             </h5>
-            <p className="ac2 text-center" style={{ color: "#1DB636" }}>{`${
+            <p
+              className="ac2 text-center"
+              style={{ color: "#1DB636" }}
+            >{`${area} Total Count: ${
               isEmpty(softwareTableData)
                 ? 0
                 : softwareTableData.total_device_count.toLocaleString()
-            } total count`}</p>
+            }`}</p>
           </div>
         </div>
         <button

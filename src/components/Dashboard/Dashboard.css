@@ -1333,10 +1333,11 @@ device_box {
 /* card 3 */
 
 .backBtn {
-  float: right;
+  float: left;
   margin-top: 12px;
   position: relative;
   margin-bottom: 20px;
+  margin-top: -45px;
 }
 
 .backBtn,

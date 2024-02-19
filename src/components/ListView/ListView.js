@@ -25,10 +25,11 @@ const ListView = (props) => {
     setFilterValue,
     changeSoftwareAppSection,
     tickets,
+    areaParent,
+    changeAreaParent,
   } = props;
   const [searchItem, setSearchItem] = useState("");
   const [searchedList, setSearchedList] = useState(filterList);
-  const [areaParent, setAreaParent] = useState("");
   const location = useLocation();
   const { pathname } = location;
 
@@ -55,7 +56,7 @@ const ListView = (props) => {
     if (showDistrict) {
       changeArea(list.area);
       changeAreaLevel(list.area_level);
-      setAreaParent(list.area_parent);
+      changeAreaParent(list.area_parent);
     } else {
       changeArea(list.CategoryName);
     }
