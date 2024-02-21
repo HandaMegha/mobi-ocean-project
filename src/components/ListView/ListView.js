@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { durationValues, filterValues } from "../Dashboard/DashboardConstant";
 import MapView from "../MapView/MapView";
-import { isEmpty, toLower, find, filter } from "lodash";
+import { isEmpty, find, filter } from "lodash";
 import { connect } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 
@@ -27,28 +27,41 @@ const ListView = (props) => {
     tickets,
     areaParent,
     changeAreaParent,
+    addBreadcrumbs,
   } = props;
   const [searchItem, setSearchItem] = useState("");
-  const [searchedList, setSearchedList] = useState(filterList);
+  const [searchedList, setSearchedList] = useState("");
   const location = useLocation();
   const { pathname } = location;
+
+  useEffect(() => {
+    setSearchedList(filterList);
+  }, [filterList]);
+
+  const filterByDistrict = (input, nameArray) => {
+    return nameArray.filter((name) =>
+      name.area.toLowerCase().includes(input.toLowerCase())
+    );
+  };
+
+  const filterByName = (input, nameArray) => {
+    return nameArray.filter((name) =>
+      name.CategoryName.toLowerCase().includes(input.toLowerCase())
+    );
+  };
 
   const handleSearch = (value) => {
     setSearchItem(value);
 
-    // const list = searchedList.filter((item) => {
-    //   console.log("aa", item.CategoryName);
-    //   console.log("bb", toLower(item.CategoryName));
-    //   console.log("cc", toLower(value));
-    //   console.log("ww", value);
-    //   if(toLower(item.CategoryName) === toLower(value)){
-    //     console.log("in iff")
-    //   }
-    // });
-    // console.log("list", list);
-    // setSearchedList((prevSearchedList) => {
-    //   return prevSearchedList.filter(item => toLower(item.CategoryName) === value(value))
-    // });
+    if (showDistrict) {
+      const newList = [...filterList];
+      const filteredList = filterByDistrict(value, newList);
+      setSearchedList(filteredList);
+    } else {
+      const newList = [...filterList];
+      const filteredList = filterByName(value, newList);
+      setSearchedList(filteredList);
+    }
   };
 
   const showDistrictGraph = (list) => {
@@ -57,8 +70,10 @@ const ListView = (props) => {
       changeArea(list.area);
       changeAreaLevel(list.area_level);
       changeAreaParent(list.area_parent);
+      addBreadcrumbs(list.area);
     } else {
       changeArea(list.CategoryName);
+      addBreadcrumbs(list.CategoryName);
     }
   };
 
@@ -84,6 +99,7 @@ const ListView = (props) => {
 
   const onChange = (value) => {
     changeDuration(value);
+    setSearchItem("");
     if (pathname === "/dashboard/tickets") {
       calculateListData(tickets, value);
     } else {
@@ -99,7 +115,9 @@ const ListView = (props) => {
           id="stateSearch"
           className="searchInput"
           placeholder={
-            filterValue === "state"
+            showDistrict
+              ? "Search by district"
+              : filterValue === "state"
               ? "Search by state"
               : "Search by organization"
           }
@@ -145,7 +163,7 @@ const ListView = (props) => {
   };
 
   const getTable = () => {
-    return isEmpty(filterList) ? (
+    return isEmpty(searchedList) ? (
       <div className="emptyTable">
         {showDistrict
           ? "No District Available"
@@ -167,8 +185,8 @@ const ListView = (props) => {
             <th>Active devices</th>
           </tr>
         </thead>
-        {filterList &&
-          filterList.map((list, index) => {
+        {searchedList &&
+          searchedList.map((list, index) => {
             return (
               <tbody key={index}>
                 <tr
@@ -194,7 +212,7 @@ const ListView = (props) => {
   };
 
   const getTicketTable = () => {
-    return isEmpty(filterList) ? (
+    return isEmpty(searchedList) ? (
       <div className="emptyTable">
         {showDistrict
           ? "No District Available"
@@ -222,8 +240,8 @@ const ListView = (props) => {
             ) : null}
           </tr>
         </thead>
-        {filterList &&
-          filterList.map((list, index) => {
+        {searchedList &&
+          searchedList.map((list, index) => {
             return (
               <tbody key={index}>
                 <tr
@@ -431,25 +449,40 @@ const ListView = (props) => {
               )}
             </div>
             {listView ? (
-              <MapView
-                changeArea={changeArea}
-                changeAreaLevel={changeAreaLevel}
-                showDistrictList={showDistrictList}
-                changeView={changeView}
-                duration={duration}
-                setFilterList={setFilterList}
-                setFilterValue={setFilterValue}
-                changeSoftwareAppSection={changeSoftwareAppSection}
-              />
+              <>
+                <div className="mb-3 mb-sm-0">
+                  <Link
+                    to={{
+                      pathname: "/dashboard/tickets/activetickets",
+                    }}
+                    state={area}
+                  >
+                    <button className="ticketBtn ticketMapBtn">
+                      View all tickets
+                    </button>
+                  </Link>
+                </div>
+                <MapView
+                  changeArea={changeArea}
+                  changeAreaLevel={changeAreaLevel}
+                  showDistrictList={showDistrictList}
+                  changeView={changeView}
+                  duration={duration}
+                  setFilterList={setFilterList}
+                  setFilterValue={setFilterValue}
+                  changeSoftwareAppSection={changeSoftwareAppSection}
+                  addBreadcrumbs={addBreadcrumbs}
+                />
+              </>
             ) : (
               <>
                 {isEmpty(filterList) ? (
-                  <>
-                    <div className="row">
-                      {getSearchBar()}
-                      {getDropdowns()}
-                    </div>
-                    {pathname === "/dashboard/tickets" && showDistrict ? (
+                  pathname === "/dashboard/tickets" && showDistrict ? (
+                    <>
+                      <div className="row">
+                        {getSearchBar()}
+                        {getDropdowns()}
+                      </div>
                       <div className="row">
                         <div className="col-md-6">
                           <h4 className="tableheading">
@@ -469,9 +502,14 @@ const ListView = (props) => {
                           </Link>
                         </div>
                       </div>
-                    ) : null}
-                  </>
-                ) : null}
+                    </>
+                  ) : null
+                ) : (
+                  <div className="row">
+                    {getSearchBar()}
+                    {getDropdowns()}
+                  </div>
+                )}
                 <div className="tableList">
                   {pathname === "/dashboard/tickets"
                     ? getTicketTable()

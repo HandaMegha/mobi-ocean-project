@@ -19,6 +19,7 @@ const MapView = (props) => {
     setFilterValue,
     changeSoftwareAppSection,
     tickets,
+    addBreadcrumbs,
   } = props;
   const location = useLocation();
   const { pathname } = location;
@@ -49,6 +50,7 @@ const MapView = (props) => {
     changeView(false);
     setFilterValue("state");
     changeSoftwareAppSection("", false);
+    addBreadcrumbs(value);
   };
 
   const getCounts = (counts, finalStateList) => {

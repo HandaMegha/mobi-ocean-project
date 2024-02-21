@@ -1333,14 +1333,19 @@ device_box {
 /* card 3 */
 
 .backBtn {
-  float: left;
+  float: right;
   margin-top: 12px;
   position: relative;
+}
+
+.backTicketBtn {
+  float: left;
   margin-bottom: 20px;
   margin-top: -45px;
 }
 
 .backBtn,
+.backTicketBtn,
 .detailsBtn,
 .ticketactive,
 .ticketclosed {
@@ -1364,6 +1369,11 @@ device_box {
   float: right;
   background: #32387d;
   margin-top: 18px;
+}
+
+.ticketMapBtn {
+  padding: 8px 14px 8px 29px;
+  margin-top: 0px;
 }
 
 .emptyTable {

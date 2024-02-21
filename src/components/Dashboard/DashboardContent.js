@@ -24,6 +24,7 @@ const DashboardContent = (props) => {
   const [showSoftwareTable, setShowSoftwareTable] = useState(false);
   const [softwareTableData, setSoftwareTableData] = useState("");
   const [areaParent, setAreaParent] = useState("");
+  const [breadcrumbs, setBreadcrumbs] = useState(["India"]);
   const location = useLocation();
   const { pathname } = location;
 
@@ -54,6 +55,7 @@ const DashboardContent = (props) => {
       setAreaLevel("country");
       setArea("India");
       setFilterValue("list_view");
+      addBreadcrumbs("List View");
     }
   };
 
@@ -63,6 +65,7 @@ const DashboardContent = (props) => {
     setShowDistrict(false);
     changeSoftwareAppSection("", false);
     setArea("India");
+    addBreadcrumbs(value);
     if (pathname === "/dashboard/tickets") {
       if (!isEmpty(ticketCount)) {
         if (value === "state") {
@@ -85,6 +88,7 @@ const DashboardContent = (props) => {
   const changeDuration = (value) => {
     setDuration(value);
     changeSoftwareAppSection("", false);
+    addBreadcrumbs(value);
   };
 
   const changeArea = (val) => {
@@ -108,24 +112,17 @@ const DashboardContent = (props) => {
     setSoftwareTableData(data);
   };
 
+  const addBreadcrumbs = (val) => {
+    setBreadcrumbs((oldvalue) => [...oldvalue, val]);
+  };
+
   return (
     <div className="body-wrapper">
       <div className="container-fluid">
         <Breadcrumb
           title="Dashboard"
-          subTitle={
-            pathname === "/" || pathname === "/dashboard"
-              ? ""
-              : pathname === "/dashboard/devices"
-              ? "devices"
-              : pathname === "/dashboard/tickets"
-              ? "tickets"
-              : "active tickets"
-          }
-          filterValue={filterValue}
-          area={area}
-          showDistrict={showDistrict}
-          areaParent={areaParent}
+          breadcrumbs={breadcrumbs}
+          addBreadcrumbs={addBreadcrumbs}
         />
         {pathname === "/dashboard/tickets/activetickets" ? (
           <ActiveTicket />
@@ -150,15 +147,22 @@ const DashboardContent = (props) => {
               changeSoftwareAppSection={changeSoftwareAppSection}
               areaParent={areaParent}
               changeAreaParent={changeAreaParent}
+              addBreadcrumbs={addBreadcrumbs}
             />
             {pathname === "/" || pathname === "/dashboard" ? (
               <>
                 <div className="col-lg-7">
                   <div className="row">
-                    <Link to={{ pathname: "/dashboard/tickets" }}>
+                    <Link
+                      to={{ pathname: "/dashboard/tickets" }}
+                      onClick={() => addBreadcrumbs("Tickets")}
+                    >
                       <TicketSection />
                     </Link>
-                    <Link to={{ pathname: "/dashboard/devices" }}>
+                    <Link
+                      to={{ pathname: "/dashboard/devices" }}
+                      onClick={() => addBreadcrumbs("Devices")}
+                    >
                       <DeviceSection
                         duration={duration}
                         areaLevel={areaLevel}

@@ -251,7 +251,10 @@ const ActiveTicket = (props) => {
                       </h5>
                     </div>
                   </div>
-                  <button className="backBtn" onClick={() => navigate(-1)}>
+                  <button
+                    className="backBtn backTicketBtn"
+                    onClick={() => navigate(-1)}
+                  >
                     Back
                   </button>
                   {renderTable()}
