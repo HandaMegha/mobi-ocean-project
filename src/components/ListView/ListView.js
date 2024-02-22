@@ -450,18 +450,20 @@ const ListView = (props) => {
             </div>
             {listView ? (
               <>
-                <div className="mb-3 mb-sm-0">
-                  <Link
-                    to={{
-                      pathname: "/dashboard/tickets/activetickets",
-                    }}
-                    state={area}
-                  >
-                    <button className="ticketBtn ticketMapBtn">
-                      View all tickets
-                    </button>
-                  </Link>
-                </div>
+                {pathname === "/dashboard/tickets" ? (
+                  <div className="mb-3 mb-sm-0">
+                    <Link
+                      to={{
+                        pathname: "/dashboard/tickets/activetickets",
+                      }}
+                      state={area}
+                    >
+                      <button className="ticketBtn ticketMapBtn">
+                        View all tickets
+                      </button>
+                    </Link>
+                  </div>
+                ) : null}
                 <MapView
                   changeArea={changeArea}
                   changeAreaLevel={changeAreaLevel}
@@ -476,13 +478,13 @@ const ListView = (props) => {
               </>
             ) : (
               <>
+                <div className="row">
+                  {getSearchBar()}
+                  {getDropdowns()}
+                </div>
                 {isEmpty(filterList) ? (
                   pathname === "/dashboard/tickets" && showDistrict ? (
                     <>
-                      <div className="row">
-                        {getSearchBar()}
-                        {getDropdowns()}
-                      </div>
                       <div className="row">
                         <div className="col-md-6">
                           <h4 className="tableheading">
@@ -504,13 +506,18 @@ const ListView = (props) => {
                       </div>
                     </>
                   ) : null
-                ) : (
-                  <div className="row">
-                    {getSearchBar()}
-                    {getDropdowns()}
-                  </div>
-                )}
-                <div className="tableList">
+                ) : null}
+                <div
+                  className={`tableList ${
+                    showDistrict
+                      ? pathname === "/dashboard/tickets"
+                        ? "tablesList"
+                        : ""
+                      : pathname === "/dashboard/tickets"
+                      ? "tableHeight"
+                      : "tableListHeight"
+                  }`}
+                >
                   {pathname === "/dashboard/tickets"
                     ? getTicketTable()
                     : getTable()}

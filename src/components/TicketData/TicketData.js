@@ -30,24 +30,28 @@ const TicketData = (props) => {
       });
     }
     return (
-      <div className="col-lg-12 col-md-12">
-        <div className="card speed_sc graphContainer">
-          <div className="card-body">
-            <div className=" align-items-start">
-              <div className="col-12">
-                <div className="row">
-                  <div className="d-block align-items-center justify-content-between mb-9">
-                    <div className="mb-3 mb-sm-0">
-                      <h5 className="card-title fw-semibold text-center">
-                        {!isEmpty(filteredTicketData)
-                          ? `Top ${filteredTicketData.length} issues raised in duration`
-                          : `No issues raised in duration`}
-                      </h5>
+      <div className="col-lg-12">
+        <div className="row">
+          <div className="col-lg-12 col-md-12">
+            <div className="card speed_sc graphContainer">
+              <div className="card-body">
+                <div className=" align-items-start">
+                  <div className="col-12">
+                    <div className="row">
+                      <div className="d-block align-items-center justify-content-between mb-9">
+                        <div className="mb-3 mb-sm-0">
+                          <h5 className="card-title fw-semibold text-center">
+                            {!isEmpty(filteredTicketData)
+                              ? `Top ${filteredTicketData.length} issues raised in duration`
+                              : `No issues raised in duration`}
+                          </h5>
+                        </div>
+                      </div>
+                      {!isEmpty(filteredTicketData)
+                        ? calculateGraphData(filteredTicketData)
+                        : null}
                     </div>
                   </div>
-                  {!isEmpty(filteredTicketData)
-                    ? calculateGraphData(filteredTicketData)
-                    : null}
                 </div>
               </div>
             </div>

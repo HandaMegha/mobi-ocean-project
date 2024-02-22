@@ -144,7 +144,13 @@ const DeviceSection = (props) => {
       <div className="card speed_sc">
         <div
           className={`${
-            pathname === "/dashboard/devices" ? "dev_dt3" : "dev_dt1"
+            pathname === "/dashboard"
+              ? "dev_dt1"
+              : pathname === "/dashboard/devices"
+              ? "dev_dt2"
+              : pathname === "/dashboard/tickets"
+              ? "dev_dt3"
+              : ""
           } card-body`}
         >
           <div className=" align-items-start">

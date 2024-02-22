@@ -100,7 +100,11 @@ const TicketSection = () => {
                 </>
               ) : null}
               <div className="col-md-12">
-                <div className="map2 th1">
+                <div
+                  className={`map2 ${
+                    pathname === "/dashboard/tickets" ? "th2" : "th1"
+                  }`}
+                >
                   <TicketGraph />
                 </div>
               </div>

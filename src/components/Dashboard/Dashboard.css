@@ -1235,18 +1235,8 @@ device_box {
 /* card 2 */
 
 /* card 3 */
-.dev_dt1 {
-  height: 447px;
-}
-.dev_dt2 {
-  height: 315px;
-}
-.dev_dt3 {
-  height: 505px;
-}
 .card.speed_sc {
   margin-bottom: 20px;
-  /* margin-top: 8px; */
 }
 
 .fs-3 {
@@ -1388,7 +1378,6 @@ device_box {
 }
 
 .tableList {
-  height: 450px;
   overflow-y: auto;
   scrollbar-width: thin;
   /* margin-top: 15px; */
@@ -1604,98 +1593,139 @@ device_box {
   padding-left: 0;
 }
 
-@media (max-width: 1366px) {
+@media screen and (max-width: 1366px) {
   .topbar {
     width: 1052px !important;
   }
-
   .wscreen {
     width: 104% !important;
   }
-
   .th1 {
-    height: 177px !important;
+    height: 172px !important;
   }
-
+  .th2 {
+    height: 232px !important;
+  }
   .dev_dt1 {
-    height: 374px !important;
+    height: 368px !important;
   }
-
+  .dev_dt2 {
+    height: 366px !important;
+  }
+  .dev_dt3 {
+    height: 422px !important;
+  }
+  .dev_dt4 {
+    height: 504px !important;
+  }
+  .tableList {
+    height: 372px !important;
+  }
+  .tablesList {
+    height: 336px !important;
+  }
+  .tableListHeight {
+    height: 394px !important;
+  }
+  .tableHeight {
+    height: 428px !important;
+  }
   .radiobtns {
     width: 100%;
   }
-
   .col-box1,
   .col-box2 {
     width: 110%;
   }
-
   .col-box3 {
     width: 112%;
   }
-
-  .tableList {
-    height: 382px !important;
-  }
-
-  .dev_dt3 {
-    height: 436px !important;
-  }
-
   .map2 {
     margin-top: 0;
   }
 }
 
-@media (max-width: 1920px) {
-  .wscreen {
-    width: 102%;
+@media screen and (min-width: 1440px) {
+  .topbar {
+    width: 1124px !important;
   }
+  .wscreen {
+    width: 103% !important;
+  }
+  .th1 {
+    height: 194px !important;
+  }
+  .th2 {
+    height: 260px !important;
+  }
+  .dev_dt1 {
+    height: 398px !important;
+  }
+  .dev_dt2 {
+    height: 400px !important;
+  }
+  .dev_dt3 {
+    height: 466px !important;
+  }
+  .dev_dt4 {
+    height: 504px !important;
+  }
+  .tableList {
+    height: 404px !important;
+  }
+  .tablesList {
+    height: 392px !important;
+  }
+  .tableListHeight {
+    height: 424px !important;
+  }
+  .tableHeight {
+    height: 472px !important;
+  }
+}
 
+@media screen and (max-width: 1920px) {
+  .wscreen {
+    width: 102% !important;
+  }
   .th1 {
     height: 240px;
   }
-
-  /* .tableList {
-    height: 438px;
-  } */
-
+  .th2 {
+    height: 300px;
+  }
+  .dev_dt1 {
+    height: 446px;
+  }
+  .dev_dt2 {
+    height: 444px;
+  }
+  .dev_dt3 {
+    height: 506px;
+  }
+  .dev_dt4 {
+    height: 504px;
+  }
+  .tableList {
+    height: 450px;
+  }
+  .tablesList {
+    height: 434px;
+  }
+  .tableListHeight {
+    height: 470px;
+  }
+  .tableHeight {
+    height: 510px;
+  }
   .radiobtns {
     width: 100%;
   }
-
   .col-box1,
   .col-box2 {
     width: 110%;
   }
-
   .col-box3 {
     width: 112%;
-  }
-}
-
-@media (max-width: 1440px) {
-  .topbar {
-    width: 1124px !important;
-  }
-
-  .th1 {
-    height: 221px !important;
-  }
-
-  .dev_dt1 {
-    height: 426px !important;
-  }
-
-  .wscreen {
-    width: 103% !important;
-  }
-
-  .dev_dt3 {
-    height: 436px !important;
-  }
-
-  .tableList {
-    height: 418px !important;
   }
 }
