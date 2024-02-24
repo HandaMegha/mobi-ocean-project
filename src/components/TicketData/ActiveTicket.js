@@ -11,10 +11,11 @@ const ActiveTicket = (props) => {
     getTicketData,
     ticketData,
     addBreadcrumbs,
+    stateValue,
   } = props;
-  const location = useLocation();
   const navigate = useNavigate();
-  const { state } = location;
+  const location = useLocation();
+  const { pathname } = location;
   const [isOpen, setIsOpen] = useState(false);
   const [accordianId, setAccordianId] = useState();
   const [activeTab, setActiveTab] = useState("activeticket");
@@ -35,7 +36,9 @@ const ActiveTicket = (props) => {
 
   const handleChange = () => {
     navigate(-1);
-    addBreadcrumbs("tickets");
+    if (pathname === "/dashboard/tickets") {
+      addBreadcrumbs("tickets");
+    }
   };
 
   const changeActiveTab = (val) => {
@@ -189,7 +192,7 @@ const ActiveTicket = (props) => {
     } else {
       let filteredData = [];
       filteredData = filter(ticketList, {
-        area: state,
+        area: stateValue,
       });
       return (
         <table id="tableListId" className="table-no-border">
@@ -282,6 +285,7 @@ const ActiveTicket = (props) => {
 const mapStateToProps = (state) => ({
   ticketList: state.dashboardReducer.ticketList,
   ticketData: state.dashboardReducer.ticketData,
+  stateValue: state.dashboardReducer.stateValue,
 });
 
 const mapDispatchToProps = {

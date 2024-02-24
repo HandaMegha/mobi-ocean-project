@@ -8,6 +8,7 @@ import {
   GET_TICKET_TOP_ISSUES_REQUEST,
   GET_TICKET_LIST_REQUEST,
   GET_TICKET_DATA_REQUEST,
+  SAVE_STATE,
 } from "../constants/DashboardConstants";
 
 export const getToken = () => {
@@ -61,5 +62,12 @@ export const getTicketList = () => {
 export const getTicketData = () => {
   return {
     type: GET_TICKET_DATA_REQUEST,
+  };
+};
+
+export const saveStateValue = (val) => {
+  return {
+    type: SAVE_STATE,
+    val,
   };
 };

@@ -26,6 +26,7 @@ import {
   GET_TICKET_DATA_REQUEST,
   GET_TICKET_DATA_SUCCESS,
   GET_TICKET_DATA_ERROR,
+  SAVE_STATE,
 } from "../constants/DashboardConstants";
 
 const initialState = {
@@ -48,6 +49,7 @@ const initialState = {
   ticketListError: "",
   ticketData: "",
   ticketDataError: "",
+  stateValue: "",
 };
 
 const dashboard = (state = initialState, action) => {
@@ -195,6 +197,11 @@ const dashboard = (state = initialState, action) => {
       return {
         ...state,
         ticketDataError: action.error,
+      };
+    case SAVE_STATE:
+      return {
+        ...state,
+        stateValue: action.val,
       };
     default:
       return state;

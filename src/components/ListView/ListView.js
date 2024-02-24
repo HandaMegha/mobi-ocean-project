@@ -4,6 +4,7 @@ import MapView from "../MapView/MapView";
 import { isEmpty, find, filter } from "lodash";
 import { connect } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
+import { saveStateValue } from "../../actions/DashboardActions";
 
 const ListView = (props) => {
   const {
@@ -28,6 +29,7 @@ const ListView = (props) => {
     areaParent,
     changeAreaParent,
     addBreadcrumbs,
+    saveStateValue,
   } = props;
   const [searchItem, setSearchItem] = useState("");
   const [searchedList, setSearchedList] = useState("");
@@ -392,6 +394,13 @@ const ListView = (props) => {
     );
   };
 
+  const saveData = () => {
+    if (window.location.pathname === "/dashboard/tickets/activetickets") {
+      addBreadcrumbs("All-tickets");
+    }
+    saveStateValue(area);
+  };
+
   return (
     <>
       <div className="col-lg-5 d-flex align-items-strech">
@@ -456,11 +465,10 @@ const ListView = (props) => {
                       to={{
                         pathname: "/dashboard/tickets/activetickets",
                       }}
-                      state={area}
                     >
                       <button
                         className="ticketBtn ticketMapBtn"
-                        onClick={() => addBreadcrumbs("All-tickets")}
+                        onClick={() => saveData()}
                       >
                         View all tickets
                       </button>
@@ -499,11 +507,10 @@ const ListView = (props) => {
                             to={{
                               pathname: "/dashboard/tickets/activetickets",
                             }}
-                            state={area}
                           >
                             <button
                               className="ticketBtn"
-                              onClick={() => addBreadcrumbs("All-tickets")}
+                              onClick={() => saveData()}
                             >
                               View all tickets
                             </button>
@@ -543,4 +550,8 @@ const mapStateToProps = (state) => ({
   tickets: state.dashboardReducer.tickets,
 });
 
-export default connect(mapStateToProps, {})(ListView);
+const mapDispatchToProps = {
+  saveStateValue,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListView);
