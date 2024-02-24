@@ -15,6 +15,7 @@ const DevicesData = (props) => {
     showSoftwareTable,
     changeSoftwareAppSection,
     softwareTableData,
+    addBreadcrumbs,
   } = props;
 
   const deviceCategories = [
@@ -188,6 +189,7 @@ const DevicesData = (props) => {
               softwareTableData={softwareTableData}
               area={area}
               changeSoftwareAppSection={changeSoftwareAppSection}
+              addBreadcrumbs={addBreadcrumbs}
             />
           )}
         </div>

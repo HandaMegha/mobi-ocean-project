@@ -119,13 +119,9 @@ const DashboardContent = (props) => {
   return (
     <div className="body-wrapper">
       <div className="container-fluid">
-        <Breadcrumb
-          title="Dashboard"
-          breadcrumbs={breadcrumbs}
-          addBreadcrumbs={addBreadcrumbs}
-        />
+        <Breadcrumb title="Dashboard" breadcrumbs={breadcrumbs} />
         {pathname === "/dashboard/tickets/activetickets" ? (
-          <ActiveTicket />
+          <ActiveTicket addBreadcrumbs={addBreadcrumbs} />
         ) : (
           <div className="row">
             <ListView
@@ -185,6 +181,7 @@ const DashboardContent = (props) => {
                         softwareTableData={softwareTableData}
                         area={area}
                         changeSoftwareAppSection={changeSoftwareAppSection}
+                        addBreadcrumbs={addBreadcrumbs}
                       />
                     )}
                   </div>
@@ -198,6 +195,7 @@ const DashboardContent = (props) => {
                 showSoftwareTable={showSoftwareTable}
                 changeSoftwareAppSection={changeSoftwareAppSection}
                 softwareTableData={softwareTableData}
+                addBreadcrumbs={addBreadcrumbs}
               />
             ) : (
               <TicketData

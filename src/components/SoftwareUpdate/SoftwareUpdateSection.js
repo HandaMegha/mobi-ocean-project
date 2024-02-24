@@ -115,13 +115,7 @@ const SoftwareUpdateSection = (props) => {
       <div className="card speed_sc graphContainer">
         <div
           className={`${
-            pathname === "/dashboard"
-              ? "dev_dt1"
-              : pathname === "/dashboard/devices"
-              ? "dev_dt2"
-              : pathname === "/dashboard/tickets"
-              ? "dev_dt3"
-              : ""
+            pathname === "/dashboard/devices" ? "dev_dt2" : ""
           } card-body`}
         >
           <div className=" align-items-start">

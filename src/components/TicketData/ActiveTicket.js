@@ -5,7 +5,13 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { filter, find, isEmpty } from "lodash";
 
 const ActiveTicket = (props) => {
-  const { getTicketList, ticketList, getTicketData, ticketData } = props;
+  const {
+    getTicketList,
+    ticketList,
+    getTicketData,
+    ticketData,
+    addBreadcrumbs,
+  } = props;
   const location = useLocation();
   const navigate = useNavigate();
   const { state } = location;
@@ -25,6 +31,11 @@ const ActiveTicket = (props) => {
     } else {
       setIsOpen(true);
     }
+  };
+
+  const handleChange = () => {
+    navigate(-1);
+    addBreadcrumbs("tickets");
   };
 
   const changeActiveTab = (val) => {
@@ -253,7 +264,7 @@ const ActiveTicket = (props) => {
                   </div>
                   <button
                     className="backBtn backTicketBtn"
-                    onClick={() => navigate(-1)}
+                    onClick={() => handleChange()}
                   >
                     Back
                   </button>

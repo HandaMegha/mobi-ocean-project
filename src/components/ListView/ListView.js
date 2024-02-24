@@ -458,7 +458,10 @@ const ListView = (props) => {
                       }}
                       state={area}
                     >
-                      <button className="ticketBtn ticketMapBtn">
+                      <button
+                        className="ticketBtn ticketMapBtn"
+                        onClick={() => addBreadcrumbs("All-tickets")}
+                      >
                         View all tickets
                       </button>
                     </Link>
@@ -498,7 +501,10 @@ const ListView = (props) => {
                             }}
                             state={area}
                           >
-                            <button className="ticketBtn">
+                            <button
+                              className="ticketBtn"
+                              onClick={() => addBreadcrumbs("All-tickets")}
+                            >
                               View all tickets
                             </button>
                           </Link>

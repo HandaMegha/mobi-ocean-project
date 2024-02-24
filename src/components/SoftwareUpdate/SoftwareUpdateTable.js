@@ -1,12 +1,22 @@
 import { filter, isEmpty } from "lodash";
+import { useEffect } from "react";
 import { connect } from "react-redux";
 import { useLocation } from "react-router-dom";
 
 const SoftwareUpdateTable = (props) => {
-  const { softwareTableData, deviceAppData, area, changeSoftwareAppSection } =
-    props;
+  const {
+    softwareTableData,
+    deviceAppData,
+    area,
+    changeSoftwareAppSection,
+    addBreadcrumbs,
+  } = props;
   const location = useLocation();
   const { pathname } = location;
+
+  useEffect(() => {
+    addBreadcrumbs("software-data");
+  }, []);
 
   const renderTable = () => {
     if (isEmpty(softwareTableData)) {
@@ -114,13 +124,7 @@ const SoftwareUpdateTable = (props) => {
       <div className="card speed_sc graphContainer">
         <div
           className={`${
-            pathname === "/dashboard"
-              ? "dev_dt1"
-              : pathname === "/dashboard/devices"
-              ? "dev_dt2"
-              : pathname === "/dashboard/tickets"
-              ? "dev_dt3"
-              : ""
+            pathname === "/dashboard/devices" ? "dev_dt2" : ""
           } card-body`}
         >
           <div className=" align-items-start">{renderSoftwareData()}</div>

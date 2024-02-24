@@ -1593,7 +1593,7 @@ device_box {
   padding-left: 0;
 }
 
-@media screen and (max-width: 1366px) {
+@media screen and (min-width: 1366px) and (max-width: 1366px) {
   .topbar {
     width: 1052px !important;
   }
@@ -1645,7 +1645,7 @@ device_box {
   }
 }
 
-@media screen and (min-width: 1440px) {
+@media screen and (min-width: 1440px) and (max-width: 1440px) {
   .topbar {
     width: 1124px !important;
   }
