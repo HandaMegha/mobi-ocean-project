@@ -1523,6 +1523,30 @@ device_box {
   margin-top: 6px;
 }
 
+.graphContainer {
+  overflow-y: scroll;
+  scrollbar-width: thin;
+}
+
+.highcharts-title {
+  font-size: 2rem !important;
+  position: relative;
+  white-space: nowrap;
+}
+
+.mt-15 {
+  margin-top: 15px;
+}
+
+.mt-5 {
+  margin-top: 5px;
+}
+
+.padding-0 {
+  padding-left: 0;
+}
+
+/*Loader CSS*/
 .loader {
   width: 100px;
   height: 100px;
@@ -1570,29 +1594,7 @@ device_box {
   }
 }
 
-.graphContainer {
-  overflow-y: scroll;
-  scrollbar-width: thin;
-}
-
-.highcharts-title {
-  font-size: 2rem !important;
-  position: relative;
-  white-space: nowrap;
-}
-
-.mt-15 {
-  margin-top: 15px;
-}
-
-.mt-5 {
-  margin-top: 5px;
-}
-
-.padding-0 {
-  padding-left: 0;
-}
-
+/*Media Query*/
 @media screen and (min-width: 1366px) and (max-width: 1366px) {
   .topbar {
     width: 1052px !important;

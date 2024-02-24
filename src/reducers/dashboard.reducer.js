@@ -86,71 +86,86 @@ const dashboard = (state = initialState, action) => {
     case GET_DEVICE_DATA_REQUEST:
       return {
         ...state,
+        loading: true,
       };
     case GET_DEVICE_DATA_SUCCESS:
       return {
         ...state,
+        loading: false,
         deviceData: action.data,
       };
     case GET_DEVICE_DATA_ERROR:
       return {
         ...state,
+        loading: false,
         deviceDataError: action.error,
       };
     case GET_DEVICE_APP_DATA_REQUEST:
       return {
         ...state,
+        loading: true,
       };
     case GET_DEVICE_APP_DATA_SUCCESS:
       return {
         ...state,
+        loading: false,
         deviceAppData: action.data,
       };
     case GET_DEVICE_APP_DATA_ERROR:
       return {
         ...state,
+        loading: false,
         deviceAppDataError: action.error,
       };
     case GET_TICKET_COUNT_REQUEST:
       return {
         ...state,
+        loading: true,
       };
     case GET_TICKET_COUNT_SUCCESS:
       return {
         ...state,
+        loading: false,
         ticketCount: action.data,
       };
     case GET_TICKET_COUNT_ERROR:
       return {
         ...state,
+        loading: false,
         ticketCountError: action.error,
       };
     case GET_TICKETS_REQUEST:
       return {
         ...state,
+        loading: true,
       };
     case GET_TICKETS_SUCCESS:
       return {
         ...state,
+        loading: false,
         tickets: action.data,
       };
     case GET_TICKETS_ERROR:
       return {
         ...state,
+        loading: false,
         ticketsError: action.error,
       };
     case GET_TICKET_TOP_ISSUES_REQUEST:
       return {
         ...state,
+        loading: true,
       };
     case GET_TICKET_TOP_ISSUES_SUCCESS:
       return {
         ...state,
+        loading: false,
         ticketTopIssues: action.data,
       };
     case GET_TICKET_TOP_ISSUES_ERROR:
       return {
         ...state,
+        loading: false,
         ticketTopIssuesError: action.error,
       };
     case GET_TICKET_LIST_REQUEST:

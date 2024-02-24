@@ -49,8 +49,7 @@ const Dashboard = (props) => {
       <Sidebar />
       <div className="page-wrapper">
         <Header />
-        <DashboardContent />
-        {/* {loading ? (
+        {loading ? (
           <div className="loader" id="loader-1">
             <span></span>
             <span></span>
@@ -58,7 +57,7 @@ const Dashboard = (props) => {
           </div>
         ) : (
           <DashboardContent />
-        )} */}
+        )}
       </div>
     </div>
   );
