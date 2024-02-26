@@ -1596,9 +1596,6 @@ device_box {
 
 /*Media Query*/
 @media screen and (min-width: 1366px) and (max-width: 1366px) {
-  .topbar {
-    width: 1052px !important;
-  }
   .wscreen {
     width: 104% !important;
   }
@@ -1648,9 +1645,6 @@ device_box {
 }
 
 @media screen and (min-width: 1440px) and (max-width: 1440px) {
-  .topbar {
-    width: 1124px !important;
-  }
   .wscreen {
     width: 103% !important;
   }

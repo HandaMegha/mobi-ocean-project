@@ -13,19 +13,6 @@
 .topbar {
   text-align: center;
 }
-@media (min-width: 992px) {
-  .navbar-expand-lg {
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-  }
-}
-@media (min-width: 992px) {
-  .navbar-expand-lg .navbar-collapse {
-    display: flex !important;
-    flex-basis: auto;
-  }
-}
-
 .topbar .navbar {
   min-height: 70px;
 }
@@ -72,4 +59,27 @@
 .welcome-links {
   float: left;
   width: auto;
+}
+
+@media (min-width: 992px) {
+  .navbar-expand-lg {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+  }
+}
+@media (min-width: 992px) {
+  .navbar-expand-lg .navbar-collapse {
+    display: flex !important;
+    flex-basis: auto;
+  }
+}
+@media screen and (min-width: 1366px) and (max-width: 1366px) {
+  .topbar {
+    width: 1052px !important;
+  }
+}
+@media screen and (min-width: 1440px) and (max-width: 1440px) {
+  .topbar {
+    width: 1124px !important;
+  }
 }
