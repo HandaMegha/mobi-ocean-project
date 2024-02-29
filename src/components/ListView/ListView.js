@@ -290,7 +290,7 @@ const ListView = (props) => {
       });
     }
     return (
-      <div className="col-lg-7">
+      <div className="col-lg-7 padding-0">
         <div className=" card device_box">
           <div className="card-body">
             <div className=" align-items-center">

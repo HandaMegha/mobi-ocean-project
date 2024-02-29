@@ -137,7 +137,7 @@ const DeviceSection = (props) => {
         pathname === "/dashboard/devices"
           ? isEmpty(deviceAppData)
             ? "col-lg-12 col-md-12"
-            : "col-lg-6 col-md-6"
+            : "col-lg-6 col-md-6 padding-0"
           : "col-lg-5 col-md-5 padding-0"
       }
     >

@@ -10,7 +10,7 @@ const TicketSection = () => {
       className={`${
         pathname === "/dashboard/devices"
           ? "col-lg-12 col-md-12"
-          : "col-lg-7 col-md-7"
+          : "col-lg-7 col-md-7 padding-0"
       }`}
     >
       <div className="card">

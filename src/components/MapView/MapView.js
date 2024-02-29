@@ -93,12 +93,7 @@ const MapView = (props) => {
     }
     return (
       <div className="col-md-12">
-        <img
-          className="vw1"
-          src="/images/Map.png"
-          alt="map"
-          style={{ width: "100%", height: "100%" }}
-        />{" "}
+        <img className="vw1" src="/images/Map.png" alt="map" />{" "}
         {finalStateList.map((list, index) => {
           return (
             <div
