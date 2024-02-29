@@ -12,7 +12,7 @@ class DeviceSectionGraph extends Component {
     }
     const options = {
       chart: {
-        height: 300,
+        height: 250,
       },
       title: {
         text: "",
