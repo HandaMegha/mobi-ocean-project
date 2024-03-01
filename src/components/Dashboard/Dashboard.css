@@ -1713,23 +1713,23 @@ device_box {
 /*Media Query*/
 @media screen and (min-width: 1366px) and (max-width: 1366px) {
   .th1 {
-    height: 172px !important;
+    height: 164px !important;
   }
 
   .th2 {
-    height: 232px !important;
+    height: 228px !important;
   }
 
   .dev_dt1 {
-    height: 368px !important;
+    height: 340px !important;
   }
 
   .dev_dt2 {
-    height: 366px !important;
+    height: 338px !important;
   }
 
   .dev_dt3 {
-    height: 422px !important;
+    height: 420px !important;
   }
 
   .dev_dt4 {
@@ -1737,19 +1737,19 @@ device_box {
   }
 
   .tableList {
-    height: 372px !important;
+    height: 364px !important;
   }
 
   .tablesList {
-    height: 336px !important;
+    height: 332px !important;
   }
 
   .tableListHeight {
-    height: 394px !important;
+    height: 384px !important;
   }
 
   .tableHeight {
-    height: 428px !important;
+    height: 424px !important;
   }
 
   .radiobtns {
@@ -1768,43 +1768,93 @@ device_box {
 
 @media screen and (min-width: 1440px) and (max-width: 1440px) {
   .th1 {
-    height: 194px !important;
+    height: 184px !important;
   }
 
   .th2 {
-    height: 260px !important;
+    height: 250px !important;
   }
 
   .dev_dt1 {
-    height: 398px !important;
+    height: 388px !important;
   }
 
   .dev_dt2 {
-    height: 400px !important;
+    height: 390px !important;
   }
 
   .dev_dt3 {
-    height: 466px !important;
+    height: 456px !important;
   }
 
   .dev_dt4 {
-    height: 504px !important;
+    height: 494px !important;
   }
 
   .tableList {
-    height: 404px !important;
+    height: 394px !important;
   }
 
   .tablesList {
-    height: 392px !important;
+    height: 382px !important;
   }
 
   .tableListHeight {
-    height: 424px !important;
+    height: 414px !important;
   }
 
   .tableHeight {
-    height: 472px !important;
+    height: 462px !important;
+  }
+}
+
+@media screen and (max-width: 1920px) {
+  .wscreen {
+    width: 100% !important;
+  }
+
+  .th1 {
+    height: 230px;
+  }
+
+  .th2 {
+    height: 290px;
+  }
+
+  .dev_dt1 {
+    height: 436px;
+  }
+
+  .dev_dt2 {
+    height: 434px;
+  }
+
+  .dev_dt3 {
+    height: 496px;
+  }
+
+  .dev_dt4 {
+    height: 494px;
+  }
+
+  .tableList {
+    height: 440px;
+  }
+
+  .tablesList {
+    height: 424px;
+  }
+
+  .tableListHeight {
+    height: 460px;
+  }
+
+  .tableHeight {
+    height: 500px;
+  }
+
+  .radiobtns {
+    width: 100%;
   }
 }
 
