@@ -195,57 +195,59 @@ const ActiveTicket = (props) => {
         area: stateValue,
       });
       return (
-        <table id="tableListId" className="table-no-border">
-          <thead>
-            <tr>
-              <th>Device No.</th>
-              <th>Ticket No.</th>
-              <th>Customer Name</th>
-              <th>Open Date</th>
-              <th>Close Date</th>
-              <th>City</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          {filteredData &&
-            filteredData.map((list, index) => {
-              return (
-                <tbody key={index}>
-                  <tr>
-                    <td>{list.device_no}</td>
-                    <td>
-                      <button
-                        className="detailsBtn"
-                        onClick={() => handleClick(index)}
-                      >
-                        {list.ticket_no}
-                      </button>
-                    </td>
-                    <td>{list.customer_name}</td>
-                    <td>{list.created_date}</td>
-                    <td>{list.close_date}</td>
-                    <td>{list.city}</td>
-                    <td>
-                      <button
-                        className={
-                          list.status === "open"
-                            ? "ticketactive"
-                            : "ticketclosed"
-                        }
-                      >
-                        {list.status === "open" ? "Active" : "Closed"}
-                      </button>
-                    </td>
-                  </tr>
-                  {isOpen && accordianId === index && (
+        <div className="table-responsive">
+          <table id="tableListId" className="table-no-border">
+            <thead>
+              <tr>
+                <th>Device No.</th>
+                <th>Ticket No.</th>
+                <th>Customer Name</th>
+                <th>Open Date</th>
+                <th>Close Date</th>
+                <th>City</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            {filteredData &&
+              filteredData.map((list, index) => {
+                return (
+                  <tbody key={index}>
                     <tr>
-                      <td colSpan="8">{renderTab(list.ticket_no)}</td>
+                      <td>{list.device_no}</td>
+                      <td>
+                        <button
+                          className="detailsBtn"
+                          onClick={() => handleClick(index)}
+                        >
+                          {list.ticket_no}
+                        </button>
+                      </td>
+                      <td>{list.customer_name}</td>
+                      <td>{list.created_date}</td>
+                      <td>{list.close_date}</td>
+                      <td>{list.city}</td>
+                      <td>
+                        <button
+                          className={
+                            list.status === "open"
+                              ? "ticketactive"
+                              : "ticketclosed"
+                          }
+                        >
+                          {list.status === "open" ? "Active" : "Closed"}
+                        </button>
+                      </td>
                     </tr>
-                  )}
-                </tbody>
-              );
-            })}
-        </table>
+                    {isOpen && accordianId === index && (
+                      <tr>
+                        <td colSpan="8">{renderTab(list.ticket_no)}</td>
+                      </tr>
+                    )}
+                  </tbody>
+                );
+              })}
+          </table>
+        </div>
       );
     }
   };

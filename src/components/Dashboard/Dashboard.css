@@ -1713,23 +1713,23 @@ device_box {
 /*Media Query*/
 @media screen and (min-width: 1366px) and (max-width: 1366px) {
   .th1 {
-    height: 164px !important;
+    height: 172px !important;
   }
 
   .th2 {
-    height: 228px !important;
+    height: 232px !important;
   }
 
   .dev_dt1 {
-    height: 340px !important;
+    height: 368px !important;
   }
 
   .dev_dt2 {
-    height: 338px !important;
+    height: 366px !important;
   }
 
   .dev_dt3 {
-    height: 420px !important;
+    height: 422px !important;
   }
 
   .dev_dt4 {
@@ -1737,19 +1737,19 @@ device_box {
   }
 
   .tableList {
-    height: 364px !important;
+    height: 372px !important;
   }
 
   .tablesList {
-    height: 332px !important;
+    height: 336px !important;
   }
 
   .tableListHeight {
-    height: 384px !important;
+    height: 394px !important;
   }
 
   .tableHeight {
-    height: 424px !important;
+    height: 428px !important;
   }
 
   .radiobtns {
@@ -1768,97 +1768,84 @@ device_box {
 
 @media screen and (min-width: 1440px) and (max-width: 1440px) {
   .th1 {
-    height: 184px !important;
+    height: 194px !important;
   }
 
   .th2 {
-    height: 250px !important;
+    height: 260px !important;
   }
 
   .dev_dt1 {
-    height: 388px !important;
+    height: 398px !important;
   }
 
   .dev_dt2 {
-    height: 390px !important;
+    height: 400px !important;
   }
 
   .dev_dt3 {
-    height: 456px !important;
+    height: 466px !important;
   }
 
   .dev_dt4 {
-    height: 494px !important;
+    height: 504px !important;
   }
 
   .tableList {
-    height: 394px !important;
+    height: 404px !important;
   }
 
   .tablesList {
-    height: 382px !important;
+    height: 392px !important;
   }
 
   .tableListHeight {
-    height: 414px !important;
+    height: 424px !important;
   }
 
   .tableHeight {
-    height: 462px !important;
+    height: 472px !important;
   }
 }
 
-@media screen and (max-width: 1920px) {
-  .wscreen {
-    width: 100% !important;
+@media screen and (max-width: 900px) {
+  #tableListId {
+    margin-top: 0px;
   }
 
-  .th1 {
-    height: 230px;
+  .viewBtn {
+    width: 100%;
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-bottom: 13px;
   }
 
-  .th2 {
-    height: 290px;
+  .ticketBtn.ticketMapBtn {
+    z-index: 99;
+    position: relative;
   }
 
-  .dev_dt1 {
-    height: 436px;
+  .d-sm-flex.d-block.align-items-center.justify-content-between.mb-9 {
+    display: inline !important;
   }
 
-  .dev_dt2 {
-    height: 434px;
+  .card-title {
+    margin-bottom: 11px;
   }
 
-  .dev_dt3 {
-    height: 496px;
+  .form-select.w-auto {
+    margin-bottom: 15px;
   }
 
-  .dev_dt4 {
-    height: 494px;
-  }
-
-  .tableList {
-    height: 440px;
-  }
-
-  .tablesList {
-    height: 424px;
-  }
-
-  .tableListHeight {
-    height: 460px;
-  }
-
-  .tableHeight {
-    height: 500px;
+  .padding-0 {
+    padding-left: 15px;
   }
 
   .radiobtns {
     width: 100%;
+    margin-top: 11px;
   }
-}
 
-@media screen and (max-width: 767px) {
   .page-wrapper {
     margin-left: 0px;
   }
