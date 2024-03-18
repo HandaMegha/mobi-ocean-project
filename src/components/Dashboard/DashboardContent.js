@@ -11,6 +11,7 @@ import Breadcrumb from "../Breadcrumb/Breadcrumb";
 import SoftwareUpdateTable from "../SoftwareUpdate/SoftwareUpdateTable";
 import TicketData from "../TicketData/TicketData";
 import ActiveTicket from "../TicketData/ActiveTicket";
+import TransactionSection from "../TransactionData/TransactionSection";
 
 const DashboardContent = (props) => {
   const { deviceCount, ticketCount } = props;
@@ -197,12 +198,14 @@ const DashboardContent = (props) => {
                 softwareTableData={softwareTableData}
                 addBreadcrumbs={addBreadcrumbs}
               />
-            ) : (
+            ) : pathname === "/dashboard/tickets" ? (
               <TicketData
                 duration={duration}
                 areaLevel={areaLevel}
                 area={area}
               />
+            ) : (
+              <TransactionSection />
             )}
           </div>
         )}

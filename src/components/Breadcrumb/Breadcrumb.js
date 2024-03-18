@@ -20,7 +20,9 @@ const Breadcrumb = (props) => {
             ? "Dashboard"
             : pathname === "/dashboard/devices"
             ? "Device Dashboard"
-            : "Ticket Dashboard"}
+            : pathname === "/dashboard/tickets"
+            ? "Ticket Dashboard"
+            : "Transaction Dashboard"}
         </li>
         <br />
         {breadcrumbs.map((item, index) => {
@@ -41,6 +43,8 @@ const Breadcrumb = (props) => {
                   ? "India-tickets"
                   : pathname === "/dashboard/tickets/activetickets"
                   ? "India-active-tickets"
+                  : pathname === "/dashboard/transactions"
+                  ? "India-transactions"
                   : item
                 : item}
             </li>

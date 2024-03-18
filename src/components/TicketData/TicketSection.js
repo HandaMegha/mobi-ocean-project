@@ -8,8 +8,11 @@ const TicketSection = () => {
   return (
     <div
       className={`${
-        pathname === "/dashboard/devices"
-          ? "col-lg-12 col-md-12"
+        pathname === "/dashboard/devices" ||
+        pathname === "/dashboard/transactions"
+          ? `col-lg-12 col-md-12 ${
+              pathname === "/dashboard/transactions" ? "padding-0" : ""
+            }`
           : "col-lg-7 col-md-7 padding-0"
       }`}
     >
@@ -22,12 +25,15 @@ const TicketSection = () => {
                   {pathname === "/dashboard/devices" ||
                   pathname === "/dashboard/tickets"
                     ? "Active device"
+                    : pathname === "/dashboard/transactions"
+                    ? "Transactions Data"
                     : "Ticket Data"}
                 </h5>
               </div>
             </div>
             {pathname === "/dashboard/devices" ||
-            pathname === "/dashboard/tickets" ? null : (
+            pathname === "/dashboard/tickets" ||
+            pathname === "/dashboard/transactions" ? null : (
               <div className="act_box w-auto">
                 <p className="ac1">
                   Active tickets <span>(unresolved)</span>
@@ -37,7 +43,8 @@ const TicketSection = () => {
             )}
             <div className="row">
               {pathname === "/dashboard/devices" ||
-              pathname === "/dashboard/tickets" ? null : (
+              pathname === "/dashboard/tickets" ||
+              pathname === "/dashboard/transactions" ? null : (
                 <>
                   <div className="col-md-6">
                     <div className="col-box-6">
@@ -58,7 +65,8 @@ const TicketSection = () => {
               <div className="col-md-12">
                 <div className="map2 text-center">
                   {pathname === "/dashboard/devices" ||
-                  pathname === "/dashboard/tickets" ? (
+                  pathname === "/dashboard/tickets" ||
+                  pathname === "/dashboard/transactions" ? (
                     <>
                       <p className="tm1">
                         Time over time comparative data (Active)
@@ -71,7 +79,8 @@ const TicketSection = () => {
                 </div>
               </div>
               {pathname === "/dashboard/devices" ||
-              pathname === "/dashboard/tickets" ? (
+              pathname === "/dashboard/tickets" ||
+              pathname === "/dashboard/transactions" ? (
                 <>
                   <div className="col-md-6">
                     <div className="select-box-6">
@@ -102,7 +111,11 @@ const TicketSection = () => {
               <div className="col-md-12">
                 <div
                   className={`map2 ${
-                    pathname === "/dashboard/tickets" ? "th2" : "th1"
+                    pathname === "/dashboard/tickets"
+                      ? "th2"
+                      : pathname === "/dashboard/transactions"
+                      ? "th3"
+                      : "th1"
                   }`}
                 >
                   <TicketGraph />

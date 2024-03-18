@@ -19,18 +19,20 @@ const sidebarMenu = [
     href: "/dashboard/devices",
     class: "active",
   },
-  // {
-  //   name: "Transactions",
-  //   imgUrl: "/icons/transactions.svg",
-  //   alt: "transactions",
-  //   href: "#",
-  // },
   {
     name: "Tickets",
     imgUrl: "/icons/tickets.svg",
     imgUrlActive: "/icons/tickets-white.svg",
     alt: "tickets",
     href: "/dashboard/tickets",
+    class: "active",
+  },
+  {
+    name: "Transactions",
+    imgUrl: "/icons/transactions.svg",
+    imgUrlActive: "/icons/transactions-white.svg",
+    alt: "transactions",
+    href: "/dashboard/transactions",
     class: "active",
   },
 ];

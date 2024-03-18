@@ -1,5 +1,4 @@
 import { call, put, takeLatest } from "redux-saga/effects";
-// import { history } from '../_helpers';
 import {
   GET_TOKEN_REQUEST,
   GET_TOKEN_SUCCESS,

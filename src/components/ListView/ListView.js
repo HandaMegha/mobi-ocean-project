@@ -347,7 +347,7 @@ const ListView = (props) => {
                     </div>
                   </div>
                 </div>
-              ) : (
+              ) : pathname === "/dashboard/tickets" ? (
                 <div className="row">
                   <div className="col-md-4">
                     <div className="col-box-6 col-boxt1">
@@ -382,6 +382,41 @@ const ListView = (props) => {
                             ? 0
                             : ticketSummaryCount.closed_tickets.toLocaleString()}
                         </span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div className="row">
+                  <div className="col-md-3">
+                    <div className="col-box-6 col-box1">
+                      <p>
+                        Lorem ipsum <br />
+                        <span>0</span>
+                      </p>
+                    </div>
+                  </div>
+                  <div className="col-md-3">
+                    <div className="col-box-6 col-box2">
+                      <p>
+                        Lorem ipsum <br />
+                        <span>0</span>
+                      </p>
+                    </div>
+                  </div>
+                  <div className="col-md-3">
+                    <div className="col-box-6 col-box3">
+                      <p>
+                        Lorem ipsum <br />
+                        <span>0</span>
+                      </p>
+                    </div>
+                  </div>
+                  <div className="col-md-3">
+                    <div className="col-box-6 col-box4">
+                      <p>
+                        Lorem ipsum <br />
+                        <span>0</span>
                       </p>
                     </div>
                   </div>

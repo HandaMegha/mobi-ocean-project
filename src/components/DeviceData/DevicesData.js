@@ -212,7 +212,7 @@ const DevicesData = (props) => {
               "warrantyExpiry"
             )}
           </div>
-          <div className="col-lg-4 col-md-4">
+          <div className="col-lg-4 col-md-4 padding-0">
             {renderGraphs(
               "RD service expiry",
               expiryCategories,

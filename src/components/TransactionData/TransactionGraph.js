@@ -4,22 +4,18 @@ import HighchartsReact from "highcharts-react-official";
 
 class TransactionGraph extends Component {
   render() {
+    const { height } = this.props;
     const options = {
       chart: {
         type: "bar",
-        height: 230,
+        height: height,
       },
       title: {
         text: "",
       },
       credits: { enabled: false },
       xAxis: {
-        categories: [
-          "Total Transaction Amount",
-          "UPI Transactions",
-          "Debit Card Transactions",
-          "Credit Card Transactions",
-        ],
+        categories: ["Total Transaction Count", "Total Transaction Amount"],
         title: {
           text: null,
         },
@@ -27,7 +23,7 @@ class TransactionGraph extends Component {
         labels: {
           x: 0,
           align: "left",
-          y: -16,
+          y: -25,
           style: {
             color: "#06152B",
             fontSize: "16px",
@@ -73,11 +69,10 @@ class TransactionGraph extends Component {
       series: [
         {
           showInLegend: false,
+          pointWidth: 20,
           data: [
             { y: 999500, color: "#4A3AFF" },
             { y: 505000, color: "#DB5AEE" },
-            { y: 255000, color: "#1AD598" },
-            { y: 100000, color: "#F9B959" },
           ],
         },
       ],

@@ -5,14 +5,6 @@ import HighchartsReact from "highcharts-react-official";
 class TicketDataGraph extends Component {
   render() {
     const { data, categories } = this.props;
-    // const data = [
-    //   { y: 999999, color: "#962DFF" },
-    //   { y: 888888, color: "#E0C6FD" },
-    //   { y: 555555, color: "#bdacef" },
-    //   { y: 222222, color: "#962DFF" },
-    //   { y: 777777, color: "#E0C6FD" },
-    //   { y: 666666, color: "#bdacef" },
-    // ];
     const options = {
       chart: {
         type: "bar",

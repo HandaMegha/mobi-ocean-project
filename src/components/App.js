@@ -22,6 +22,7 @@ const App = () => {
           path="/dashboard/tickets/activetickets"
           element={<Dashboard />}
         />
+        <Route path="/dashboard/transactions" element={<Dashboard />} />
       </Routes>
     </Router>
   );

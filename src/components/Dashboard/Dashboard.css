@@ -1720,6 +1720,10 @@ device_box {
     height: 228px !important;
   }
 
+  .th3 {
+    height: 185px !important;
+  }
+
   .dev_dt1 {
     height: 340px !important;
   }
@@ -1775,6 +1779,10 @@ device_box {
     height: 250px !important;
   }
 
+  .th3 {
+    height: 204px !important;
+  }
+
   .dev_dt1 {
     height: 388px !important;
   }
@@ -1819,6 +1827,10 @@ device_box {
 
   .th2 {
     height: 290px;
+  }
+
+  .th3 {
+    height: 248px;
   }
 
   .dev_dt1 {
