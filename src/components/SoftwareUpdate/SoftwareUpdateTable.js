@@ -118,13 +118,17 @@ const SoftwareUpdateTable = (props) => {
       className={`${
         pathname === "/dashboard/devices"
           ? "col-lg-6 col-md-6 padding-0"
+          : pathname === "/dashboard"
+          ? "col-lg-6 col-md-6"
           : "col-lg-12 col-md-12"
       }`}
     >
       <div className="card speed_sc graphContainer">
         <div
           className={`${
-            pathname === "/dashboard/devices" ? "dev_dt2" : ""
+            pathname === "/dashboard/devices" || pathname === "/dashboard"
+              ? "dev_dt2"
+              : ""
           } card-body`}
         >
           <div className=" align-items-start">{renderSoftwareData()}</div>

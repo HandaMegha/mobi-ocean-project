@@ -11,6 +11,7 @@ import Breadcrumb from "../Breadcrumb/Breadcrumb";
 import SoftwareUpdateTable from "../SoftwareUpdate/SoftwareUpdateTable";
 import TicketData from "../TicketData/TicketData";
 import ActiveTicket from "../TicketData/ActiveTicket";
+import TransactionData from "../TransactionData/TransactionData";
 import TransactionSection from "../TransactionData/TransactionSection";
 
 const DashboardContent = (props) => {
@@ -185,6 +186,9 @@ const DashboardContent = (props) => {
                         addBreadcrumbs={addBreadcrumbs}
                       />
                     )}
+                    <Link to={{ pathname: "/dashboard/transactions" }}>
+                      <TransactionSection />
+                    </Link>
                   </div>
                 </div>
               </>
@@ -205,7 +209,7 @@ const DashboardContent = (props) => {
                 area={area}
               />
             ) : (
-              <TransactionSection />
+              <TransactionData />
             )}
           </div>
         )}
