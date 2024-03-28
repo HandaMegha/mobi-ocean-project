@@ -14,6 +14,7 @@ import {
 } from "../../actions/DashboardActions";
 import { connect } from "react-redux";
 import { isEmpty } from "lodash";
+import { useLocation } from "react-router-dom";
 
 const Dashboard = (props) => {
   const {
@@ -27,8 +28,23 @@ const Dashboard = (props) => {
     loading,
     tokenSuccess,
   } = props;
+  const location = useLocation();
+  const { pathname } = location;
+
+  const clearCacheData = () => {
+    caches.keys().then((names) => {
+      names.forEach((name) => {
+        caches.delete(name);
+      });
+    });
+    localStorage.clear();
+    console.log("Complete Cache & localstorage Cleared");
+  };
 
   useEffect(() => {
+    if (pathname === "/dashboard") {
+      clearCacheData();
+    }
     getToken();
   }, [getToken]);
 
