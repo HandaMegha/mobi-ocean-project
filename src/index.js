@@ -3,20 +3,14 @@ import ReactDOM from "react-dom/client";
 import App from "./components/App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
-import { createLogger } from "redux-logger";
 import { applyMiddleware, legacy_createStore as createStore } from "redux";
 import createSagaMiddleware from "redux-saga";
 import sagas from "./sagas";
 import rootReducer from "./reducers";
 
-const loggerMiddleware = createLogger();
-
 const sagaMiddleware = createSagaMiddleware();
 
-const store = createStore(
-  rootReducer,
-  applyMiddleware(sagaMiddleware, loggerMiddleware)
-);
+const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
 
 sagaMiddleware.run(sagas);
 

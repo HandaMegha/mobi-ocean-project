@@ -17,7 +17,6 @@
     "react-router-dom": "^6.21.0",
     "react-scripts": "5.0.1",
     "redux": "^5.0.1",
-    "redux-logger": "^3.0.6",
     "redux-saga": "^1.2.3",
     "ua-parser-js": "^1.0.37",
     "web-vitals": "^2.1.4"

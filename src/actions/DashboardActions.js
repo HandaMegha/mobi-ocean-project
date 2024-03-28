@@ -17,51 +17,59 @@ export const getToken = () => {
   };
 };
 
-export const getDeviceWiseCount = () => {
+export const getDeviceWiseCount = (token) => {
   return {
     type: GET_DEVICE_COUNT_REQUEST,
+    token,
   };
 };
 
-export const getDeviceData = () => {
+export const getDeviceData = (token) => {
   return {
     type: GET_DEVICE_DATA_REQUEST,
+    token,
   };
 };
 
-export const getDeviceAppData = () => {
+export const getDeviceAppData = (token) => {
   return {
     type: GET_DEVICE_APP_DATA_REQUEST,
+    token,
   };
 };
 
-export const getTicketWiseCount = () => {
+export const getTicketWiseCount = (token) => {
   return {
     type: GET_TICKET_COUNT_REQUEST,
+    token,
   };
 };
 
-export const getTickets = () => {
+export const getTickets = (token) => {
   return {
     type: GET_TICKETS_REQUEST,
+    token,
   };
 };
 
-export const getTicketTopIssues = () => {
+export const getTicketTopIssues = (token) => {
   return {
     type: GET_TICKET_TOP_ISSUES_REQUEST,
+    token,
   };
 };
 
-export const getTicketList = () => {
+export const getTicketList = (token) => {
   return {
     type: GET_TICKET_LIST_REQUEST,
+    token,
   };
 };
 
-export const getTicketData = () => {
+export const getTicketData = (token) => {
   return {
     type: GET_TICKET_DATA_REQUEST,
+    token,
   };
 };
 

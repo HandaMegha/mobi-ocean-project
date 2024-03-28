@@ -21,8 +21,9 @@ const ActiveTicket = (props) => {
   const [activeTab, setActiveTab] = useState("activeticket");
 
   useEffect(() => {
-    getTicketList();
-    getTicketData();
+    const token = localStorage.getItem("Ns_t");
+    getTicketList(token);
+    getTicketData(token);
   }, [getTicketList, getTicketData]);
 
   const handleClick = (id) => {

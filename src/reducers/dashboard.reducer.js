@@ -57,15 +57,18 @@ const dashboard = (state = initialState, action) => {
     case GET_TOKEN_REQUEST:
       return {
         ...state,
+        loading: true,
       };
     case GET_TOKEN_SUCCESS:
       return {
         ...state,
+        loading: false,
         tokenSuccess: action.msg,
       };
     case GET_TOKEN_ERROR:
       return {
         ...state,
+        loading: false,
         tokenError: action.error,
       };
     case GET_DEVICE_COUNT_REQUEST:

@@ -13,6 +13,7 @@ import {
   getTicketTopIssues,
 } from "../../actions/DashboardActions";
 import { connect } from "react-redux";
+import { isEmpty } from "lodash";
 
 const Dashboard = (props) => {
   const {
@@ -24,18 +25,25 @@ const Dashboard = (props) => {
     getTickets,
     getTicketTopIssues,
     loading,
+    tokenSuccess,
   } = props;
 
   useEffect(() => {
     getToken();
-    getDeviceData();
-    getDeviceWiseCount();
-    getDeviceAppData();
-    getTicketWiseCount();
-    getTickets();
-    getTicketTopIssues();
+  }, [getToken]);
+
+  useEffect(() => {
+    if (!isEmpty(tokenSuccess)) {
+      const token = localStorage.getItem("Ns_t");
+      getDeviceData(token);
+      getDeviceWiseCount(token);
+      getDeviceAppData(token);
+      getTicketWiseCount(token);
+      getTickets(token);
+      getTicketTopIssues(token);
+    }
   }, [
-    getToken,
+    tokenSuccess,
     getDeviceData,
     getDeviceWiseCount,
     getDeviceAppData,
@@ -65,6 +73,7 @@ const Dashboard = (props) => {
 
 const mapStateToProps = (state) => ({
   loading: state.dashboardReducer.loading,
+  tokenSuccess: state.dashboardReducer.tokenSuccess,
 });
 
 const mapDispatchToProps = {

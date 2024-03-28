@@ -29,7 +29,7 @@ import {
   GET_TICKET_DATA_ERROR,
 } from "../constants/DashboardConstants";
 import axios from "axios";
-import { headers, token } from "./GetHeaders";
+import { headers } from "./GetHeaders";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -86,7 +86,7 @@ function* getTokenAPI() {
   }
 }
 
-async function getDeviceCountData() {
+async function getDeviceCountData(token) {
   headers["ns_t"] = token;
   return await axios({
     method: "post",
@@ -99,16 +99,17 @@ async function getDeviceCountData() {
     });
 }
 
-function* getDeviceCount() {
+function* getDeviceCount(values) {
   try {
-    const data = yield call(getDeviceCountData);
+    const { token } = values;
+    const data = yield call(getDeviceCountData, token);
     yield put({ type: GET_DEVICE_COUNT_SUCCESS, data });
   } catch (error) {
     yield put({ type: GET_DEVICE_COUNT_ERROR, error });
   }
 }
 
-async function getData() {
+async function getData(token) {
   headers["ns_t"] = token;
   return await axios({
     method: "post",
@@ -121,16 +122,17 @@ async function getData() {
     });
 }
 
-function* getDeviceData() {
+function* getDeviceData(values) {
   try {
-    const data = yield call(getData);
+    const { token } = values;
+    const data = yield call(getData, token);
     yield put({ type: GET_DEVICE_DATA_SUCCESS, data });
   } catch (error) {
     yield put({ type: GET_DEVICE_DATA_ERROR, error });
   }
 }
 
-async function getAppData() {
+async function getAppData(token) {
   headers["ns_t"] = token;
   return await axios({
     method: "post",
@@ -143,16 +145,17 @@ async function getAppData() {
     });
 }
 
-function* getDeviceAppData() {
+function* getDeviceAppData(values) {
   try {
-    const data = yield call(getAppData);
+    const { token } = values;
+    const data = yield call(getAppData, token);
     yield put({ type: GET_DEVICE_APP_DATA_SUCCESS, data });
   } catch (error) {
     yield put({ type: GET_DEVICE_APP_DATA_ERROR, error });
   }
 }
 
-async function getTicketCountData() {
+async function getTicketCountData(token) {
   headers["ns_t"] = token;
   return await axios({
     method: "post",
@@ -165,16 +168,17 @@ async function getTicketCountData() {
     });
 }
 
-function* getTicketCount() {
+function* getTicketCount(values) {
   try {
-    const data = yield call(getTicketCountData);
+    const { token } = values;
+    const data = yield call(getTicketCountData, token);
     yield put({ type: GET_TICKET_COUNT_SUCCESS, data });
   } catch (error) {
     yield put({ type: GET_TICKET_COUNT_ERROR, error });
   }
 }
 
-async function getTicketsData() {
+async function getTicketsData(token) {
   headers["ns_t"] = token;
   return await axios({
     method: "post",
@@ -187,16 +191,17 @@ async function getTicketsData() {
     });
 }
 
-function* getTickets() {
+function* getTickets(values) {
   try {
-    const data = yield call(getTicketsData);
+    const { token } = values;
+    const data = yield call(getTicketsData, token);
     yield put({ type: GET_TICKETS_SUCCESS, data });
   } catch (error) {
     yield put({ type: GET_TICKETS_ERROR, error });
   }
 }
 
-async function getTicketTopIssuesData() {
+async function getTicketTopIssuesData(token) {
   headers["ns_t"] = token;
   return await axios({
     method: "post",
@@ -209,16 +214,17 @@ async function getTicketTopIssuesData() {
     });
 }
 
-function* getTicketTopIssues() {
+function* getTicketTopIssues(values) {
   try {
-    const data = yield call(getTicketTopIssuesData);
+    const { token } = values;
+    const data = yield call(getTicketTopIssuesData, token);
     yield put({ type: GET_TICKET_TOP_ISSUES_SUCCESS, data });
   } catch (error) {
     yield put({ type: GET_TICKET_TOP_ISSUES_ERROR, error });
   }
 }
 
-async function getTicketListData() {
+async function getTicketListData(token) {
   headers["ns_t"] = token;
   return await axios({
     method: "post",
@@ -231,16 +237,17 @@ async function getTicketListData() {
     });
 }
 
-function* getTicketList() {
+function* getTicketList(values) {
   try {
-    const data = yield call(getTicketListData);
+    const { token } = values;
+    const data = yield call(getTicketListData, token);
     yield put({ type: GET_TICKET_LIST_SUCCESS, data });
   } catch (error) {
     yield put({ type: GET_TICKET_LIST_ERROR, error });
   }
 }
 
-async function getListData() {
+async function getListData(token) {
   headers["ns_t"] = token;
   return await axios({
     method: "post",
@@ -253,9 +260,10 @@ async function getListData() {
     });
 }
 
-function* getTicketData() {
+function* getTicketData(values) {
   try {
-    const data = yield call(getListData);
+    const { token } = values;
+    const data = yield call(getListData, token);
     yield put({ type: GET_TICKET_DATA_SUCCESS, data });
   } catch (error) {
     yield put({ type: GET_TICKET_DATA_ERROR, error });
